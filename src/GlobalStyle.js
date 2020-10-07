@@ -14,6 +14,6 @@ export const GlobalStyle = createGlobalStyle`
         background-color: ${({ theme }) => theme.color.backgroundColor};
         margin: 0px auto 103px;
         line-height: 1.4;
-        color: ${({ theme }) => theme.backgroundColor};
+        color: ${({ theme }) => theme.color.black};
     }
 `;
