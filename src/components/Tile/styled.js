@@ -86,3 +86,8 @@ export const Rate = styled.div`
         margin: 0 12px 0 0;
     `}
 `;
+export const Description = styled.div`
+    color: ${({theme}) => theme.color.black};
+    font-size: 20px;
+    line-height: 1.6;
+`;

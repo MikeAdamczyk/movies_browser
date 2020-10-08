@@ -1,9 +1,32 @@
 import React from 'react';
-import { TileElement, Image, DetailBox, Header, Subheader, Container, AdditionalInfo, Genre, Star, Rate} from './styled';
+import { 
+    TileElement, 
+    Image, 
+    DetailBox, 
+    Header, 
+    Subheader, 
+    Container, 
+    AdditionalInfo, 
+    Genre, 
+    Star, 
+    Rate,
+    Description } from './styled';
 import star from '../../images/Vector.svg'
 
 
-export const Tile = ({tileType, tileView, header, subheader, poster, place, date, genres, rateValue, votesNumber}) => {
+export const Tile = ({
+    tileType, 
+    tileView, 
+    header, 
+    subheader, 
+    poster, 
+    place, 
+    date, 
+    genres, 
+    rateValue, 
+    votesNumber, 
+    description
+    }) => {
    
     return <TileElement >
         <Image src={poster}></Image>
@@ -46,6 +69,9 @@ export const Tile = ({tileType, tileView, header, subheader, poster, place, date
             </Container> 
             :
              ""}
+            <Container>
+            <Description>{description}</Description>
+            </Container>
         </DetailBox>
     </TileElement>
 };
