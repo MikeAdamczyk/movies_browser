@@ -1,40 +1,51 @@
 import React from 'react';
-import { TileElement, Image, DetailBox, Header, Subheader, AdditionalInfoBox, AdditionalInfo, Genres, Genre} from './styled'
+import { TileElement, Image, DetailBox, Header, Subheader, Container, AdditionalInfo, Genre, Star, Rate} from './styled';
+import star from '../../images/Vector.svg'
 
 
-export const Tile = ({tileType, tileView, header, subheader, poster, place, date, genres}) => {
+export const Tile = ({tileType, tileView, header, subheader, poster, place, date, genres, rateValue, votesNumber}) => {
    
     return <TileElement >
         <Image src={poster}></Image>
         <DetailBox>
             <Header>{header}</Header>
             {tileType === "movie" ? <Subheader>{subheader}</Subheader> : ""}
-            <AdditionalInfoBox>
+            <Container>
                 <AdditionalInfo>
                     {tileType === "movie" ? "Production:" : "Date of birth:"}
                 </AdditionalInfo>
                 <AdditionalInfo content>
                     {tileType === "movie" ? `${place}` : `${date}`}   
                 </AdditionalInfo>
-            </AdditionalInfoBox>
-            <AdditionalInfoBox next>
+            </Container>
+            <Container next>
                 <AdditionalInfo>
                     {tileType === "movie" ? "Release date:" : "Place of birth:"}
                 </AdditionalInfo>
                 <AdditionalInfo content>
                     {tileType === "movie" ? `${date}` : `${place}`}
                 </AdditionalInfo>
-            </AdditionalInfoBox>
+            </Container>
             {tileType === "movie" ? 
             <>
-                <Genres>
+                <Container>
                     {genres.map((genre) => 
                         <Genre key={genre}>
                             {genre}
                         </Genre>
                     )}
-                </Genres>
-            </> : ""}
+                </Container>
+            </> : 
+            ""}
+            {tileType === "movie" ?
+            <Container>
+                <Star src={star}></Star>
+                <Rate number>{rateValue}</Rate>
+                <Rate>/ 10</Rate>
+                <Rate votes>{votesNumber} votes</Rate>
+            </Container> 
+            :
+             ""}
         </DetailBox>
     </TileElement>
 };

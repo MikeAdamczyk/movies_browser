@@ -37,9 +37,10 @@ export const Subheader = styled.h2`
     align-self: flex-start;
     color: ${({theme}) => theme.color.darkGrey};
 `;
-export const AdditionalInfoBox = styled.div`
+export const Container = styled.div`
     display: flex;
     margin: 24px 0 0;
+    align-items: center;
     ${({next}) => next && css`
         margin: 8px 0 0;
     `}
@@ -55,10 +56,6 @@ export const AdditionalInfo= styled.span`
         font-weight: 500;
     `}
 `;
-export const Genres = styled.div`
-    display: flex;
-    margin: 24px 0px;
-`;
 export const Genre = styled.div`
     margin-right: 16px;
     background-color: ${({theme}) => theme.color.grey};
@@ -67,4 +64,25 @@ export const Genre = styled.div`
     border-radius: 5px;
     font-size: 14px;
     line-height: 100%;
+`;
+
+export const Star = styled.img`
+    width: 24px;
+    margin: 0 8px 0 0;
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+        width: 16px;    
+    }
+`;
+export const Rate = styled.div`
+     color: ${({theme}) => theme.color.black};
+     font-size: 14px;
+     margin: 0 8px 0 0;
+
+     ${({number}) => number && css`
+        font-size: 22px;
+        font-weight: 500;
+    `}
+    ${({votes}) => votes && css`
+        margin: 0 12px 0 0;
+    `}
 `;
