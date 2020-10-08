@@ -1,8 +1,9 @@
 import React from 'react';
-import { TileElement, Image, DetailBox, Header, Subheader, AdditionalInfoBox, AdditionalInfo } from './styled'
+import { TileElement, Image, DetailBox, Header, Subheader, AdditionalInfoBox, AdditionalInfo, Genres, Genre} from './styled'
 
 
-export const Tile = ({tileType, tileView, header, subheader, poster, place, date}) => {
+export const Tile = ({tileType, tileView, header, subheader, poster, place, date, genres}) => {
+   
     return <TileElement >
         <Image src={poster}></Image>
         <DetailBox>
@@ -16,16 +17,24 @@ export const Tile = ({tileType, tileView, header, subheader, poster, place, date
                     {tileType === "movie" ? `${place}` : `${date}`}   
                 </AdditionalInfo>
             </AdditionalInfoBox>
-            <AdditionalInfoBox>
+            <AdditionalInfoBox next>
                 <AdditionalInfo>
                     {tileType === "movie" ? "Release date:" : "Place of birth:"}
                 </AdditionalInfo>
                 <AdditionalInfo content>
                     {tileType === "movie" ? `${date}` : `${place}`}
                 </AdditionalInfo>
-
             </AdditionalInfoBox>
-            {/*tileType === movie? zwróć production, release date : people? zwróć datę uro, miejsce uro*/}
+            {tileType === "movie" ? 
+            <>
+                <Genres>
+                    {genres.map((genre) => 
+                        <Genre key={genre}>
+                            {genre}
+                        </Genre>
+                    )}
+                </Genres>
+            </> : ""}
         </DetailBox>
     </TileElement>
 };

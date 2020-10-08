@@ -39,7 +39,10 @@ export const Subheader = styled.h2`
 `;
 export const AdditionalInfoBox = styled.div`
     display: flex;
-    margin: 24px 0 -16px;
+    margin: 24px 0 0;
+    ${({next}) => next && css`
+        margin: 8px 0 0;
+    `}
 `;
 export const AdditionalInfo= styled.span`
     margin-right: 10px;
@@ -51,4 +54,17 @@ export const AdditionalInfo= styled.span`
         color: ${({theme}) => theme.color.black};
         font-weight: 500;
     `}
+`;
+export const Genres = styled.div`
+    display: flex;
+    margin: 24px 0px;
+`;
+export const Genre = styled.div`
+    margin-right: 16px;
+    background-color: ${({theme}) => theme.color.grey};
+    color: ${({theme}) => theme.color.black};
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 100%;
 `;

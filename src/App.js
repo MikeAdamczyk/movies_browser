@@ -11,6 +11,7 @@ function App() {
         poster={poster}
         place={"China, United States of America"}
         date={"24.10.2020"}
+        genres={["Action", "Adventure", "Drama"]}
       ></Tile>
   </>;
 }
