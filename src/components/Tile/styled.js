@@ -69,6 +69,7 @@ export const Subheader = styled.h2`
 `;
 export const Container = styled.div`
     display: flex;
+    flex-wrap: wrap;
     margin: 24px 0 0;
     align-items: center;
     ${({next}) => next && css`
