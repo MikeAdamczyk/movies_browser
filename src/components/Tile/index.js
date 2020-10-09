@@ -28,32 +28,55 @@ export const Tile = ({
     description
     }) => {
    
-    return <TileElement >
-        <Image src={poster}></Image>
-        <DetailBox>
-            <Header>{header}</Header>
-            {tileType === "movie" ? <Subheader>{subheader}</Subheader> : ""}
-            <Container>
-                <AdditionalInfo>
-                    {tileType === "movie" ? "Production:" : "Date of birth:"}
-                </AdditionalInfo>
-                <AdditionalInfo content>
-                    {tileType === "movie" ? `${place}` : `${date}`}   
-                </AdditionalInfo>
-            </Container>
-            <Container next>
-                <AdditionalInfo>
-                    {tileType === "movie" ? "Release date:" : "Place of birth:"}
-                </AdditionalInfo>
-                <AdditionalInfo content>
-                    {tileType === "movie" ? `${date}` : `${place}`}
-                </AdditionalInfo>
-            </Container>
+    return  <TileElement 
+                tileView={tileView}
+            >
+        <Image 
+            src={poster}
+            tileView={tileView}
+        ></Image>
+        <DetailBox 
+            tileView={tileView}
+        >
+            <Header
+                tileView={tileView}
+            >
+                {header}
+            </Header>
+            {tileType === "movie" ? <Subheader tileView={tileView}>{subheader}</Subheader> : ""}
+            {tileView === "detail" ?
+                <>
+                    <Container 
+                        tileView={tileView}
+                    >
+                        <AdditionalInfo>
+                            {tileType === "movie" ? "Production:" : "Date of birth:"}
+                        </AdditionalInfo>
+                        <AdditionalInfo content>
+                            {tileType === "movie" ? `${place}` : `${date}`}   
+                        </AdditionalInfo>
+                    </Container>
+                    <Container 
+                        next 
+                        tileView={tileView}
+                    >
+                        <AdditionalInfo>
+                            {tileType === "movie" ? "Release date:" : "Place of birth:"}
+                        </AdditionalInfo>
+                        <AdditionalInfo content>
+                            {tileType === "movie" ? `${date}` : `${place}`}
+                        </AdditionalInfo>
+                    </Container>
+                </> : 
+            ""}
             {tileType === "movie" ? 
             <>
-                <Container>
+                <Container tileView={tileView}>
                     {genres.map((genre) => 
-                        <Genre key={genre}>
+                        <Genre 
+                            key={genre} 
+                            tileView={tileView}
+                        >
                             {genre}
                         </Genre>
                     )}
@@ -61,17 +84,41 @@ export const Tile = ({
             </> : 
             ""}
             {tileType === "movie" ?
-            <Container>
-                <Star src={star}></Star>
-                <Rate number>{rateValue}</Rate>
-                <Rate>/ 10</Rate>
-                <Rate votes>{votesNumber} votes</Rate>
+            <Container tileView={tileView}>
+                <Star 
+                    src={star} 
+                    tileView={tileView}
+                ></Star>
+                <Rate 
+                    number 
+                    tileView={tileView}
+                >
+                    {rateValue}
+                </Rate>
+                {tileView === "detail" ?
+                    <Rate 
+                    tileView={tileView}
+                >
+                    / 10
+                </Rate> :
+                ""}
+                
+                <Rate 
+                    votes 
+                    tileView={tileView}
+                >
+                    {votesNumber} votes
+                </Rate>
             </Container> 
             :
              ""}
+            {tileView === "detail" ?
             <Container>
-            <Description>{description}</Description>
-            </Container>
+                <Description>
+                    {description}
+                </Description> 
+            </Container> :
+            ""}
         </DetailBox>
     </TileElement>
 };
