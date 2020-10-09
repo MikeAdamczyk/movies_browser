@@ -7,8 +7,8 @@ import actor from './images/actor.png'
 function App() {
   return <>
       <Tile
-        tileType={"movie"}
-        tileView={"list"}
+        tileType={"movie"} //movie / people
+        tileView={"list"} // list / detail
         header={"Mulan"}
         subheader={"2020"}
         poster={posterList}
