@@ -30,6 +30,8 @@ export const Tile = ({
    
     return  <TileElement 
                 tileView={tileView}
+                // no idea how to pass tileView={tileView} to every child without writing it down in each, as I did now
+                //any ideas?
             >
         <Image 
             src={poster}
