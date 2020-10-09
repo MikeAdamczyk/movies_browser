@@ -43,11 +43,12 @@ export const Tile = ({
             >
                 {header}
             </Header>
-            {tileType === "movie" ? <Subheader tileView={tileView}>{subheader}</Subheader> : ""}
+            {(tileType === "movie" && subheader)? <Subheader tileView={tileView}>{subheader}</Subheader> : ""}
             {tileView === "detail" ?
                 <>
                     <Container 
                         tileView={tileView}
+                        additionalInfo
                     >
                         <AdditionalInfo>
                             {tileType === "movie" ? "Production:" : "Date of birth:"}
@@ -57,6 +58,7 @@ export const Tile = ({
                         </AdditionalInfo>
                     </Container>
                     <Container 
+                        additionalInfo
                         next 
                         tileView={tileView}
                     >
@@ -69,9 +71,12 @@ export const Tile = ({
                     </Container>
                 </> : 
             ""}
-            {tileType === "movie" ? 
+            {(tileType === "movie" && genres)? 
             <>
-                <Container tileView={tileView}>
+                <Container 
+                    tileView={tileView}
+                    genres
+                >
                     {genres.map((genre) => 
                         <Genre 
                             key={genre} 
@@ -84,7 +89,10 @@ export const Tile = ({
             </> : 
             ""}
             {tileType === "movie" ?
-            <Container tileView={tileView}>
+            <Container 
+                tileView={tileView}
+                rate
+            >
                 <Star 
                     src={star} 
                     tileView={tileView}
@@ -112,8 +120,8 @@ export const Tile = ({
             </Container> 
             :
              ""}
-            {tileView === "detail" ?
-            <Container>
+            {(tileView === "detail" )?
+            <Container description>
                 <Description>
                     {description}
                 </Description> 

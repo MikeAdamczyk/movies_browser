@@ -11,6 +11,8 @@ export const TileElement = styled.div`
 
     ${({tileView}) => tileView === "list" && css`
         max-width: 324px;
+        height: 650px;
+        /* by now height is fixed for styling but after being displayed in grid, it will be deleted */
         flex-direction: column;
         align-items: center;
         padding: 16px 0 0 0;
@@ -33,7 +35,10 @@ export const DetailBox = styled.div`
     flex-direction: column; 
 
     ${({tileView}) => tileView === "list" && css`
-        margin: 16px;
+        margin: 0;
+        padding: 16px;
+        width: 100%;
+        height: 100%;
     `}
 `;
 export const Header = styled.h1`
@@ -54,7 +59,6 @@ export const Subheader = styled.h2`
     font-size: 22px;
     line-height: 1.2;
     margin: 24px 0 0;
-    align-self: flex-start;
     color: ${({theme}) => theme.color.darkGrey};
 
     ${({tileView}) => tileView === "list" && css`
@@ -73,6 +77,11 @@ export const Container = styled.div`
 
     ${({tileView}) => tileView === "list" && css`
         margin: 0 0 0;
+        flex-shrink: 1;
+    `}
+    ${({tileView, rate}) => (tileView === "list" && rate) && css`
+        flex-grow: 1;
+        align-items: flex-end;
     `}
 `;
 export const AdditionalInfo= styled.span`
@@ -116,7 +125,7 @@ export const Star = styled.img`
     }
 
     ${({tileView}) => tileView === "list" && css`
-        margin: 40px 12px 0 0;
+        margin: 0 12px 0 0;
     `}
 `;
 export const Rate = styled.div`
@@ -135,13 +144,13 @@ export const Rate = styled.div`
         font-size: 16px;
         font-weight: 600;
         line-height: 1.5;
-        margin: 40px 12px 0 0;
+        margin: 0 12px 0 0;
     `}
     ${({votes, tileView}) => (votes && tileView === "list")&& css`
         font-size: 16px;
         font-weight: 400;
         line-height: 1.5;
-        margin: 40px 12px 0 0;
+        margin: 0 12px 0 0;
         color: ${({theme}) => theme.color.darkGrey};
     `}
 `;
