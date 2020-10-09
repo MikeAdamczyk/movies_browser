@@ -1,8 +1,10 @@
 import React from "react";
-import "./App.css";
+import { MoviesPage } from "./features/movies/MoviesPage";
 
-function App() {
-  return <></>;
-}
+export default () => (
+  <MoviesPage>
 
-export default App;
+  </MoviesPage>
+
+  
+);
