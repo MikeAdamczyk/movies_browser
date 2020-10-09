@@ -1,5 +1,5 @@
 import {call, put, takeEvery, delay} from "redux-saga/effects";
-import {getMovie} from "./api";
+import {getMovie} from "./getMovie";
 import {fetchMovieSucces, fetchMovieError, fetchMovie} from "./moviesSlice";
 
 function* fetchMovieHandler() {
