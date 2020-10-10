@@ -1,36 +1,43 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice, current} from "@reduxjs/toolkit";
 
-const moviesSlice = createSlice({
-  name: "movies",
-  initialState: {
-    isLoading: false,
-    results: [],
-    total_pages: 0,
-    page: 1,
-    total_results: 0,
-  },
-  reducers: {
-    fetchMovie: (state) => {
-      state.isLoading = true;
+export const moviesSlice = createSlice({
+    name: "movies",
+    initialState: {
+        isLoading: false,
+        currentPage: 0,
+        totalPages: 1,
+        totalResults: 0,
+        results: [],
     },
-    fetchMovieSucces: (state, { payload }) => {
-      state.results = payload.results;
-      state.total_pages = payload.total_pages;
-      state.page = payload.page;
-      state.total_results = payload.total_results;
-      state.isLoading = false;
+    reducers: {
+        fetchMovie: (state) => {
+            state.isLoading = true;
+        },
+        fetchMovieSucces: (state, {payload}) => {
+            state.isLoading = false;
+            state.currentPage = payload.page;
+            state.totalPages = payload.total_pages;
+            state.totalResults = payload.total_results;
+            state.results = payload.results;
+        },
+        fetchMovieError: (state) => {
+            state.isLoading = false;
+        },
+        setNextPage: (state) => {
+            state.currentPage = state.currentPage + 1;
+        },
     },
-    fetchMovieError: (state) => {
-      state.isLoading = false;
-    },
-  },
 });
 
 export const {
-  fetchMovie,
-  fetchMovieSucces,
-  fetchMovieError,
+    fetchMovie,
+    fetchMovieSucces,
+    fetchMovieError,
+    setNextPage,
 } = moviesSlice.actions;
+
 export const selectMovie = (state) => state.movies.results;
+export const selectCurrentPage = (state) => state.movies.currentPage;
 
 export default moviesSlice.reducer;
+
