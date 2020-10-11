@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import {Provider} from "react-redux";
 import {store} from "./store";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle } from './GlobalStyle'
+import { theme } from "./theme"
 
 ReactDOM.render(
     <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle/>
         <App/>
+      </ThemeProvider>
     </Provider>,
     document.getElementById("root")
 );
