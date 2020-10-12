@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MoviesContainer = styled.div`
+export const MoviesContainer = styled.main`
     justify-content: center;
     max-width: 1368px;
     margin: 0 auto;
@@ -18,7 +18,7 @@ export const MoviesContainer = styled.div`
     }
 `;
 
-export const PeopleContainer = styled.div`
+export const PeopleContainer = styled.main`
     justify-content: center;
     max-width: 1368px;
     margin: 0 auto;
