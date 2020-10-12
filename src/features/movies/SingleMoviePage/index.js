@@ -1,15 +1,14 @@
 import React from "react";
-import Paging from "../../../common/components/Paging";
 import { Container } from "../../../common/components/Container/index";
+import Paging from "../../../common/components/Paging";
 import { Title } from "../../../common/components/Title";
 
-export const MoviesPage = () => (
+export const SingleMoviePage = () => (
     <>
-        <Title title={"Popular movies"}></Title>
-
+        <Title title={"Singe Movie Page"}></Title>
         <Container>
             <p>
-                Popular movies page
+                Single Movie Page
             </p>
         </Container>
 

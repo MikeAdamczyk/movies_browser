@@ -3,13 +3,12 @@ import Paging from "../../../common/components/Paging";
 import { Container } from "../../../common/components/Container/index";
 import { Title } from "../../../common/components/Title";
 
-export const MoviesPage = () => (
+export const PeoplePage = () => (
     <>
-        <Title title={"Popular movies"}></Title>
-
+        <Title title={"People"}></Title>
         <Container>
             <p>
-                Popular movies page
+                People
             </p>
         </Container>
 
