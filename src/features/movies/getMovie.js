@@ -1,6 +1,6 @@
 import {API_KEY, URL_ADDRESS} from "../../lib/consts";
 
-export const getMovie = async (page) => {
+export const getMovie = async (page = 1) => {
     const response = await fetch(`${URL_ADDRESS}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`);
 
     if (!response.ok) {

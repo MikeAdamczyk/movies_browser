@@ -7,7 +7,6 @@ function* fetchMovieHandler() {
         yield delay(1000)
         const movie = yield call(getMovie);
         yield put(fetchMovieSucces(movie))
-        console.log(movie)
     } catch (error) {
         yield put(fetchMovieError(error))
     }

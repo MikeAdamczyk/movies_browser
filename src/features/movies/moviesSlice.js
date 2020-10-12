@@ -1,10 +1,10 @@
-import {createSlice, current} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 export const moviesSlice = createSlice({
     name: "movies",
     initialState: {
         isLoading: false,
-        currentPage: 0,
+        currentPage: 1,
         totalPages: 1,
         totalResults: 0,
         results: [],
@@ -23,9 +23,6 @@ export const moviesSlice = createSlice({
         fetchMovieError: (state) => {
             state.isLoading = false;
         },
-        setNextPage: (state) => {
-            state.currentPage = state.currentPage + 1;
-        },
     },
 });
 
@@ -33,11 +30,9 @@ export const {
     fetchMovie,
     fetchMovieSucces,
     fetchMovieError,
-    setNextPage,
 } = moviesSlice.actions;
 
 export const selectMovie = (state) => state.movies.results;
-export const selectCurrentPage = (state) => state.movies.currentPage;
 
 export default moviesSlice.reducer;
 
