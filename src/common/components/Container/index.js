@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    justify-content: center;
     max-width: 1368px;
-    margin: auto;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 24px;
-`;
+    grid-template-columns: repeat(auto-fill, 324px);
+    grid-auto-rows: 650px;
 
-export const TileExample = styled.div`
-    width: 324px;
-    height: 650px;
-    box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
-    background: white;
-    color: red;
-    padding: 30px;
-    font-size: 24px;
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}px){
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-bottom: 16px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}px){
+        grid-template-columns: repeat(auto-fill, 320px);
+    }
 `;

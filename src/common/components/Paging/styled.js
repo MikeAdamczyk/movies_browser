@@ -8,6 +8,4 @@ export const Footer = styled.footer`
     font-size: 14px;
     max-width: 1368px;
     background: ${({ theme }) => theme.color.grey};
-    width: 525px;
-    height: 36px;
 `;

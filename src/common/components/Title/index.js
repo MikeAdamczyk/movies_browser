@@ -1,10 +1,10 @@
 import React from "react";
-import { TitleBox, MainTitle } from "./styled";
+import { TitleBox, SectionTitle } from "./styled";
 
 export const Title = ({ title }) => (
     <TitleBox>
-        <MainTitle>
+        <SectionTitle>
             {title}
-        </MainTitle>
+        </SectionTitle>
     </TitleBox>
 );
