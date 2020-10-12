@@ -36,7 +36,7 @@ export const HeaderTitle = styled.p`
 
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}px){
         font-size: 13px;
-        line-height: 17px;
+        line-height: 130%;
         letter-spacing: -0.5px;
     }
 `;

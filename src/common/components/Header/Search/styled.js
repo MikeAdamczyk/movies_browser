@@ -5,7 +5,6 @@ export const SearchBox = styled.div`
     width: 432px;
     height: 48px;
     background: ${({ theme }) => theme.color.white};
-    box-sizing: border-box;
     border: 1px solid ${({ theme }) => theme.color.grey};
     display: flex;
     align-items: center;

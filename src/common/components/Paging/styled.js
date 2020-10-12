@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Footer = styled.footer`
     text-align: center;
-    justify-content: center;
     padding: 11px;
     margin: 40px auto;
     font-size: 14px;

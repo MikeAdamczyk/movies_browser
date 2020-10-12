@@ -14,7 +14,7 @@ export const SectionTitle = styled.h2`
     color: ${({ theme }) => theme.color.black};
     font-weight: 600px;
     font-size: 36px;
-    line-height: 43px;
+    line-height: 120%;
     margin: 56px 0 24px 0;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.small}px) {
