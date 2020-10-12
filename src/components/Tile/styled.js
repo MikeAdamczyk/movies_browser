@@ -1,31 +1,33 @@
 import styled, { css } from 'styled-components';
 
 export const TileElement = styled.div`
-    max-width: 1368px;
-    margin: 100px auto;
+    max-width: 100%;
+    margin: 0 auto;
     padding: 0px 0px 0px 40px;
     background-color: ${({theme}) => theme.color.white};
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
+    border-radius: 5px;
     display: flex;
     flex-wrap: nowrap;
 
     ${({tileView}) => tileView === "list" && css`
-        max-width: 324px;
-        height: 650px;
-        /* by now height is fixed for styling but after being displayed in grid, it will be deleted */
-        flex-direction: column;
-        align-items: center;
-        padding: 16px 0 0 0;
+        display: grid;
+        grid-gap: 16px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        padding: 16px;
     `}
 `;
 
 export const Image = styled.img`
     margin: 40px 0px;
-    flex-grow: 0;
+    flex-grow: 1;
     border-radius: 5px;
 
     ${({tileView}) => tileView === "list" && css`
         margin: 0px;
+        width: 292px;
+        height: 434px;
     `}
 `;
 export const DetailBox = styled.div`
@@ -36,12 +38,12 @@ export const DetailBox = styled.div`
 
     ${({tileView}) => tileView === "list" && css`
         margin: 0;
-        padding: 16px;
+        /* padding: 16px; */
         width: 100%;
         height: 100%;
     `}
 `;
-export const Header = styled.h1`
+export const Header = styled.h2`
     font-weight: 600;
     font-size: 36px;
     line-height: 1.2;
