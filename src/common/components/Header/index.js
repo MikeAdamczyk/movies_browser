@@ -1,17 +1,25 @@
 import React from "react";
-import Search from "../Search/index";
-import { Icon } from "../Menu/Logo";
-import LogoSrc from "../Menu/Logo/logo.png"
-import { HeaderBox, Subheader } from "./styled";
+import Search from "./Search/index";
+import LogoSrc from "./Menu/Logo/logo.png"
+import { HeaderTitle, Icon, Wrapper, Logo } from "./Menu/Logo";
+import { HeaderBox, Subheader, MenuBox } from "./styled";
+import { Nav } from "./Menu/Navigation/index";
 
 export const Header = () => (
     <HeaderBox>
         <Subheader>
-            <div>
-                <Icon src={LogoSrc} alt="" />
-                MoviesBrowser
-            </div>
-            <Search></Search>
+            <MenuBox>
+                <Logo href="/">
+                    <Wrapper>
+                        <Icon src={LogoSrc} alt="" />
+                        <HeaderTitle>Movies&nbsp;Browser</HeaderTitle>
+                    </Wrapper>
+                </Logo>
+
+                <Nav />
+            </MenuBox>
+
+            <Search />
 
         </Subheader>
     </HeaderBox>
