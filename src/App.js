@@ -16,7 +16,6 @@ function App() {
         dispatch(fetchMovie())
     }, [])
   
-
     const getProductionYear = (releaseDate) => {
       const productionYear = (new Date(releaseDate)).getFullYear();
 
