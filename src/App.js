@@ -1,24 +1,26 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchMovie, selectMovie} from "./features/movies/moviesSlice";
-import { Tile } from "./components/Tile";
-import poster from './images/poster.jpg';
-import posterList from './images/posterlist.png';
-import actor from './images/actor.png';
-import {Container} from './styled'
-import { store } from "./store";
+import {fetchGenre, selectGenre} from "./features/genres/genresSlice";
+import { Tile } from "./components/Tile"
+import poster from './images/poster.jpg'
+import posterList from './images/posterlist.png'
+import actor from './images/actor.png'
 
 function App() {
     //@FIXME: below is only sample render
-    const moviesResult = useSelector(selectMovie)
     const dispatch = useDispatch();
+
+    const moviesResult = useSelector(selectMovie);
+    const genresResult = useSelector(selectGenre);
+
     useEffect(() => {
-        dispatch(fetchMovie())
-    }, [])
+      dispatch(fetchMovie());
+      dispatch(fetchGenre())
+  }, [dispatch])
   
     const getProductionYear = (releaseDate) => {
       const productionYear = (new Date(releaseDate)).getFullYear();
-
       return productionYear;
     }
 
