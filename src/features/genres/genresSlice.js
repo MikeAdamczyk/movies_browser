@@ -10,7 +10,7 @@ const genresSlice = createSlice({
         fetchGenre: (state) => {
             state.isLoading = true;
         },
-        fetchGenreSucces: (state, {payload}) => {
+        fetchGenreSuccess: (state, {payload}) => {
             state.genres = payload.genres;
             state.isLoading = false;
         },
@@ -22,7 +22,7 @@ const genresSlice = createSlice({
 
 export const {
     fetchGenre,
-    fetchGenreSucces,
+    fetchGenreSuccess,
     fetchGenreError,
 } = genresSlice.actions;
 

@@ -13,7 +13,7 @@ export const moviesSlice = createSlice({
         fetchMovie: (state) => {
             state.isLoading = true;
         },
-        fetchMovieSucces: (state, {payload}) => {
+        fetchMovieSuccess: (state, {payload}) => {
             state.isLoading = false;
             state.currentPage = payload.page;
             state.totalPages = payload.total_pages;
@@ -28,7 +28,7 @@ export const moviesSlice = createSlice({
 
 export const {
     fetchMovie,
-    fetchMovieSucces,
+    fetchMovieSuccess,
     fetchMovieError,
 } = moviesSlice.actions;
 
