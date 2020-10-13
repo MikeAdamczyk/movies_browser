@@ -4,7 +4,6 @@ import { MoviesPage } from "./features/movies/MoviesPage/index";
 import { PeoplePage } from "./features/people/PeoplePage/index"
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
-
 export default () => (
   <>
     <Router>
