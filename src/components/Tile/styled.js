@@ -17,9 +17,23 @@ export const TileElement = styled.div`
         grid-template-rows: auto 1fr;
         padding: 16px;
     `}
+
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}){
+        ${({tileView}) => tileView === "list" && css`
+            grid-template-columns: auto 1fr;
+            grid-template-rows: 1fr;
+        `}
+    };
+
 `;
 
 export const Image = styled.img`
+    background-position: center;
+    background-size: cover;
+
+    ${({posterPath}) =>  css`
+        background-image: url(https://image.tmdb.org/t/p/w342/${posterPath});
+    `}
     margin: 40px 0px;
     flex-grow: 1;
     border-radius: 5px;
@@ -29,6 +43,17 @@ export const Image = styled.img`
         width: 292px;
         height: 434px;
     `}
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}){
+        ${({posterPath}) =>  css`
+            background-image: url(https://image.tmdb.org/t/p/w154/${posterPath});
+        `}
+
+        ${({tileView}) => tileView === "list" && css`
+        margin: 0px;
+        width: 114px;
+        height: 169px;
+    `}
+    };
 `;
 export const DetailBox = styled.div`
     flex-grow: 1;
@@ -38,10 +63,10 @@ export const DetailBox = styled.div`
 
     ${({tileView}) => tileView === "list" && css`
         margin: 0;
-        /* padding: 16px; */
         width: 100%;
         height: 100%;
     `}
+
 `;
 export const Header = styled.h2`
     font-weight: 600;
@@ -55,6 +80,12 @@ export const Header = styled.h2`
         line-height: 1.3;
         margin: 0 0 0 0;
     `}
+
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}){
+        ${({tileView}) => tileView === "list" && css`           
+            font-size: 16px;
+        `}
+    };
 `;
 export const Subheader = styled.h2`
     font-weight: normal;
@@ -68,6 +99,14 @@ export const Subheader = styled.h2`
         line-height: 1.5;
         margin: 8px 0 0;
     `}
+
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}){
+        ${({tileView}) => tileView === "list" && css`
+            font-size: 13px;
+            line-height: 1.3;
+            margin: 4px 0 0;
+        `}
+    };
 `;
 export const Container = styled.div`
     display: flex;
@@ -86,6 +125,15 @@ export const Container = styled.div`
         flex-grow: 1;
         align-items: flex-end;
     `}
+
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}){
+        ${({tileView, rate}) => (tileView === "list" && rate) && css`
+            height: 24px;
+            flex-grow: 0;
+            align-items: center;
+            margin: 8px 0 0;
+        `}
+    };
 `;
 export const AdditionalInfo= styled.span`
     margin-right: 10px;
@@ -97,12 +145,6 @@ export const AdditionalInfo= styled.span`
         color: ${({theme}) => theme.color.black};
         font-weight: 500;
     `}
-
-    ${({tileView}) => tileView === "list" && css`
-        display: none;
-    `}
-
-
 `;
 export const Genre = styled.div`
     margin-right: 16px;
@@ -117,45 +159,70 @@ export const Genre = styled.div`
         margin: 8px 8px 0 0;
         line-height: 1.4;
     `}
+
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}){
+        ${({tileView}) => tileView === "list" && css`
+            font-size: 10px;
+            line-height: 1.1;
+            padding: 4px 8px;
+        `}
+    };
 `;
 
 export const Star = styled.img`
     width: 24px;
     margin: 0 8px 0 0;
     
-    @media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
-        width: 16px;    
-    }
-
     ${({tileView}) => tileView === "list" && css`
         margin: 0 12px 0 0;
     `}
+
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+        width: 16px;    
+        margin: 0 8px 0 0;
+    }
 `;
 export const Rate = styled.div`
-     color: ${({theme}) => theme.color.black};
-     font-size: 14px;
-     margin: 0 8px 0 0;
+    color: ${({theme}) => theme.color.black};
+    font-size: 14px;
+    margin: 0 8px 0 0;
 
-     ${({number}) => number && css`
-        font-size: 22px;
-        font-weight: 500;
+    ${({number}) => number && css`
+    font-size: 22px;
+    font-weight: 500;
     `}
+
     ${({votes}) => votes && css`
         margin: 0 12px 0 0;
     `}
-    ${({number, tileView}) => (number && tileView === "list")&& css`
+
+    ${({tileView}) =>  tileView === "list" && css`
         font-size: 16px;
         font-weight: 600;
         line-height: 1.5;
         margin: 0 12px 0 0;
     `}
+
     ${({votes, tileView}) => (votes && tileView === "list")&& css`
-        font-size: 16px;
         font-weight: 400;
-        line-height: 1.5;
-        margin: 0 12px 0 0;
         color: ${({theme}) => theme.color.darkGrey};
     `}
+
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}){
+        ${({number, tileView}) => (number && tileView === "list")&& css`
+            font-size: 13px;
+            line-height: 1.3;
+            margin: 0 7px 0 0;
+        `}
+
+        ${({votes, tileView}) => (votes && tileView === "list")&& css`
+            height: 100%;
+            font-size: 13px;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+        `}
+    };
 `;
 export const Description = styled.div`
     color: ${({theme}) => theme.color.black};
