@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HeaderBox = styled.div`
+export const HeaderBox = styled.header`
     background-color: ${({ theme }) => theme.color.black};
     color: ${({ theme }) => theme.color.white};
     min-height: 94px;
