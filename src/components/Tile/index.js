@@ -34,7 +34,7 @@ export const Tile = ({
                 //any ideas?
             >
         <Image 
-            src={poster}
+            posterPath={poster}
             tileView={tileView}
         ></Image>
         <DetailBox 
@@ -108,9 +108,9 @@ export const Tile = ({
                 {tileView === "detail" ?
                     <Rate 
                     tileView={tileView}
-                >
-                    / 10
-                </Rate> :
+                    >
+                        / 10
+                    </Rate> :
                 ""}
                 
                 <Rate 
