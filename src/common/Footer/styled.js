@@ -1,27 +1,69 @@
 import styled, {css} from 'styled-components';
 
 export const Pagination = styled.footer`
-max-width: 525px;
-height: 36px;
-margin: 40px auto 103px;
-display: flex;
-flex-direction: row;
+  height: 36px;
+  margin: 40px auto 103px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+   @media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+       height: 24px;  
+       margin: 32px auto 31px;
+    }
 `;
 
 export const ChangePageButton = styled.button`
-margin-right: 12px;
-padding: 8px 16px;
-height: 36px;
-border: none;
-border-radius: 5px;
-background-color: ${({theme}) => theme.color.lightBlue};
-display: flex;
-align-items: center;
-flex-grow: 0;
+  margin-right: 12px;
+  padding: 8px 16px;
+  height: 36px;
+  border: none;
+  border-radius: 5px;
+  background-color: ${({theme}) => theme.color.lightBlue};
+  display: flex;
+  align-items: center;
 
-&:disabled{
-   background-color: ${({theme}) => theme.color.grey};
+   &:disabled{
+      background-color: ${({theme}) => theme.color.grey};
     }
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+      margin-right: 8px;
+      padding: 8px 12px;
+    }
+    
+    ${({directionChange}) => directionChange && css`
+        margin: 0;
+        @media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+        margin: 0;
+        }
+    `}
+`;
+export const Arrow = styled.img`
+  width: 7px;
+  height: 11px;
+  
+  @media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+        width: 5px;
+        height: 8px;
+    }
+  
+  ${({directionChange}) => directionChange && css`
+        @media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+        margin-left: 4px;
+        }
+    `}
+   
+     ${({hidden}) => hidden && css`
+    display: none;
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+        display: unset;
+    }
+`}
+    
+${({back}) => back && css`
+        transform: rotate(180deg);
+        `}
 `;
 
 export const TextButton = styled.span`
@@ -29,27 +71,43 @@ color: ${({theme}) => theme.color.darkGrey};
 font-size: 14px;
 line-height: 1.4;
 
+@media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+     display: none;
+    }
+
 ${({inactive}) => inactive && css`
         color: ${({theme}) => theme.color.black};
         `}
-${({directonChange}) => directonChange === "left" && css`
+${({directionChange}) => directionChange === "left" && css`
         margin-left: 8px;
     `}
-${({directonChange}) => directonChange === "right" && css`
+${({directionChange}) => directionChange === "right" && css`
        margin-right: 8px;
     `}
 `;
 
 export const Text = styled.span`
-margin: 0 16px 0 16px;
+margin: 0 16px;
 font-size: 16px;
 line-height: 1.5;
 color: ${({theme}) => theme.color.darkerGrey};
 align-self: center;
+
+@media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+margin: 0 8px;
+font-size: 10px;
+line-height: 2.4;
+    }
 `;
 
 export const Number = styled.span`
 margin: 0 8px;
 font-weight: 600;
 color: ${({theme}) => theme.color.black};
-`
+
+@media (max-width: ${({theme}) => theme.breakpoints.mobile}) {
+margin: 0 2px;
+font-size: 10px;
+line-height: 2.4;
+    }
+`;
