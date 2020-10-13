@@ -7,9 +7,9 @@ import {Tile} from "./components/Tile"
 import poster from './images/poster.jpg'
 import posterList from './images/posterlist.png'
 import actor from './images/actor.png'
+import {Footer} from "./common/Footer";
 
 function App() {
-    //@FIXME: below is only sample render
     const dispatch = useDispatch();
 
     const moviesResult = useSelector(selectMovie);
@@ -23,18 +23,6 @@ function App() {
     }, [dispatch])
 
     return (<>
-            {moviesResult.map((result, index) => (
-                    <div key={index}>{JSON.stringify(result)}</div>
-                )
-            )}
-            {genresResult.map((result, index) => (
-                    <div key={index}>{JSON.stringify(result)}</div>
-                )
-            )}
-            {peopleResult.map((result, index) => (
-                    <div key={index}>{JSON.stringify(result)}</div>
-                )
-            )}
             <Tile
                 tileType={"movie"} //movie / people
                 tileView={"list"} // list / detail
@@ -51,6 +39,7 @@ function App() {
                                       A young Chinese maiden disguises herself as a male warrior in order to save her father.`
                 }
             />
+            <Footer/>
         </>
     )
 }
