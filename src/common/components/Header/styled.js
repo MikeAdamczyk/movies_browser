@@ -14,14 +14,11 @@ export const Subheader = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.medium}px) {
-        display: flex;
-        align-items: center;
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
         align-content: center;
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.small}px) {
-        min-height: 142px;
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -32,7 +29,7 @@ export const Subheader = styled.div`
     justify-content: flex-start;
     align-items: center;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.small}px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
        margin: 22px;
     }
  `;
