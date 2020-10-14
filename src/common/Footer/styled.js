@@ -62,7 +62,7 @@ export const Arrow = styled.img`
     `}
 
     ${({ back }) => back && css`
-        transform
+        transform: rotate(180deg);
     `}
 `;
 
