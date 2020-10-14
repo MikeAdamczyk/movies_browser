@@ -11,9 +11,11 @@ export const theme = {
     },
 
     breakpoints: {
+        large: "1384px",
+        big: "1036px",
+        medium: "800px",
         mobile: "767px", 
-        medium: 800,
-        small: 620,
-        extraSmall: 320,
+        small: "648px",
+        extraSmall: "320px",
     }
 };
