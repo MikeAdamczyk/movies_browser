@@ -4,7 +4,6 @@ export const Pagination = styled.footer`
   height: 36px;
   margin: 40px auto 103px;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
 
@@ -66,7 +65,7 @@ ${({back}) => back && css`
         `}
 `;
 
-export const TextButton = styled.span`
+export const ButtonTitle = styled.span`
 color: ${({theme}) => theme.color.darkGrey};
 font-size: 14px;
 line-height: 1.4;
