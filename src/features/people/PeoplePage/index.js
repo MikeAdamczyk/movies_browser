@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Paging from "../../../common/components/Paging";
-import { PeopleContainer } from "../../../common/components/Containers/index";
+import { ListContainer, Wrapper } from "../../../common/components/Containers/styled";
 import { Title } from "../../../common/components/Title";
+import { store } from '../../../store';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPeople, selectPeople } from "../peopleSlice";
+import { Tile } from "../../../common/components/Tile";
 
-export const PeoplePage = () => (
-    <>
-        <Title title={"People"}></Title>
-        <PeopleContainer>
-            <p>
-                People
-            </p>
-        </PeopleContainer>
 
-        <Paging />
-    </>
-);
+export const PeoplePage = () => {
+
+    const dispatch = useDispatch();
+
+    const peopleResult = useSelector(selectPeople);
+
+    useEffect(() => {
+      dispatch(fetchPeople());
+  }, [dispatch])
+
+    console.log(store.getState())
+
+ return     <Wrapper DataType={"people"}>
+                <Title title={"Popular people"}></Title>
+                <ListContainer DataType={"people"}>
+                    {peopleResult.map((result) => (
+                        <Tile
+                        key={result.id}
+                        tileType={"people"} //movie / people
+                        tileView={"list"} // list / detail
+                        header={result.name}
+                        image={result.profile_path}                        
+                        ></Tile> 
+                        )
+                    )
+                    }
+                </ListContainer>
+                <Paging />
+            </Wrapper>
+};
