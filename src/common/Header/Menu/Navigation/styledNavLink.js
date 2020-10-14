@@ -23,11 +23,11 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
         border: solid 1px ${({ theme }) => theme.color.white};
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.medium}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
         padding: 10px 14px;
         margin: 4px;
     }
-    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
         padding: 10px 10px;
         margin: 0px;
     }

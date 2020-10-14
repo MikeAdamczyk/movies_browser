@@ -1,7 +1,7 @@
 import React from "react";
-import Paging from "../../../common/components/Paging";
-import { MoviesContainer } from "../../../common/components/Containers/index";
-import { Title } from "../../../common/components/Title";
+import { MoviesContainer } from "../../../common/Containers/index";
+import { Title } from "../../../common/Title";
+import { Footer } from "../../../common/Footer/index";
 
 export const MoviesPage = () => (
     <>
@@ -12,7 +12,6 @@ export const MoviesPage = () => (
                 Popular movies page
             </p>
         </MoviesContainer>
-
-        <Paging />
+        <Footer />
     </>
 );

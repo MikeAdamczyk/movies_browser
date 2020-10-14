@@ -1,7 +1,7 @@
 import React from "react";
-import Paging from "../../../common/components/Paging";
-import { PeopleContainer } from "../../../common/components/Containers/index";
-import { Title } from "../../../common/components/Title";
+import { PeopleContainer } from "../../../common/Containers/index";
+import { Title } from "../../../common/Title";
+import { Footer } from "../../../common/Footer/index";
 
 export const PeoplePage = () => (
     <>
@@ -12,6 +12,6 @@ export const PeoplePage = () => (
             </p>
         </PeopleContainer>
 
-        <Paging />
+        <Footer />
     </>
 );
