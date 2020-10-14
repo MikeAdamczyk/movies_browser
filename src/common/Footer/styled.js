@@ -8,7 +8,7 @@ export const Pagination = styled.footer`
     justify-content: center;
 
    @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
-       height: 24px;  
+       height: 24px;
        margin: 32px auto 31px;
     }
 `;
@@ -30,7 +30,7 @@ export const ChangePageButton = styled.button`
       margin-right: 8px;
       padding: 8px 12px;
     }
-    
+
     ${({ directionChange }) => directionChange && css`
         margin: 0;
         @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {

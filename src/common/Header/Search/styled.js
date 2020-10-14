@@ -46,7 +46,6 @@ export const Input = styled.input`
     border: none;
     outline: none;
 
-
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
         font-size: 13px;
         line-height: 17px;
