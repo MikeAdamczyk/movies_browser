@@ -2,7 +2,7 @@ import React from "react";
 import {
     useQueryParameter,
     useReplaceQueryParameter,
-} from "../../../queryParameters";
+} from "../../../features/queryParameters";
 import searchIcon from "./search.png";
 import {SearchBox, Input, SearchIcon} from "./styled";
 import {QUERY_PARAMETER} from "../../../lib/consts";

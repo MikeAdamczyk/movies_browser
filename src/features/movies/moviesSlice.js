@@ -44,7 +44,7 @@ export const getSearchedMovies = (state, query) => {
     return movies.filter(({title}) =>
         title.toUpperCase().includes(query.trim().toUpperCase())
     );
-}
+};
 
 export default moviesSlice.reducer;
 

@@ -34,5 +34,15 @@ export const {
 
 export const selectPeople = (state) => state.people.results;
 
+export const getSearchedPeople = (state, query) => {
+    const people = selectPeople(state);
+    if (!query || query.trim() === "") {
+        return people;
+    }
+    return people.filter(({name}) =>
+        name.toUpperCase().includes(query.trim().toUpperCase())
+    );
+};
+
 export default peopleSlice.reducer;
 

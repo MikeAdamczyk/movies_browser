@@ -2,11 +2,19 @@ import React from "react";
 import {Footer} from "../../../common/Footer";
 import {ListContainer, Wrapper} from "../../../common/Containers/styled";
 import {Title} from "../../../common/Title";
-import {useMovieDetail} from "../../../lib/useMovieDetail"
+import {useMovieDetail} from "../useMovieDetail"
 import {Tile} from "../../../common/Tile";
+import {getProductionYear} from "../../../lib/utils";
+import {useSelector} from "react-redux";
+import {getSearchedMovies} from "../moviesSlice";
+import {useQueryParameter} from "../../queryParameters";
+import {QUERY_PARAMETER} from "../../../lib/consts";
 
 export const MoviesPage = () => {
-    const {getProductionYear, getMovieGenres, moviesResult} = useMovieDetail();
+    const query = useQueryParameter(QUERY_PARAMETER);
+
+    const getMovieGenres = useMovieDetail();
+    const moviesResult = useSelector((state) => getSearchedMovies(state, query));
 
     return <Wrapper>
         <Title title={"Popular movies"}></Title>

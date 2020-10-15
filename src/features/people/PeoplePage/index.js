@@ -3,19 +3,20 @@ import {Footer} from "../../../common/Footer";
 import {ListContainer, Wrapper} from "../../../common/Containers/styled";
 import {Title} from "../../../common/Title";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchPeople, selectPeople} from "../peopleSlice";
+import {fetchPeople, getSearchedPeople} from "../peopleSlice";
 import {Tile} from "../../../common/Tile";
-
+import {useQueryParameter} from "../../queryParameters";
+import {QUERY_PARAMETER} from "../../../lib/consts";
 
 export const PeoplePage = () => {
+    const query = useQueryParameter(QUERY_PARAMETER);
+    const peopleResult = useSelector((state) => getSearchedPeople(state, query));
 
     const dispatch = useDispatch();
 
-    const peopleResult = useSelector(selectPeople);
-
     useEffect(() => {
         dispatch(fetchPeople());
-    }, [dispatch])
+    }, [dispatch]);
 
     return <Wrapper DataType={"people"}>
         <Title title={"Popular people"}></Title>
