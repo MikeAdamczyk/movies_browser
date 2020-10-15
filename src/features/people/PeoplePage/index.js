@@ -1,17 +1,17 @@
 import React from "react";
-import Paging from "../../../common/components/Paging";
-import { PeopleContainer } from "../../../common/components/Containers/index";
-import { Title } from "../../../common/components/Title";
+import { Container } from "../../../common/Containers/index";
+import { Title } from "../../../common/Title";
+import { Footer } from "../../../common/Footer/index";
 
 export const PeoplePage = () => (
     <>
         <Title title={"People"}></Title>
-        <PeopleContainer>
+        <Container section="people">
             <p>
                 People
             </p>
-        </PeopleContainer>
+        </Container>
 
-        <Paging />
+        <Footer />
     </>
 );

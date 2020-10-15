@@ -16,13 +16,13 @@ export const Icon = styled.img`
     width: 31px;
     height: 23px;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.medium}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
         width: 13px;
         height: 10px;
         margin-left: 18px;
         margin-right: 10px;
     }
-    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
         margin-left: 5px;
     }
 `;
@@ -34,7 +34,7 @@ export const HeaderTitle = styled.p`
     line-height: 40px;
     letter-spacing: -1.5px;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.medium}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
         font-size: 13px;
         line-height: 130%;
         letter-spacing: -0.5px;

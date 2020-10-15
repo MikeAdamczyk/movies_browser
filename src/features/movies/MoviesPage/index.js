@@ -1,18 +1,17 @@
 import React from "react";
-import Paging from "../../../common/components/Paging";
-import { MoviesContainer } from "../../../common/components/Containers/index";
-import { Title } from "../../../common/components/Title";
+import { Container } from "../../../common/Containers/index";
+import { Title } from "../../../common/Title";
+import { Footer } from "../../../common/Footer/index";
 
 export const MoviesPage = () => (
     <>
         <Title title={"Popular movies"}></Title>
 
-        <MoviesContainer>
+        <Container section="movies">
             <p>
                 Popular movies page
             </p>
-        </MoviesContainer>
-
-        <Paging />
+        </Container>
+        <Footer />
     </>
 );

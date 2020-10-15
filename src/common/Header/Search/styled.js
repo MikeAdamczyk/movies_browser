@@ -11,14 +11,14 @@ export const SearchBox = styled.div`
     margin-left: 16px;
     margin-right: 16px;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.medium}px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
         width: 288px;
         height: 44px;
         margin-left: 10px;
         margin-right: 10px;
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.small}px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         margin-bottom: 16px;
     }
 
@@ -29,7 +29,7 @@ export const SearchIcon = styled.img`
     height: 22px;
     margin: 12px 16px 12px 24px;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.medium}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
         width: 14px;
         height: 14px;
         margin: 16px 10px 16px 18px;
@@ -46,8 +46,7 @@ export const Input = styled.input`
     border: none;
     outline: none;
 
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.medium}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
         font-size: 13px;
         line-height: 17px;
     }
