@@ -11,7 +11,7 @@ import {
     Star, 
     Rate,
     Description } from './styled';
-import star from '../../images/Vector.svg'
+import star from '../../../images/Vector.svg'
 
 
 export const Tile = ({
@@ -19,7 +19,7 @@ export const Tile = ({
     tileView, 
     header, 
     subheader, 
-    poster, 
+    image, 
     place, 
     date, 
     genres, 
@@ -30,17 +30,20 @@ export const Tile = ({
    
     return  <TileElement 
                 tileView={tileView}
+                tileType={tileType}
                 // no idea how to pass tileView={tileView} to every child without writing it down in each, as I did now
                 //any ideas?
             >
         <Image 
-            posterPath={poster}
+            imagePath={image}
             tileView={tileView}
+            tileType={tileType}
         ></Image>
         <DetailBox 
             tileView={tileView}
         >
             <Header
+                tileType={tileType}
                 tileView={tileView}
             >
                 {header}

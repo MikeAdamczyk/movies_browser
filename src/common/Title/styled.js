@@ -1,13 +1,8 @@
 import styled from "styled-components";
 
 export const TitleBox = styled.div`
-    max-width: 1368px;
+    max-width: 100%;
     margin: auto;
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
-        margin-left: 16px;
-        margin-right: 16px;
-    }
 `;
 
 export const SectionTitle = styled.h2`
@@ -17,6 +12,9 @@ export const SectionTitle = styled.h2`
     line-height: 120%;
     margin: 56px 0 24px 0;
 
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        font-size: 24px;
+    }
     @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         font-size: 18px;
         line-height: 22px;
