@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import Paging from "../../../common/components/Paging";
-import { ListContainer, Wrapper } from "../../../common/components/Containers/styled";
-import { Title } from "../../../common/components/Title";
+import { Footer } from "../../../common/Footer";
+import { ListContainer, Wrapper } from "../../../common/Containers/styled";
+import { Title } from "../../../common/Title";
 import { store } from '../../../store';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPeople, selectPeople } from "../peopleSlice";
-import { Tile } from "../../../common/components/Tile";
+import { Tile } from "../../../common/Tile";
 
 
 export const PeoplePage = () => {
@@ -33,6 +33,6 @@ export const PeoplePage = () => {
                     )
                     }
                 </ListContainer>
-                <Paging />
+                <Footer />
             </Wrapper>
 };
