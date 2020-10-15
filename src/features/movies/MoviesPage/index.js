@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import Paging from "../../../common/components/Paging";
-import { ListContainer, Wrapper } from "../../../common/components/Containers/styled";
-import { Title } from "../../../common/components/Title";
+import { Footer } from "../../../common/Footer";
+import { ListContainer, Wrapper } from "../../../common/Containers/styled";
+import { Title } from "../../../common/Title";
 import { useMovieDetail } from "../../../lib/useMovieDetail"
-import { Tile } from "../../../common/components/Tile";
+import { Tile } from "../../../common/Tile";
 
 export const MoviesPage = () => {
     const {getProductionYear, getMovieGenres, moviesResult} = useMovieDetail();
@@ -31,6 +31,6 @@ export const MoviesPage = () => {
                     )
                 }
             </ListContainer>
-            <Paging />
+            <Footer />
         </Wrapper>
 };

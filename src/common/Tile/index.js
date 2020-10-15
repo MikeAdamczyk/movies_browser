@@ -11,7 +11,7 @@ import {
     Star, 
     Rate,
     Description } from './styled';
-import star from '../../../images/Vector.svg'
+import star from '../../images/Vector.svg'
 
 
 export const Tile = ({
