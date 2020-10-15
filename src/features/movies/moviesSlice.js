@@ -36,5 +36,15 @@ export const selectMovie = (state) => state.movies.results;
 export const selectCurrentPage = (state) => state.movies.currentPage;
 export const selectTotalPages = (state) => state.movies.totalPages;
 
+export const getSearchedMovies = (state, query) => {
+    const movies = selectMovie(state);
+    if (!query || query.trim() === "") {
+        return movies;
+    }
+    return movies.filter(({title}) =>
+        title.toUpperCase().includes(query.trim().toUpperCase())
+    );
+}
+
 export default moviesSlice.reducer;
 
