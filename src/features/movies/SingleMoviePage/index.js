@@ -1,17 +1,29 @@
 import React from "react";
-import { Container } from "../../../common/components/Container/index";
-import Paging from "../../../common/components/Paging";
-import { Title } from "../../../common/components/Title";
+import { Container } from "../../../common/Containers/index";
+import { Footer } from "../../../common/Footer";
+import { Title } from "../../../common/Title";
+import { Backdrop, PosterBox, Poster } from "./styled";
+import bigPoster from "../../../images/backdrop.png";
 
-export const SingleMoviePage = () => (
-    <>
-        <Title title={"Singe Movie Page"}></Title>
-        <Container>
-            <p>
-                Single Movie Page
-            </p>
-        </Container>
 
-        <Paging />
-    </>
-);
+export const SingleMoviePage = () => {
+
+    return (
+        <>
+            <Backdrop>
+                <PosterBox>
+                    <Poster src={bigPoster} />
+                </PosterBox>
+            </Backdrop>
+
+            <Title title={"Single Movie Page"}></Title>
+            <Container section="movies">
+                <p>
+                    Single Movie Page
+                </p>
+            </Container>
+
+            <Footer />
+        </>
+    )
+};

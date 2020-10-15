@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Footer } from "../../../common/Footer";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 import { Title } from "../../../common/Title";
-import { store } from '../../../store';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPeople, selectPeople } from "../peopleSlice";
 import { Tile } from "../../../common/Tile";
