@@ -1,27 +1,24 @@
 import React from "react";
-import {Footer} from "../../../common/Footer";
-import {ListContainer, Wrapper} from "../../../common/Containers/styled";
-import {Title} from "../../../common/Title";
-import {useMovieDetail} from "../../useMovieDetail"
-import {Tile} from "../../../common/Tile";
-import {getProductionYear} from "../../../lib/utils";
+import {Tile} from "../../common/Tile";
+import {getProductionYear} from "../../lib/utils";
+import {useQueryParameter} from "../queryParameters";
+import {QUERY_PARAMETER} from "../../lib/consts";
 import {useSelector} from "react-redux";
-import {selectMovies, selectTotalResults} from "../moviesSlice";
-import {useQueryParameter} from "../../queryParameters";
-import {QUERY_PARAMETER} from "../../../lib/consts";
+import {selectSearchedMovies} from "./searchedMoviesSlice";
+import {useMovieDetail} from "../useMovieDetail";
+import {Title} from "../../common/Title";
+import {ListContainer} from "../../common/Containers/styled";
 
-export const MoviesPage = () => {
-    const query = useQueryParameter(QUERY_PARAMETER);
-
+export const SearchMoviesPage = () => {
+    const query = useQueryParameter(QUERY_PARAMETER)
+    const SearchMoviesResult = useSelector(selectSearchedMovies);
     const getMovieGenres = useMovieDetail();
-    const moviesResult = useSelector(selectMovies);
-    const totalResults = useSelector(selectTotalResults);
 
     return (
-        <Wrapper>
-            <Title title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`}/>
+        <>
+            <Title title={`Search results for ${query} (${SearchMoviesResult.totalResults})`}/>
             <ListContainer DataType={"movie"}>
-                {moviesResult.map((result) => (
+                {SearchMoviesResult.map((result) => (
                     <Tile
                         key={result.id}
                         tileType={"movie"} //movie / people
@@ -38,7 +35,6 @@ export const MoviesPage = () => {
                     ></Tile>
                 ))}
             </ListContainer>
-            <Footer/>
-        </Wrapper>
+        </>
     )
 };

@@ -1,17 +1,21 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchMovie} from "./moviesSlice";
-import {fetchGenre, selectGenre} from "../genres/genresSlice";
+import {fetchMovies} from "./movies/moviesSlice";
+import {fetchGenre, selectGenre} from "./genres/genresSlice";
+import {useQueryParameter} from "./queryParameters";
+import {QUERY_PARAMETER} from "../lib/consts";
 
 export const useMovieDetail = () => {
     const dispatch = useDispatch();
-
     const genresResult = useSelector(selectGenre);
+    const query = useQueryParameter(QUERY_PARAMETER);
 
     useEffect(() => {
-        dispatch(fetchMovie());
+        if (!query || query === ""){
+            dispatch(fetchMovies(query));
+        }
         dispatch(fetchGenre())
-    }, [dispatch])
+    }, [dispatch, query])
 
     const getMovieGenres = (genre_ids) => {
         const genres = [];

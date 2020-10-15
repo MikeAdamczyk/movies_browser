@@ -10,41 +10,36 @@ export const moviesSlice = createSlice({
         results: [],
     },
     reducers: {
-        fetchMovie: (state) => {
+        fetchMovies: (state, {payload}) => {
             state.isLoading = true;
         },
-        fetchMovieSuccess: (state, {payload}) => {
+        fetchMoviesByQuery: (state, {payload}) => {
+            state.isLoading = true;
+        },
+        fetchMoviesSuccess: (state, {payload}) => {
             state.isLoading = false;
             state.currentPage = payload.page;
             state.totalPages = payload.total_pages;
             state.totalResults = payload.total_results;
             state.results = payload.results;
         },
-        fetchMovieError: (state) => {
+        fetchMoviesError: (state) => {
             state.isLoading = false;
         },
     },
 });
 
 export const {
-    fetchMovie,
-    fetchMovieSuccess,
-    fetchMovieError,
+    fetchMovies,
+    fetchMoviesSuccess,
+    fetchMoviesError,
+    fetchMoviesByQuery,
 } = moviesSlice.actions;
 
-export const selectMovie = (state) => state.movies.results;
+export const selectMovies = (state) => state.movies.results;
 export const selectCurrentPage = (state) => state.movies.currentPage;
 export const selectTotalPages = (state) => state.movies.totalPages;
-
-export const getSearchedMovies = (state, query) => {
-    const movies = selectMovie(state);
-    if (!query || query.trim() === "") {
-        return movies;
-    }
-    return movies.filter(({title}) =>
-        title.toUpperCase().includes(query.trim().toUpperCase())
-    );
-};
+export const selectTotalResults = (state) => state.movies.totalResults;
 
 export default moviesSlice.reducer;
 

@@ -6,16 +6,22 @@ import {
 import searchIcon from "./search.png";
 import {SearchBox, Input, SearchIcon} from "./styled";
 import {QUERY_PARAMETER} from "../../../lib/consts";
+import {useDispatch} from "react-redux";
+import {fetchMoviesByQuery} from "../../../features/movies/moviesSlice"
 
 const Search = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
     const replaceQueryParameter = useReplaceQueryParameter();
 
+    const dispatch = useDispatch();
+
     const onInputChange = ({target}) => {
+        const usedQuery = target.value.trim();
         replaceQueryParameter({
             key: QUERY_PARAMETER,
-            value: target.value.trim() !== "" ? target.value : "",
+            value: usedQuery !== "" ? target.value : "",
         });
+        dispatch(fetchMoviesByQuery(usedQuery))
     };
 
     return (<SearchBox>
