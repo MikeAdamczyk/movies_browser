@@ -18,8 +18,6 @@ export const PeoplePage = () => {
       dispatch(fetchPeople());
   }, [dispatch])
 
-    console.log(store.getState())
-
  return     <Wrapper DataType={"people"}>
                 <Title title={"Popular people"}></Title>
                 <ListContainer DataType={"people"}>

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 
 export const TileElement = styled.div`
     width: 100%;
@@ -122,7 +122,7 @@ export const Subheader = styled.h2`
     font-size: 22px;
     line-height: 1.2;
     margin: 24px 0 0;
-    color: ${({theme}) => theme.color.darkGrey};
+    color: ${({theme}) => theme.color.darkerGrey};
 
     ${({tileView}) => tileView === "list" && css`
         font-size: 16px;
@@ -165,7 +165,7 @@ export const Container = styled.div`
         `}
     };
 `;
-export const AdditionalInfo= styled.span`
+export const AdditionalInfo = styled.span`
     margin-right: 10px;
     font-size: 18px;
     font-weight: 400;
@@ -226,26 +226,26 @@ export const Rate = styled.div`
         margin: 0 12px 0 0;
     `}
 
-    ${({tileView}) =>  tileView === "list" && css`
+    ${({tileView}) => tileView === "list" && css`
         font-size: 16px;
         font-weight: 600;
         line-height: 1.5;
         margin: 0 12px 0 0;
     `}
 
-    ${({votes, tileView}) => (votes && tileView === "list")&& css`
+    ${({votes, tileView}) => (votes && tileView === "list") && css`
         font-weight: 400;
-        color: ${({theme}) => theme.color.darkGrey};
+        color: ${({theme}) => theme.color.darkerGrey};
     `}
 
     @media (max-width: ${({theme}) => theme.breakpoints.mobile}){
-        ${({number, tileView}) => (number && tileView === "list")&& css`
+        ${({number, tileView}) => (number && tileView === "list") && css`
             font-size: 13px;
             line-height: 1.3;
             margin: 0 7px 0 0;
         `}
 
-        ${({votes, tileView}) => (votes && tileView === "list")&& css`
+        ${({votes, tileView}) => (votes && tileView === "list") && css`
             height: 100%;
             font-size: 13px;
             line-height: 1.3;

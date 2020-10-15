@@ -33,6 +33,8 @@ export const {
 } = moviesSlice.actions;
 
 export const selectMovie = (state) => state.movies.results;
+export const selectCurrentPage = (state) => state.movies.currentPage;
+export const selectTotalPages = (state) => state.movies.totalPages;
 
 export default moviesSlice.reducer;
 
