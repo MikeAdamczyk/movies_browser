@@ -8,6 +8,7 @@ import {SearchBox, Input, SearchIcon} from "./styled";
 import {QUERY_PARAMETER} from "../../../lib/consts";
 import {useDispatch} from "react-redux";
 import {fetchMoviesByQuery} from "../../../features/movies/moviesSlice"
+import {fetchPeopleByQuery} from "../../../features/people/peopleSlice";
 
 const Search = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
@@ -21,13 +22,16 @@ const Search = () => {
             key: QUERY_PARAMETER,
             value: usedQuery !== "" ? target.value : "",
         });
-        dispatch(fetchMoviesByQuery(usedQuery))
+        window.location.href.includes("people") ?
+            dispatch(fetchPeopleByQuery(usedQuery))
+            :
+            dispatch(fetchMoviesByQuery(usedQuery))
     };
 
     return (<SearchBox>
             <SearchIcon src={searchIcon}/>
             <Input
-                placeholder="Search for movies..."
+                placeholder={`Search for ${window.location.href === "http://localhost:3000/#/people" ? "people" : "movies"}...`}
                 value={query || ""}
                 onChange={onInputChange}
             />
