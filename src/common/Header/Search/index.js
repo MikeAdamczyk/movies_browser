@@ -31,7 +31,7 @@ const Search = () => {
     return (<SearchBox>
             <SearchIcon src={searchIcon}/>
             <Input
-                placeholder={`Search for ${window.location.href === "http://localhost:3000/#/people" ? "people" : "movies"}...`}
+                placeholder={`Search for ${window.location.href.includes("people") ? "people" : "movies"}...`}
                 value={query || ""}
                 onChange={onInputChange}
             />
