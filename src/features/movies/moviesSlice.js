@@ -8,16 +8,18 @@ export const moviesSlice = createSlice({
         totalPages: 1,
         totalResults: 0,
         results: [],
+        isSearchLoading: false,
     },
     reducers: {
         fetchMovies: (state, {payload}) => {
             state.isLoading = true;
         },
         fetchMoviesByQuery: (state, {payload}) => {
-            state.isLoading = true;
+            state.isSearchLoading = true;
         },
         fetchMoviesSuccess: (state, {payload}) => {
             state.isLoading = false;
+            state.isSearchLoading = false;
             state.currentPage = payload.page;
             state.totalPages = payload.total_pages;
             state.totalResults = payload.total_results;
@@ -25,6 +27,7 @@ export const moviesSlice = createSlice({
         },
         fetchMoviesError: (state) => {
             state.isLoading = false;
+            state.isSearchLoading = false;
         },
     },
 });
@@ -40,6 +43,7 @@ export const selectMovies = (state) => state.movies.results;
 export const selectCurrentPage = (state) => state.movies.currentPage;
 export const selectTotalPages = (state) => state.movies.totalPages;
 export const selectTotalResults = (state) => state.movies.totalResults;
+export const selectLoadingStatus = (state) => state.movies.isSearchLoading;
 
 export default moviesSlice.reducer;
 

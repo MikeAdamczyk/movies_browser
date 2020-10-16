@@ -12,7 +12,7 @@ export const useMovieDetail = () => {
 
     useEffect(() => {
         if (!query || query === ""){
-            dispatch(fetchMovies(query));
+            dispatch(fetchMovies());
         }
         dispatch(fetchGenre())
     }, [dispatch, query])
