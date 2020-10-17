@@ -1,16 +1,16 @@
 import {call, put, takeLatest} from "redux-saga/effects";
-import {getSearchedMoviesPage} from "./getSearchedMoviesDiffrentPage";
-import {fetchMoviesSuccess, fetchMoviesError, fetchDiffrentPageSearchedMovies} from "./moviesSlice";
+import {fetchPeopleSuccess, fetchPeopleError, fetchDifferentPageSearchedPeople} from "./peopleSlice";
+import {getSearchedPeoplePage} from "./getSearchedPeopleDifferentPage";
 
-function* fetchChangePageSearchedMoviesHandler(action) {
+function* fetchChangePageSearchedPeopleHandler(action) {
     try {
-        const searchedMovies = yield call(getSearchedMoviesPage, action.payload.query, action.payload.page);
-        yield put(fetchMoviesSuccess(searchedMovies))
+        const searchedPeople = yield call(getSearchedPeoplePage, action.payload.query, action.payload.page);
+        yield put(fetchPeopleSuccess(searchedPeople))
     } catch (error) {
-        yield put(fetchMoviesError(error))
+        yield put(fetchPeopleError(error))
     }
 }
 
-export function* changePageMoviesSaga() {
-    yield takeLatest(fetchDiffrentPageSearchedMovies.type, fetchChangePageSearchedMoviesHandler);
+export function* changePagePeopleSaga() {
+    yield takeLatest(fetchDifferentPageSearchedPeople.type, fetchChangePageSearchedPeopleHandler);
 }

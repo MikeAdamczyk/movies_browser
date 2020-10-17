@@ -4,6 +4,8 @@ import {genresSaga} from "./features/genres/genresSaga";
 import {peopleSaga} from "./features/people/peopleSaga";
 import {searchedMoviesSaga} from "./features/movies/searchedMoviesSaga";
 import {searchedPeopleSaga} from "./features/people/searchedPeopleSaga";
+import {changePageMoviesSaga} from "./features/movies/changePageMoviesSaga";
+import {changePagePeopleSaga} from "./features/people/changePagePeopleSaga";
 
 export default function* rootSaga() {
     yield all([
@@ -12,5 +14,7 @@ export default function* rootSaga() {
         peopleSaga(),
         searchedMoviesSaga(),
         searchedPeopleSaga(),
+        changePageMoviesSaga(),
+        changePagePeopleSaga(),
     ]);
 }

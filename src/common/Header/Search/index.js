@@ -7,8 +7,12 @@ import searchIcon from "./search.png";
 import {SearchBox, Input, SearchIcon} from "./styled";
 import {QUERY_PARAMETER} from "../../../lib/consts";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchMoviesByQuery, selectCurrentPage} from "../../../features/movies/moviesSlice"
-import {fetchPeopleByQuery, selectPeopleCurrentPage} from "../../../features/people/peopleSlice";
+import {
+    fetchMoviesByQuery,
+    selectCurrentPage,
+    fetchDifferentPageSearchedMovies
+} from "../../../features/movies/moviesSlice"
+import {fetchPeopleByQuery, selectPeopleCurrentPage, fetchDifferentPageSearchedPeople} from "../../../features/people/peopleSlice";
 
 const Search = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
@@ -19,13 +23,22 @@ const Search = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if (query && query !== "" && (peopleCurrentPage !== 1 || movieCurrentPage !== 1)) {
+            window.location.href.includes("people") ?
+                dispatch(fetchDifferentPageSearchedPeople({query, page: peopleCurrentPage}))
+                :
+                dispatch(fetchDifferentPageSearchedMovies({query, page: movieCurrentPage}))
+        }
+    }, [peopleCurrentPage, movieCurrentPage, dispatch])
+
+    useEffect(() => {
         if (query && query !== "") {
             window.location.href.includes("people") ?
-                dispatch(fetchPeopleByQuery({query, page: peopleCurrentPage}))
+                dispatch(fetchPeopleByQuery({query, page: 1}))
                 :
-                dispatch(fetchMoviesByQuery({query, page: movieCurrentPage}))
+                dispatch(fetchMoviesByQuery({query, page: 1}))
         }
-    }, [dispatch, query, peopleCurrentPage, movieCurrentPage])
+    }, [dispatch, query])
 
     const onInputChange = ({target}) => {
         const usedQuery = target.value.trim();

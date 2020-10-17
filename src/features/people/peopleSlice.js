@@ -17,6 +17,9 @@ export const peopleSlice = createSlice({
         fetchPeopleByQuery: (state, {payload}) => {
             state.isSearchLoading = true;
         },
+        fetchDifferentPageSearchedPeople: (state, {payload}) => {
+            state.isSearchLoading = true;
+        },
         fetchPeopleSuccess: (state, {payload}) => {
             state.isLoading = false;
             state.isSearchLoading = false;
@@ -55,6 +58,7 @@ export const {
     fetchPeopleSuccess,
     fetchPeopleError,
     fetchPeopleByQuery,
+    fetchDifferentPageSearchedPeople,
     setPeopleFirstPage,
     setPeopleLastPage,
     setPeopleNextPage,
