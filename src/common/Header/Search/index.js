@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
     useQueryParameter,
     useReplaceQueryParameter,
@@ -6,15 +6,26 @@ import {
 import searchIcon from "./search.png";
 import {SearchBox, Input, SearchIcon} from "./styled";
 import {QUERY_PARAMETER} from "../../../lib/consts";
-import {useDispatch} from "react-redux";
-import {fetchMoviesByQuery} from "../../../features/movies/moviesSlice"
-import {fetchPeopleByQuery} from "../../../features/people/peopleSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchMoviesByQuery, selectCurrentPage} from "../../../features/movies/moviesSlice"
+import {fetchPeopleByQuery, selectPeopleCurrentPage} from "../../../features/people/peopleSlice";
 
 const Search = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
     const replaceQueryParameter = useReplaceQueryParameter();
+    const peopleCurrentPage = useSelector(selectPeopleCurrentPage);
+    const movieCurrentPage = useSelector(selectCurrentPage);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (query && query !== "") {
+            window.location.href.includes("people") ?
+                dispatch(fetchPeopleByQuery({query, page: peopleCurrentPage}))
+                :
+                dispatch(fetchMoviesByQuery({query, page: movieCurrentPage}))
+        }
+    }, [dispatch, query, peopleCurrentPage, movieCurrentPage])
 
     const onInputChange = ({target}) => {
         const usedQuery = target.value.trim();
@@ -22,10 +33,6 @@ const Search = () => {
             key: QUERY_PARAMETER,
             value: usedQuery !== "" ? target.value : "",
         });
-        window.location.href.includes("people") ?
-            dispatch(fetchPeopleByQuery(usedQuery))
-            :
-            dispatch(fetchMoviesByQuery(usedQuery))
     };
 
     return (<SearchBox>
