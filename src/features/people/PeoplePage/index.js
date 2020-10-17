@@ -3,7 +3,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {Footer} from "../../../common/Footer";
 import {ListContainer, Wrapper} from "../../../common/Containers/styled";
 import {Title} from "../../../common/Title";
-import {fetchPeople, selectLoadingStatus, selectPeople} from "../peopleSlice";
+import {
+    fetchPeople,
+    selectLoadingStatus,
+    selectPeople,
+    selectPeopleCurrentPage
+} from "../peopleSlice";
 import {Tile} from "../../../common/Tile";
 import {useQueryParameter} from "../../queryParameters";
 import {QUERY_PARAMETER} from "../../../lib/consts";
@@ -13,15 +18,16 @@ export const PeoplePage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
     const peopleResult = useSelector(selectPeople);
     const totalResults = useSelector(selectTotalResults);
-    const searchingLoadingStatus = useSelector(selectLoadingStatus)
+    const searchingLoadingStatus = useSelector(selectLoadingStatus);
+    const page = useSelector(selectPeopleCurrentPage);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (!query || query === "") {
-            dispatch(fetchPeople())
+            dispatch(fetchPeople(page))
         }
-    }, [dispatch, query]);
+    }, [dispatch, query, page]);
 
     return (
         <Wrapper DataType={"people"}>

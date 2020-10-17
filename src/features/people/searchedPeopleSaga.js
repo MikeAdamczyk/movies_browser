@@ -4,7 +4,7 @@ import {fetchPeopleSuccess, fetchPeopleError, fetchPeopleByQuery} from "./people
 
 function* fetchSearchedPeopleHandler(action) {
     try {
-        const searchedPeople = yield call(getSearchedPeople, action.payload);
+        const searchedPeople = yield call(getSearchedPeople, action.payload.query, action.payload.page);
         yield put(fetchPeopleSuccess(searchedPeople))
     } catch (error) {
         yield put(fetchPeopleError(error))
