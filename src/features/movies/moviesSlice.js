@@ -29,6 +29,24 @@ export const moviesSlice = createSlice({
             state.isLoading = false;
             state.isSearchLoading = false;
         },
+        setNextPage: (state) => {
+            if (state.currentPage < state.totalPages) {
+                state.currentPage = state.currentPage + 1;
+            }
+           return;
+        },
+        setLastPage: (state) => {
+            state.currentPage = state.totalPages;
+        },
+        setPreviousPage: (state) => {
+            if (state.currentPage > 1) {
+                state.currentPage = state.currentPage - 1;
+            }
+            return;
+        },
+        setFirstPage: (state) => {
+            state.currentPage = 1;
+        },
     },
 });
 
@@ -37,6 +55,10 @@ export const {
     fetchMoviesSuccess,
     fetchMoviesError,
     fetchMoviesByQuery,
+    setNextPage,
+    setLastPage,
+    setPreviousPage,
+    setFirstPage
 } = moviesSlice.actions;
 
 export const selectMovies = (state) => state.movies.results;
