@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 
-export const Backdrop = styled.div`
+export const Wrapper = styled.div`
     max-height: 770px;
-    margin: 0 auto 64px;
+    margin: auto;
     display: flex;
     justify-content: center;
     background-color: #000000;
@@ -40,6 +40,7 @@ export const MovieTitle = styled.h1`
     font-weight: 600;
     font-size: 64px;
     line-height: 120%;
+    margin: 0;
 `;
 
 export const RatingSection = styled.span`
@@ -75,4 +76,16 @@ export const RatingInfo = styled.span`
     ${({ rate }) => rate === "rate" && css`
         line-height: 180%;
     `}
+`;
+
+export const DetailsContainer = styled.div`
+    max-width: 1368px;
+    margin: 64px auto;
+`;
+
+
+export const ExampleTile = styled.article`
+    background: ${({ theme }) => theme.color.white};
+    padding: 40px;
+    box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
 `;
