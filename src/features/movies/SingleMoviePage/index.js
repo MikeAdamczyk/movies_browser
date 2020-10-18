@@ -1,33 +1,30 @@
 import React from "react";
-import { Footer } from "../../../common/Footer";
+import { Wrapper } from "../../../common/Containers/styled";
+import { Tile } from "../../../common/Tile";
 import { Title } from "../../../common/Title";
 import { useMovieDetail } from "../../../lib/useMovieDetail";
+import poster from '../../../images/actor.png'
 
 
 export const SingleMoviePage = () => {
     const {getProductionYear, getMovieGenres, moviesResult} = useMovieDetail();
     console.log(moviesResult);
 
-    return <Wrapper>
-            <Title title={"Popular movies"}></Title>
-                {moviesResult.map((result) => (
-                        <Tile
-                          key={result.id}
-                          tileType={"movie"} //movie / people
-                          tileView={"list"} // list / detail
-                          header={result.title}
-                          subheader={getProductionYear(result.release_date)}
-                          image={result.poster_path}
-                          place={"China, United States of America"}
-                          date={result.release_date}
-                          genres={getMovieGenres(result.genre_ids)}
-                          rateValue={result.vote_average}
-                          votesNumber={result.vote_count}
-                          description={result.overview}
-                        ></Tile> 
-                        )
-                    )
-                }
-            <Footer />
-        </Wrapper>
+    return <Wrapper tileView={"detail"}>
+                <Tile
+                    tileType={"movie"} //movie / people
+                    tileView={"detail"} // list / detail
+                    header={"Scarlett Johansson"}
+                    subheader={"2020"}
+                    image={"/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg"}//mODcczqQyKuphfFAoBZGhxgnNfs.jpg / aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg
+                    place={"Wuhan, Hubei, China"}
+                    date={"24.10.2020"}
+                    genres={["Action", "Drama", "Adventure"]}
+                    rateValue={"7,6"}
+                    votesNumber={"37"}
+                    description={`A young Chinese maiden disguises herself as a male warrior in order to save her father. 
+                                Disguises herself as a male warrior in order to save her father.  
+                                A young Chinese maiden disguises herself as a male warrior in order to save her father.`}
+                ></Tile> 
+            </Wrapper>
 };
