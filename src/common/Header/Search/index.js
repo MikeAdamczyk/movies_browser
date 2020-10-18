@@ -5,31 +5,29 @@ import {
 } from "../../../features/queryParameters";
 import searchIcon from "./search.png";
 import {SearchBox, Input, SearchIcon} from "./styled";
-import {QUERY_PARAMETER} from "../../../lib/consts";
+import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
 import {useDispatch, useSelector} from "react-redux";
 import {
     fetchMoviesByQuery,
-    selectCurrentPage,
     fetchDifferentPageSearchedMovies
 } from "../../../features/movies/moviesSlice"
-import {fetchPeopleByQuery, selectPeopleCurrentPage, fetchDifferentPageSearchedPeople} from "../../../features/people/peopleSlice";
+import {fetchPeopleByQuery, fetchDifferentPageSearchedPeople} from "../../../features/people/peopleSlice";
 
 const Search = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
     const replaceQueryParameter = useReplaceQueryParameter();
-    const peopleCurrentPage = useSelector(selectPeopleCurrentPage);
-    const movieCurrentPage = useSelector(selectCurrentPage);
+    const page= useQueryParameter(PAGE_PARAMETER);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (query && query !== "" && (peopleCurrentPage !== 1 || movieCurrentPage !== 1)) {
+        if (query && query !== "" && page !== 1) {
             window.location.href.includes("people") ?
-                dispatch(fetchDifferentPageSearchedPeople({query, page: peopleCurrentPage}))
+                dispatch(fetchDifferentPageSearchedPeople({query, page}))
                 :
-                dispatch(fetchDifferentPageSearchedMovies({query, page: movieCurrentPage}))
+                dispatch(fetchDifferentPageSearchedMovies({query, page}))
         }
-    }, [peopleCurrentPage, movieCurrentPage, dispatch])
+    }, [page, dispatch]);
 
     useEffect(() => {
         if (query && query !== "") {
@@ -38,7 +36,7 @@ const Search = () => {
                 :
                 dispatch(fetchMoviesByQuery({query, page: 1}))
         }
-    }, [dispatch, query])
+    }, [dispatch, query]);
 
     const onInputChange = ({target}) => {
         const usedQuery = target.value.trim();

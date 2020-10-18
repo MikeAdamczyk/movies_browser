@@ -21,7 +21,7 @@ export const useReplaceQueryParameter = () => {
     };
 };
 
-export const usePageParameter = () => {
+export const useChangePageParameter = () => {
     const history = useHistory();
     const location = useLocation();
 

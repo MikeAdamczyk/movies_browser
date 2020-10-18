@@ -7,11 +7,10 @@ import {
     fetchPeople,
     selectLoadingStatus,
     selectPeople,
-    selectPeopleCurrentPage
 } from "../peopleSlice";
 import {Tile} from "../../../common/Tile";
 import {useQueryParameter} from "../../queryParameters";
-import {QUERY_PARAMETER} from "../../../lib/consts";
+import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
 import {selectTotalResults} from "../peopleSlice";
 
 export const PeoplePage = () => {
@@ -19,7 +18,7 @@ export const PeoplePage = () => {
     const peopleResult = useSelector(selectPeople);
     const totalResults = useSelector(selectTotalResults);
     const searchingLoadingStatus = useSelector(selectLoadingStatus);
-    const page = useSelector(selectPeopleCurrentPage);
+    const page= useQueryParameter(PAGE_PARAMETER);
 
     const dispatch = useDispatch();
 

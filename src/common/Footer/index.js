@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import { useSelector} from "react-redux";
+import React, {useEffect} from "react";
+import {useSelector} from "react-redux";
 import {selectCurrentPage, selectTotalPages} from "../../features/movies/moviesSlice";
 import {selectPeopleCurrentPage, selectPeopleTotalPages} from "../../features/people/peopleSlice";
 import {Pagination, Text, Number} from "./styled";
 import {BackButton} from "./BackButton";
 import {NextButton} from "./NextButton";
-import {usePageParameter} from "../../features/queryParameters";
+import {useChangePageParameter} from "../../features/queryParameters";
 import {PAGE_PARAMETER} from "../../lib/consts";
 
 export const Footer = () => {
-    const PageParameterChange = usePageParameter();
+    const PageParameterChange = useChangePageParameter();
     const moviesCurrentPage = useSelector(selectCurrentPage);
     const moviesTotalPages = useSelector(selectTotalPages);
     const peopleCurrentPage = useSelector(selectPeopleCurrentPage);
@@ -18,7 +18,10 @@ export const Footer = () => {
     useEffect(() => {
         PageParameterChange({
             key: PAGE_PARAMETER,
-            value: window.location.href.includes("people") ? peopleCurrentPage : moviesCurrentPage
+            value: window.location.href.includes("people") ?
+                peopleCurrentPage <= peopleTotalPages ? peopleCurrentPage : peopleTotalPages
+                :
+                moviesCurrentPage <= moviesTotalPages ? moviesCurrentPage : moviesTotalPages
         });
     }, [moviesCurrentPage, peopleCurrentPage]);
 
