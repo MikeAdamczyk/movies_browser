@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
     max-height: 770px;
@@ -19,7 +19,6 @@ export const PosterBox = styled.div`
     position: relative;
     max-height: 770px;
     max-width: 1368px;
-
 `;
 
 export const Poster = styled.img`
@@ -34,6 +33,29 @@ export const MovieInfo = styled.div`
     left: 0;
     bottom: 56px;
     color: white;
+    text-shadow: 2px 5px 15px black;
+    margin-left: 20px;
+    transition: 1s;
+
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.big}){
+        bottom: 44px;
+        margin-left: 20px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+        bottom: 32px;
+        margin-left: 18px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}){
+        bottom: 20px;
+        margin-left: 16px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
+        bottom: 8px;
+    }
 `;
 
 export const MovieTitle = styled.h1`
@@ -41,41 +63,133 @@ export const MovieTitle = styled.h1`
     font-size: 64px;
     line-height: 120%;
     margin: 0;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.big}){
+        font-size: 44px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+        font-size: 34px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}){
+        font-size: 24px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
+        font-size: 24px;
+    }
 `;
 
 export const RatingSection = styled.span`
-    margin-top: 25px;
-    margin-bottom: 17px;
+    margin-top: 24px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.big}){
+        margin-top: 16px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+        margin-top: 10px;
+        flex-direction: row;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}){
+        margin-top: 4px;
+    }
+
 `;
 
 export const RateBox = styled.span`
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;
 `;
 
 export const Star = styled.img`
     width: 40px;
     height: 38px;
     margin-right: 8px;
+    align-self: center;
+
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.big}){
+        width: 32px;
+        height: 30px;
+        margin-right: 7px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+        width: 24px;
+        height: 23px;
+        margin-right: 6px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}){
+        width: 16px;
+        height: 15.25px;
+        margin-right: 5px;
+        align-self: baseline;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
+        width: 16px;
+        height: 15.25px;
+        margin-right: 4px;
+    }
 `;
 
 export const Rate = styled.span`
-    font-weight: 500;
+    font-weight: 600;
     font-size: 30px;
     line-height: 130%;
     margin-right: 7px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.big}){
+        font-size: 26px;
+        margin-right: 5px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+        font-size: 22px;
+        margin-right: 4px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}){
+        font-size: 18px;
+        margin-right: 3px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
+        font-size: 14px;
+        margin-right: 2px;
+    }
 `;
 
 export const RatingInfo = styled.span`
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
+    margin-top: 16px;
+    margin-right: 8px;
+    line-height: 120%;
 
-    ${({ rate }) => rate === "rate" && css`
-        line-height: 180%;
-    `}
+    @media (max-width: ${({ theme }) => theme.breakpoints.big}){
+        font-size: 14px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+        font-size: 12px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}){
+        font-size: 11px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
+        font-size: 10px;
+    }
+
 `;
 
 export const DetailsContainer = styled.div`

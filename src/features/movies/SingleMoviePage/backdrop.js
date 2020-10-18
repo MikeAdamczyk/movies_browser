@@ -25,15 +25,15 @@ export const Backdrop = () => {
                 <MovieInfo>
                     <MovieTitle>Mulan long title</MovieTitle>
                     <RatingSection>
-                        <Star src={star} />
                         <RateBox>
+                            <Star src={star} />
                             <Rate>7,8</Rate>
                             <RatingInfo rate="rate">/ 10</RatingInfo>
                         </RateBox>
+                        <RatingInfo>
+                            322 votes
+                        </RatingInfo>
                     </RatingSection>
-                    <RatingInfo>
-                        322 votes
-                </RatingInfo>
                 </MovieInfo>
             </PosterBox>
         </Wrapper>
