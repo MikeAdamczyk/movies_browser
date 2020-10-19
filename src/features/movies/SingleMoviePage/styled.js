@@ -189,15 +189,14 @@ export const RatingInfo = styled.span`
     @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
         font-size: 10px;
     }
-
 `;
 
 export const DetailsContainer = styled.div`
     max-width: 1368px;
-    margin: 64px auto;
+    margin: 64px auto 336px;
 `;
 
-
+//Only for development purpose, will be deleted on production
 export const ExampleTile = styled.article`
     background: ${({ theme }) => theme.color.white};
     padding: 40px;
