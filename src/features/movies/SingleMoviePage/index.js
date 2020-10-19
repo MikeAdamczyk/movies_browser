@@ -6,7 +6,7 @@ import { Title } from "../../../common/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPeople, selectPeople } from "../../people/peopleSlice";
 import { Tile } from "../../../common/Tile";
-import { useMovieDetail } from "../../../lib/useMovieDetail";
+import { useMovieDetail } from "../../useMovieDetail";
 
 
 export const SingleMoviePage = () => {
