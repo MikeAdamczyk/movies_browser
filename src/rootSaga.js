@@ -2,8 +2,10 @@ import {all} from "redux-saga/effects";
 import {moviesSaga} from "./features/movies/MoviesPopular/moviesSaga";
 import {genresSaga} from "./features/genres/genresSaga";
 import {peopleSaga} from "./features/people/PeoplePopular/peopleSaga";
+import {personDetailSaga} from "./features/people/PersonDetail/personDetailSaga";
 import {movieDetailSaga} from "./features/movies/MovieDetail/movieDetailSaga";
 import {movieCreditsSaga} from "./features/movies/MovieCredits/movieCreditsSaga";
+
 
 export default function* rootSaga() {
     yield all([
@@ -12,5 +14,6 @@ export default function* rootSaga() {
         peopleSaga(),
         movieDetailSaga(),
         movieCreditsSaga(),
+        personDetailSaga(),
     ]);
 }
