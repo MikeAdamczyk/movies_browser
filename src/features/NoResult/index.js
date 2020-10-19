@@ -5,7 +5,7 @@ import {QUERY_PARAMETER} from "../../lib/consts";
 import noResultPicture from "../../images/noResult.png"
 import {Image} from "./styled"
 
-export const Error = () => {
+export const NoResult = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
 
     return (

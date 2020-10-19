@@ -6,10 +6,11 @@ import {useMovieDetail} from "../../useMovieDetail"
 import {Tile} from "../../../common/Tile";
 import {getProductionYear} from "../../../lib/utils";
 import {useSelector} from "react-redux";
-import {selectMovies, selectTotalResults, selectLoadingStatus} from "../moviesSlice";
+import { selectMovies, selectTotalResults, selectLoadingSearchStatus, selectErrorStatus } from "../moviesSlice";
 import {useQueryParameter} from "../../queryParameters";
 import {QUERY_PARAMETER} from "../../../lib/consts";
-import {Error} from "../../NoResult";
+import {NoResult} from "../../NoResult";
+import { Error } from "../../Error";
 
 export const MoviesPage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
@@ -17,7 +18,8 @@ export const MoviesPage = () => {
     const getMovieGenres = useMovieDetail();
     const moviesResult = useSelector(selectMovies);
     const totalResults = useSelector(selectTotalResults);
-    const searchingLoadingStatus = useSelector(selectLoadingStatus);
+    const searchingLoadingStatus = useSelector(selectLoadingSearchStatus);
+    const errorStatus = useSelector(selectErrorStatus);
 
     return (
         <Wrapper>
@@ -25,6 +27,9 @@ export const MoviesPage = () => {
                 <Title title={`Search results for "${query}"`}/>
                 :
                 !searchingLoadingStatus && query && totalResults === 0 ?
+                    <NoResult/>
+                    :
+                      errorStatus ?
                     <Error/>
                     :
                     <>
