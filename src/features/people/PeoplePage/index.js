@@ -12,6 +12,7 @@ import {Tile} from "../../../common/Tile";
 import {useQueryParameter} from "../../queryParameters";
 import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
 import {selectTotalResults} from "../peopleSlice";
+import { Error } from "../../Error";
 
 export const PeoplePage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
@@ -33,6 +34,9 @@ export const PeoplePage = () => {
             {searchingLoadingStatus ?
                 <Title title={`Search results for "${query}"`}/>
                 :
+                !searchingLoadingStatus && query && totalResults === 0 ?
+                    <Error/>
+                    :
                 <>
                     <Title
                         title={(!query || query.trim() === "") ? "Popular people" : `Search results for "${query}" (${totalResults})`}/>
@@ -47,9 +51,9 @@ export const PeoplePage = () => {
                             />
                         ))}
                     </ListContainer>
+                    <Footer/>
                 </>
             }
-            <Footer/>
         </Wrapper>
     )
 };
