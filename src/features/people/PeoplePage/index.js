@@ -17,20 +17,20 @@ export const PeoplePage = () => {
     }, [dispatch])
 
     return <Wrapper DataType={"people"}>
-              <Title title={"Popular people"}></Title>
-              <ListContainer DataType={"people"}>
-                  {peopleResult.map((result) => (
-                          <Tile
-                              key={result.id}
-                              tileType={"people"} //movie / people
-                              tileView={"list"} // list / detail
-                              header={result.name}
-                              image={result.profile_path}
-                          ></Tile>
-                      )
-                  )
-                  }
-              </ListContainer>
-              <Footer/>
+        <Title title={"Popular people"}></Title>
+        <ListContainer DataType={"people"}>
+            {peopleResult.map((result) => (
+                <Tile
+                    key={result.id}
+                    tileType={"people"} //movie / people
+                    tileView={"list"} // list / detail
+                    header={result.name}
+                    image={result.profile_path}
+                ></Tile>
+            )
+            )
+            }
+        </ListContainer>
+        <Footer />
     </Wrapper>
 };

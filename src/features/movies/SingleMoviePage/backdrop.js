@@ -1,0 +1,43 @@
+import React from "react";
+import {
+    Wrapper,
+    PosterBox,
+    Poster,
+    MovieInfo,
+    MovieTitle,
+    Star,
+    Rate,
+    RatingInfo,
+    RatingSection,
+    RateBox,
+} from "./styled";
+import star from "../../../images/Vector.svg";
+
+export const Backdrop = () => {
+
+    let backdropImage = "";
+    let title = "";
+    let rate = "";
+    let votesNumber = "";
+
+    return !!backdropImage && (
+        <Wrapper>
+            <PosterBox>
+                <Poster src={backdropImage} alt="" />
+                <MovieInfo>
+                    <MovieTitle>{title}</MovieTitle>
+                    <RatingSection>
+                        <RateBox>
+                            <Star src={star} />
+                            <Rate>{rate}</Rate>
+                            <RatingInfo >/ 10</RatingInfo>
+                        </RateBox>
+                        <RatingInfo>
+                            {votesNumber} votes
+                        </RatingInfo>
+                    </RatingSection>
+                </MovieInfo>
+            </PosterBox>
+        </Wrapper>
+    );
+};
