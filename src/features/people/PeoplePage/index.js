@@ -12,7 +12,7 @@ import {Tile} from "../../../common/Tile";
 import {useQueryParameter} from "../../queryParameters";
 import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
 import {selectTotalResults} from "../peopleSlice";
-import { Error } from "../../Error";
+import { Error } from "../../NoResult";
 
 export const PeoplePage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);

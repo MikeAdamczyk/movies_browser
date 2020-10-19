@@ -9,7 +9,7 @@ import {useSelector} from "react-redux";
 import {selectMovies, selectTotalResults, selectLoadingStatus} from "../moviesSlice";
 import {useQueryParameter} from "../../queryParameters";
 import {QUERY_PARAMETER} from "../../../lib/consts";
-import {Error} from "../../Error";
+import {Error} from "../../NoResult";
 
 export const MoviesPage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
