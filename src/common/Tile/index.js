@@ -35,7 +35,7 @@ export const Tile = ({
                 //any ideas?
             >
         {tileView === "list" ? 
-            <StyledNavLink to="/single" Tile={true}>        
+            <StyledNavLink to="/single" tile={true}>        
                 <Image 
                     imagePath={image}
                     tileView={tileView}
@@ -51,7 +51,7 @@ export const Tile = ({
         <DetailBox 
             tileView={tileView}
         >
-        <StyledNavLink to="/single" Tile={true}> 
+        <StyledNavLink to="/single" tile={true}> 
             <Header
                 tileType={tileType}
                 tileView={tileView}

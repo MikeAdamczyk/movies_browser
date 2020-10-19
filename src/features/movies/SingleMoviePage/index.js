@@ -1,14 +1,10 @@
 import React from "react";
 import { Wrapper } from "../../../common/Containers/styled";
 import { Tile } from "../../../common/Tile";
-import { Title } from "../../../common/Title";
 import { useMovieDetail } from "../../../lib/useMovieDetail";
-import poster from '../../../images/actor.png'
-
 
 export const SingleMoviePage = () => {
     const {getProductionYear, getMovieGenres, moviesResult} = useMovieDetail();
-    console.log(moviesResult);
 
     return <Wrapper tileView={"detail"}>
                 <Tile
