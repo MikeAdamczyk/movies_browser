@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
 import { Backdrop } from "./backdrop";
-import { DetailsContainer, ExampleTile } from "./styled";
+import { DetailsContainer } from "./styled";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 import { Title } from "../../../common/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPeople, selectPeople } from "../../people/peopleSlice";
 import { Tile } from "../../../common/Tile";
+import { useMovieDetail } from "../../../lib/useMovieDetail";
+
 
 export const SingleMoviePage = () => {
 
+    const { moviesResult } = useMovieDetail();
+    console.log(moviesResult);
     const dispatch = useDispatch();
-
     const peopleResult = useSelector(selectPeople);
 
     useEffect(() => {
@@ -23,9 +26,23 @@ export const SingleMoviePage = () => {
 
             <DetailsContainer>
 
-                <ExampleTile>
-                    Helooooooooooooo :D
-                </ExampleTile>
+                <Wrapper tileView={"detail"}>
+                    <Tile
+                        tileType={"movie"} //movie / people
+                        tileView={"detail"} // list / detail
+                        header={"Scarlett Johansson"}
+                        subheader={"2020"}
+                        image={"/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg"}//mODcczqQyKuphfFAoBZGhxgnNfs.jpg / aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg
+                        place={"Wuhan, Hubei, China"}
+                        date={"24.10.2020"}
+                        genres={["Action", "Drama", "Adventure"]}
+                        rateValue={"7,6"}
+                        votesNumber={"37"}
+                        description={`A young Chinese maiden disguises herself as a male warrior in order to save her father. 
+                                Disguises herself as a male warrior in order to save her father.  
+                                A young Chinese maiden disguises herself as a male warrior in order to save her father.`}
+                    ></Tile>
+                </Wrapper>
 
                 <Wrapper DataType={"people"}>
                     <Title title={"Crew"} />
