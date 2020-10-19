@@ -6,7 +6,7 @@ import {
 import searchIcon from "./search.png";
 import {SearchBox, Input, SearchIcon} from "./styled";
 import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {
     fetchMoviesByQuery,
     fetchDifferentPageSearchedMovies
@@ -16,7 +16,7 @@ import {fetchPeopleByQuery, fetchDifferentPageSearchedPeople} from "../../../fea
 const Search = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
     const replaceQueryParameter = useReplaceQueryParameter();
-    const page= useQueryParameter(PAGE_PARAMETER);
+    const page = useQueryParameter(PAGE_PARAMETER);
 
     const dispatch = useDispatch();
 
