@@ -1,28 +1,33 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useQueryParameter } from "../../queryParameters";
-import { fetchPeople, selectLoadingStatus, selectPeople, selectTotalResults } from "../peopleSlice";
 import { Footer } from "../../../common/Footer";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
-import { Title } from "../../../common/Title";
-import { Tile } from "../../../common/Tile";
-import { QUERY_PARAMETER } from "../../../lib/consts";
+import { Title} from "../../../common/Title";
+import { fetchPeople,
+    selectLoadingStatus,
+    selectPeople,
+} from "../peopleSlice";
+import {Tile} from "../../../common/Tile";
+import {useQueryParameter} from "../../queryParameters";
+import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
+import {selectTotalResults} from "../peopleSlice";
 
 export const PeoplePage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
-  const peopleResult = useSelector(selectPeople);
+    const peopleResult = useSelector(selectPeople);
     const totalResults = useSelector(selectTotalResults);
-    const searchingLoadingStatus = useSelector(selectLoadingStatus)
+    const searchingLoadingStatus = useSelector(selectLoadingStatus);
+    const page= useQueryParameter(PAGE_PARAMETER);
 
     const dispatch = useDispatch();
 
-  useEffect(() => {
+    useEffect(() => {
         if (!query || query === "") {
-            dispatch(fetchPeople())
+            dispatch(fetchPeople(page))
         }
-    }, [dispatch, query]);
+    }, [dispatch, query, page]);
 
-      return (
+    return (
         <Wrapper DataType={"people"}>
             {searchingLoadingStatus ?
                 <Title title={`Search results for "${query}"`}/>

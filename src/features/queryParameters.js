@@ -17,6 +17,17 @@ export const useReplaceQueryParameter = () => {
         } else {
             searchParams.set(key, value);
         }
-      history.push(`${location.pathname}?${searchParams.toString()}`)
+        history.push(`${location.pathname}?${searchParams.toString()}`)
+    };
+};
+
+export const useChangePageParameter = () => {
+    const history = useHistory();
+    const location = useLocation();
+
+    return ({key, value}) => {
+        const searchParams = new URLSearchParams(location.search);
+        searchParams.set(key, value);
+        history.push(`${location.pathname}?${searchParams.toString()}`)
     };
 };

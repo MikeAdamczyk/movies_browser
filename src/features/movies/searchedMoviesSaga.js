@@ -4,7 +4,7 @@ import {fetchMoviesSuccess, fetchMoviesError, fetchMoviesByQuery} from "./movies
 
 function* fetchSearchedMoviesHandler(action) {
     try {
-        const searchedMovies = yield call(getSearchedMovies, action.payload);
+        const searchedMovies = yield call(getSearchedMovies, action.payload.query);
         yield put(fetchMoviesSuccess(searchedMovies))
     } catch (error) {
         yield put(fetchMoviesError(error))
