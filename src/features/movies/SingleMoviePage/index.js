@@ -1,17 +1,30 @@
 import React from "react";
-import { Container } from "../../../common/components/Container/index";
-import Paging from "../../../common/components/Paging";
-import { Title } from "../../../common/components/Title";
+import { Wrapper } from "../../../common/Containers/styled";
+import { Tile } from "../../../common/Tile";
+import { Title } from "../../../common/Title";
+import { useMovieDetail } from "../../../lib/useMovieDetail";
+import poster from '../../../images/actor.png'
 
-export const SingleMoviePage = () => (
-    <>
-        <Title title={"Singe Movie Page"}></Title>
-        <Container>
-            <p>
-                Single Movie Page
-            </p>
-        </Container>
 
-        <Paging />
-    </>
-);
+export const SingleMoviePage = () => {
+    const {getProductionYear, getMovieGenres, moviesResult} = useMovieDetail();
+    console.log(moviesResult);
+
+    return <Wrapper tileView={"detail"}>
+                <Tile
+                    tileType={"movie"} //movie / people
+                    tileView={"detail"} // list / detail
+                    header={"Scarlett Johansson"}
+                    subheader={"2020"}
+                    image={"/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg"}//mODcczqQyKuphfFAoBZGhxgnNfs.jpg / aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg
+                    place={"Wuhan, Hubei, China"}
+                    date={"24.10.2020"}
+                    genres={["Action", "Drama", "Adventure"]}
+                    rateValue={"7,6"}
+                    votesNumber={"37"}
+                    description={`A young Chinese maiden disguises herself as a male warrior in order to save her father. 
+                                Disguises herself as a male warrior in order to save her father.  
+                                A young Chinese maiden disguises herself as a male warrior in order to save her father.`}
+                ></Tile> 
+            </Wrapper>
+};

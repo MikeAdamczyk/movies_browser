@@ -15,9 +15,14 @@ export const Wrapper = styled.div`
 
     @media (max-width: ${({ theme }) => theme.breakpoints.big}){
         max-width: 672px;
+        
+        ${({tileView}) => tileView === "detail" && css`
+            max-width: 767px;
+        `}
     }
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
         max-width: 600px;
+
 
         ${(({DataType}) => DataType === "people" && css`
             max-width: 440px;
@@ -35,20 +40,17 @@ export const ListContainer = styled.main`
     display: grid;
     grid-gap: 24px;
     grid-template-columns: repeat(auto-fill, 324px);
-    grid-auto-rows: 650px;
 
     ${(({DataType}) => DataType === "people" && css`
         grid-template-columns: repeat(auto-fill, 208px);
-        grid-auto-rows: 339px;
-    `)};
+    `)
+    };
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
         grid-template-columns: repeat(auto-fill, 288px);
-        grid-auto-rows: 201px;
 
         ${(({DataType}) => DataType === "people" && css`
             grid-template-columns: repeat(3, 136px);
-            grid-auto-rows: 245px;
             grid-gap: 16px;
         `)};
     }

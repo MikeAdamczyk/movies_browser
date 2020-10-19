@@ -2,7 +2,7 @@ import React  from "react";
 import { Footer } from "../../../common/Footer";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 import { Title } from "../../../common/Title";
-import { useMovieDetail } from "../../../lib/useMovieDetail"
+import { useMovieDetail } from "../../../lib/useMovieDetail";
 import { Tile } from "../../../common/Tile";
 
 export const MoviesPage = () => {
