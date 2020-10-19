@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPeople, selectPeople } from "../peopleSlice";
 import { Tile } from "../../../common/Tile";
 
-
 export const PeoplePage = () => {
 
     const dispatch = useDispatch();
@@ -14,24 +13,24 @@ export const PeoplePage = () => {
     const peopleResult = useSelector(selectPeople);
 
     useEffect(() => {
-      dispatch(fetchPeople());
-  }, [dispatch])
+        dispatch(fetchPeople());
+    }, [dispatch])
 
- return     <Wrapper DataType={"people"}>
-                <Title title={"Popular people"}></Title>
-                <ListContainer DataType={"people"}>
-                    {peopleResult.map((result) => (
-                        <Tile
-                        key={result.id}
-                        tileType={"people"} //movie / people
-                        tileView={"list"} // list / detail
-                        header={result.name}
-                        image={result.profile_path}                        
-                        ></Tile> 
-                        )
-                    )
-                    }
-                </ListContainer>
-                <Footer />
-            </Wrapper>
+    return <Wrapper DataType={"people"}>
+              <Title title={"Popular people"}></Title>
+              <ListContainer DataType={"people"}>
+                  {peopleResult.map((result) => (
+                          <Tile
+                              key={result.id}
+                              tileType={"people"} //movie / people
+                              tileView={"list"} // list / detail
+                              header={result.name}
+                              image={result.profile_path}
+                          ></Tile>
+                      )
+                  )
+                  }
+              </ListContainer>
+              <Footer/>
+    </Wrapper>
 };
