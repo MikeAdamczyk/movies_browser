@@ -7,6 +7,7 @@ import movieCreditsReducer from "./features/movies/MovieCredits/movieCreditsSlic
 import genresReducer from "./features/genres/genresSlice";
 import peopleReducer from "./features/people/PeoplePopular/peopleSlice";
 import personDetailReducer from "./features/people/PersonDetail/personDetailSlice";
+import personCreditsReducer from "./features/people/PersonCredits/personCreditsSlice";
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -19,6 +20,7 @@ export const store = configureStore({
         genres: genresReducer,
         people: peopleReducer,
         personDetail: personDetailReducer,
+        personCredits: personCreditsReducer,
     },
     middleware: [sagaMiddleware],
 });
