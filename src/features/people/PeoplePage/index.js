@@ -3,7 +3,7 @@ import { Footer } from "../../../common/Footer";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 import { Title } from "../../../common/Title";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPeople, selectPeople } from "../peopleSlice";
+import { fetchPeople, selectPeople } from "../PeoplePopular/peopleSlice";
 import { Tile } from "../../../common/Tile";
 
 export const PeoplePage = () => {
