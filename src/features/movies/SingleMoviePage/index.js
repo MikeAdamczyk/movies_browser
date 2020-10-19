@@ -42,6 +42,21 @@ export const SingleMoviePage = () => {
                     </ListContainer>
                 </Wrapper>
 
+                <Wrapper DataType={"people"}>
+                    <Title title={"Cast"} />
+                    <ListContainer DataType={"people"}>
+                        {peopleResult.map((result) => (
+                            <Tile
+                                key={result.id}
+                                tileType={"people"} //movie / people
+                                tileView={"list"} // list / detail
+                                header={result.name}
+                                image={result.profile_path}
+                            />
+                        ))}
+                    </ListContainer>
+                </Wrapper>
+
             </DetailsContainer>
         </>
     )
