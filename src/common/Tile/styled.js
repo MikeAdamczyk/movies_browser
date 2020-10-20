@@ -447,3 +447,15 @@ export const Description = styled.div`
         font-size: 14px;
     };
 `;
+
+export const NoImagePlug = styled.div`
+    background-color: ${({ theme }) => theme.color.plugGray};
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+export const PlugLogo = styled.img`
+    width: 25%;
+`;

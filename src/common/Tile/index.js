@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyledNavLink } from "../../common/Header/Menu/Navigation/styledNavLink";
+import plugLogo from './logo.png'
 import {
     TileElement,
     Image,
@@ -10,7 +11,9 @@ import {
     AdditionalInfo,
     Genre,
     Rate,
-    Description
+    Description,
+    NoImagePlug,
+    PlugLogo
 } from './styled';
 
 export const Tile = ({
@@ -38,13 +41,27 @@ export const Tile = ({
                     imagePath={image}
                     tileView={tileView}
                     tileType={tileType}
-                ></Image>
+                > 
+                    {image === null ? 
+                        <NoImagePlug>
+                            <PlugLogo src={plugLogo}/>
+                        </NoImagePlug> :
+                        ""
+                    }
+                </Image>
             </StyledNavLink> :
             <Image
                 imagePath={image}
                 tileView={tileView}
                 tileType={tileType}
-            ></Image>
+            >
+                {image === null ? 
+                    <NoImagePlug>
+                        <PlugLogo src={plugLogo}/>
+                    </NoImagePlug> :
+                    ""
+                }
+            </Image>
         }
         <DetailBox
             tileView={tileView}
