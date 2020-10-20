@@ -10,8 +10,8 @@ import {useDispatch} from "react-redux";
 import {
     fetchMoviesByQuery,
     fetchDifferentPageSearchedMovies
-} from "../../../features/movies/moviesSlice"
-import {fetchPeopleByQuery, fetchDifferentPageSearchedPeople} from "../../../features/people/peopleSlice";
+} from "../../../features/movies/MoviesPopular/moviesSlice"
+import {fetchPeopleByQuery, fetchDifferentPageSearchedPeople} from "../../../features/people/PeoplePopular/peopleSlice";
 
 const Search = () => {
     const query = useQueryParameter(QUERY_PARAMETER);

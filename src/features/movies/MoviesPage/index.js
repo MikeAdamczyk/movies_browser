@@ -6,7 +6,7 @@ import { useMovieDetail } from "../../useMovieDetail";
 import { Tile } from "../../../common/Tile";
 import {getProductionYear} from "../../../lib/utils";
 import {useSelector} from "react-redux";
-import {selectMovies, selectTotalResults, selectLoadingStatus} from "../moviesSlice";
+import {selectMovies, selectTotalResults, selectLoadingStatus} from "../MoviesPopular/moviesSlice";
 import {useQueryParameter} from "../../queryParameters";
 import {QUERY_PARAMETER} from "../../../lib/consts";
 

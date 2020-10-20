@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
-import {selectCurrentPage, selectTotalPages} from "../../features/movies/moviesSlice";
-import {selectPeopleCurrentPage, selectPeopleTotalPages} from "../../features/people/peopleSlice";
+import {selectCurrentPage, selectTotalPages} from "../../features/movies/MoviesPopular/moviesSlice";
+import {selectPeopleCurrentPage, selectPeopleTotalPages} from "../../features/people/PeoplePopular/peopleSlice";
 import {Pagination, Text, Number} from "./styled";
 import {BackButton} from "./BackButton";
 import {NextButton} from "./NextButton";

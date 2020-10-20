@@ -6,11 +6,11 @@ import { Title} from "../../../common/Title";
 import { fetchPeople,
     selectLoadingStatus,
     selectPeople,
-} from "../peopleSlice";
+} from "../PeoplePopular/peopleSlice";
 import {Tile} from "../../../common/Tile";
 import {useQueryParameter} from "../../queryParameters";
 import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
-import {selectTotalResults} from "../peopleSlice";
+import {selectTotalResults} from "../PeoplePopular/peopleSlice";
 
 export const PeoplePage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
