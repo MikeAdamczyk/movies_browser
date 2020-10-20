@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { StyledNavLink } from "../../common/Header/Menu/Navigation/styledNavLink";
-import { 
-    TileElement, 
-    Image, 
-    DetailBox, 
-    Header, 
-    Subheader, 
-    Container, 
-    AdditionalInfo, 
-    Genre, 
+import {
+    TileElement,
+    Image,
+    DetailBox,
+    Header,
+    Subheader,
+    Container,
+    AdditionalInfo,
+    Genre,
     Star, 
     Rate,
-    Description } from './styled';
-import star from '../../images/Vector.svg'
-
+    Description
+} from './styled';
+import star from '../../images/Vector.svg';
 
 export const Tile = ({
-    tileType, 
-    tileView, 
-    header, 
-    subheader, 
-    image, 
-    place, 
-    date, 
-    genres, 
-    rateValue, 
-    votesNumber, 
+    tileType,
+    tileView,
+    header,
+    subheader,
+    image,
+    place,
+    date,
+    genres,
+    rateValue,
+    votesNumber,
     description
     }) => {
     return  <TileElement 
@@ -41,14 +41,14 @@ export const Tile = ({
                     tileView={tileView}
                     tileType={tileType}
                 ></Image>
-            </StyledNavLink> :       
-            <Image 
+            </StyledNavLink> :
+            <Image
                 imagePath={image}
                 tileView={tileView}
                 tileType={tileType}
             ></Image>
         }
-        <DetailBox 
+        <DetailBox
             tileView={tileView}
         >
         <StyledNavLink to="/single" tile={true}> 
@@ -62,100 +62,104 @@ export const Tile = ({
             {(tileType === "movie" && subheader)? <Subheader tileView={tileView}>{subheader}</Subheader> : ""}
             {tileView === "detail" ?
                 <>
-                    <Container 
+                    <Container
                         tileView={tileView}
                         additionalInfo
                     >
-                        <AdditionalInfo 
+                        <AdditionalInfo
                             label
                             tileView={tileView}
                             tileType={tileType}
                         >
-                            {tileType === "movie" ? "Production:" : 
-                             (window.innerWidth < 648 && tileType === "people") ? 'Birth:' : 
-                             /*^^ to be worked out, as for now works only after reloading*/
-                             tileType === "people" ? "Date of birth:" : ""}
+                            {tileType === "movie" ? "Production:" :
+                                (window.innerWidth < 648 && tileType === "people") ? 'Birth:' :
+                                    /*^^ to be worked out, as for now works only after reloading*/
+                                    tileType === "people" ? "Date of birth:" : ""}
                         </AdditionalInfo>
-                        <AdditionalInfo 
+                        <AdditionalInfo
                             content
                             tileView={tileView}
                         >
-                            {tileType === "movie" ? `${place}` : `${date}`}   
+                            {tileType === "movie" ? `${place}` : `${date}`}
                         </AdditionalInfo>
                     </Container>
-                    <Container 
+                    <Container
                         additionalInfo
-                        next 
+                        next
                         tileView={tileView}
                     >
-                        <AdditionalInfo 
+                        <AdditionalInfo
                             label
                             tileView={tileView}
                             tileType={tileType}
                         >
                             {tileType === "movie" ? "Release date:" : "Place of birth:"}
                         </AdditionalInfo>
-                        <AdditionalInfo 
+                        <AdditionalInfo
                             content
                             tileView={tileView}
                         >
                             {tileType === "movie" ? `${date}` : `${place}`}
                         </AdditionalInfo>
                     </Container>
-                </> : 
-            ""}
-            {(tileType === "movie" && genres)? 
-            <>
-                <Container 
-                    tileView={tileView}
-                    genres
-                >
-                    {genres.map((genre) => 
-                        <Genre 
-                            key={genre} 
-                            tileView={tileView}
-                        >
-                            {genre}
-                        </Genre>
-                    )}
-                </Container>
-            </> : 
-            ""}
+                </> :
+                ""}
+            {(tileType === "movie" && genres) ?
+                <>
+                    <Container
+                        tileView={tileView}
+                        genres
+                    >
+                        {genres.map((genre) =>
+                            <Genre
+                                key={genre}
+                                tileView={tileView}
+                            >
+                                {genre}
+                            </Genre>
+                        )}
+                    </Container>
+                </> :
+                ""}
             {tileType === "movie" ?
-            <Container 
-                tileView={tileView}
-                rate
-            >
-                <Star 
-                    src={star} 
+
+                <Container
                     tileView={tileView}
-                ></Star>
-                <Rate 
-                    number 
-                    tileView={tileView}
+                    rate
                 >
+                    <Star 
+                        src={star} 
+                        tileView={tileView}
+                    ></Star>
+                    <Rate 
+                        number 
+                        tileView={tileView}
+                    >
                     {rateValue}
-                </Rate>               
-                <Rate 
-                    votes 
-                    tileView={tileView}
-                >
-                    {votesNumber} votes
-                </Rate>
-            </Container> 
-            :
-             ""}
+                    </Rate>  
+                    <Rate
+                        votes
+                        tileView={tileView}
+                    >
+                        {votesNumber} votes
+                        </Rate>
+                </Container>
+
+                :
+                ""}
 
         </DetailBox>
-        {(tileView === "detail" )?
-            <Container 
-                description
-                tileView={tileView}
-            >
-                <Description>
-                    {description}
-                </Description> 
-            </Container> :
-            ""}
-    </TileElement>
+        {
+            (tileView === "detail") ?
+                <Container
+                    description
+                    tileView={tileView}
+                >
+                    <Description>
+                        {description}
+                    </Description>
+                </Container> :
+                ""
+        }
+    </TileElement >
 };

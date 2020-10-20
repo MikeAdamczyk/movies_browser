@@ -6,7 +6,10 @@ import {personDetailSaga} from "./features/people/PersonDetail/personDetailSaga"
 import {personCreditsSaga} from "./features/people/PersonCredits/personCreditsSaga";
 import {movieDetailSaga} from "./features/movies/MovieDetail/movieDetailSaga";
 import {movieCreditsSaga} from "./features/movies/MovieCredits/movieCreditsSaga";
-
+import {searchedMoviesSaga} from "./features/movies/searchedMoviesSaga";
+import {searchedPeopleSaga} from "./features/people/searchedPeopleSaga";
+import {changePageMoviesSaga} from "./features/movies/changePageMoviesSaga";
+import {changePagePeopleSaga} from "./features/people/changePagePeopleSaga";
 
 export default function* rootSaga() {
     yield all([
@@ -17,5 +20,9 @@ export default function* rootSaga() {
         movieCreditsSaga(),
         personDetailSaga(),
         personCreditsSaga(),
+        searchedMoviesSaga(),
+        searchedPeopleSaga(),
+        changePageMoviesSaga(),
+        changePagePeopleSaga(),
     ]);
 }
