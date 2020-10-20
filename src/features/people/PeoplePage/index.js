@@ -1,41 +1,47 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Footer } from "../../../common/Footer";
-import { ListContainer, Wrapper } from "../../../common/Containers/styled";
-import { Title} from "../../../common/Title";
-import { fetchPeople,
-    selectLoadingStatus,
-    selectPeople,
-} from "../PeoplePopular/peopleSlice";
-import {Tile} from "../../../common/Tile";
 import {useQueryParameter} from "../../queryParameters";
+import { fetchPeople, selectErrorStatus, selectLoadingStatus, selectPeople, selectTotalResults} from "../PeoplePopular/peopleSlice";
+import { Footer } from "../../../common/Footer";
+import { Title} from "../../../common/Title";
+import {Tile} from "../../../common/Tile";
+import { NoResult } from "../../NoResult";
+import { Error } from "../../Error";
+import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
-import {selectTotalResults} from "../PeoplePopular/peopleSlice";
 
 export const PeoplePage = () => {
-    const query = useQueryParameter(QUERY_PARAMETER);
-    const peopleResult = useSelector(selectPeople);
-    const totalResults = useSelector(selectTotalResults);
-    const searchingLoadingStatus = useSelector(selectLoadingStatus);
-    const page= useQueryParameter(PAGE_PARAMETER);
+  const query = useQueryParameter(QUERY_PARAMETER);
+  const peopleResult = useSelector(selectPeople);
+  const totalResults = useSelector(selectTotalResults);
+  const searchingLoadingStatus = useSelector(selectLoadingStatus);
+  const page = useQueryParameter(PAGE_PARAMETER);
+  const errorStatus = useSelector(selectErrorStatus);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (!query || query === "") {
-            dispatch(fetchPeople(page))
-        }
-    }, [dispatch, query, page]);
+  useEffect(() => {
+    if (!query || query === "") {
+      dispatch(fetchPeople(page))
+    }
+  }, [dispatch, query, page]);
 
-    return (
-        <Wrapper DataType={"people"}>
-            {searchingLoadingStatus ?
-                <Title title={`Search results for "${query}"`}/>
+  return (
+      <Wrapper DataType={"people"}>
+        {searchingLoadingStatus ?
+            <Title title={`Search results for "${query}"`}/>
+            :
+            !searchingLoadingStatus && query && totalResults === 0 ?
+                <NoResult/>
                 :
-                <>
-                    <Title
-                        title={(!query || query.trim() === "") ? "Popular people" : `Search results for "${query}" (${totalResults})`}/>
-                    <ListContainer DataType={"people"}>
+                errorStatus ?
+                    <Error/>
+                    :
+                    <>
+                      <Title title={(!query || query.trim() === "") ?
+                          "Popular people" :
+                          `Search results for "${query}" (${totalResults})`}/>
+                      <ListContainer DataType={"people"}>
                         {peopleResult.map((result) => (
                             <Tile
                                 key={result.id}
@@ -45,10 +51,10 @@ export const PeoplePage = () => {
                                 image={result.profile_path}
                             />
                         ))}
-                    </ListContainer>
-                </>
-            }
-            <Footer/>
-        </Wrapper>
-    )
+                      </ListContainer>
+                      <Footer/>
+                    </>
+        }
+      </Wrapper>
+  )
 };
