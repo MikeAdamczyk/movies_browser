@@ -1,5 +1,5 @@
 import {call, put, takeLatest} from "redux-saga/effects";
-import {fetchPeopleSuccess, fetchPeopleError, fetchDifferentPageSearchedPeople} from "./peopleSlice";
+import {fetchPeopleSuccess, fetchPeopleError, fetchDifferentPageSearchedPeople} from "./PeoplePopular/peopleSlice";
 import {getSearchedPeoplePage} from "./getSearchedPeopleDifferentPage";
 
 function* fetchChangePageSearchedPeopleHandler(action) {

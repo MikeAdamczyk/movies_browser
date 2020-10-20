@@ -2,12 +2,12 @@ import React from "react";
 import active from "../../images/active.svg"
 import disabled from "../../images/disabled.svg"
 import {Arrow, ChangePageButton, ButtonTitle} from "./styled";
-import {setPreviousPage, setFirstPage, selectCurrentPage} from "../../features/movies/moviesSlice";
+import {setPreviousPage, setFirstPage, selectCurrentPage} from "../../features/movies/MoviesPopular/moviesSlice";
 import {
     setPeoplePreviousPage,
     setPeopleFirstPage,
     selectPeopleCurrentPage,
-} from "../../features/people/peopleSlice";
+} from "../../features/people/PeoplePopular/peopleSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 export const BackButton = ({firstTitle, secondTitle}) => {

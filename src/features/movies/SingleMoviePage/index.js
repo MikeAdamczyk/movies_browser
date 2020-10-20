@@ -4,7 +4,7 @@ import { DetailsContainer } from "./styled";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 import { Title } from "../../../common/Title";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPeople, selectPeople } from "../../people/peopleSlice";
+import { fetchPeople, selectPeople } from "../../people/PeoplePopular/peopleSlice";
 import { Tile } from "../../../common/Tile";
 import { useMovieDetail } from "../../useMovieDetail";
 
