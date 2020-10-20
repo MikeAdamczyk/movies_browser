@@ -27,5 +27,6 @@ export const {
 } = movieDetailSlice.actions;
 
 export const selectMovieDetail = (state) => state.movieDetail.results;
+export const selectLoading = (state) => state.movieDetail.isLoading;
 
 export default movieDetailSlice.reducer;

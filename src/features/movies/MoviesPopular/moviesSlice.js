@@ -70,6 +70,7 @@ export const selectCurrentPage = (state) => state.movies.currentPage;
 export const selectTotalPages = (state) => state.movies.totalPages;
 export const selectTotalResults = (state) => state.movies.totalResults;
 export const selectLoadingStatus = (state) => state.movies.isSearchLoading;
+export const selectLoading = (state) => state.movies.isLoading;
 
 export default moviesSlice.reducer;
 
