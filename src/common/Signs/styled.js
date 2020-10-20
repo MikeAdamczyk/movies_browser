@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const SpinnerBox = styled.div`
-    /* justify-content: center; */
     max-width: 1368px;
     margin: 0 auto;
     padding: 96px;
