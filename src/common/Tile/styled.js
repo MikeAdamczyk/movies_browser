@@ -455,6 +455,7 @@ export const NoImagePlug = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
 `;
 export const PlugLogo = styled.img`
     width: 25%;
