@@ -7,8 +7,6 @@ export const SpinnerBox = styled.div`
     text-align: center;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
-        width: 35px;
-        height: 35px;
         padding: 12px 0;
     }
 `;
