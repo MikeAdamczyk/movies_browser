@@ -11,13 +11,14 @@ import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
 import spinner from "../../../images/icon-spinner.svg";
 import { selectLoading } from "../MovieDetail/movieDetailSlice";
 
-export const SingleMoviePage = (props) => {
+export const SinglePage = ({match, detailType, listType}) => {
 
     const dispatch = useDispatch();
     const peopleResult = useSelector(selectPeople);
     const loading = useSelector(selectLoading);
 
-    console.log(props.location.aboutProps)
+    const id = match.params.id;
+    
     useEffect(() => {
         dispatch(fetchPeople());
     }, [dispatch])
@@ -38,7 +39,7 @@ export const SingleMoviePage = (props) => {
 
                 <Wrapper tileView={"detail"}>
                     <Tile
-                        tileType={props.type} //movie / people
+                        tileType={detailType} //movie / people
                         tileView={"detail"} // list / detail
                         header={"Mulan"}
                         subheader={"2020"}
@@ -54,13 +55,14 @@ export const SingleMoviePage = (props) => {
                     ></Tile>
                 </Wrapper>
 
-                <Wrapper DataType={"people"}>
+                <Wrapper DataType={listType}>
                     <Title title={"Crew"} />
-                    <ListContainer DataType={"people"}>
+                    <ListContainer DataType={listType}>
                         {peopleResult.map((result) => (
                             <Tile
                                 key={result.id}
-                                tileType={"people"} //movie / people
+                                id={result.id}
+                                tileType={listType} //movie / people
                                 tileView={"list"} // list / detail
                                 header={result.name}
                                 subheader={result.name}
@@ -70,13 +72,14 @@ export const SingleMoviePage = (props) => {
                     </ListContainer>
                 </Wrapper>
 
-                <Wrapper DataType={"people"}>
+                <Wrapper DataType={listType}>
                     <Title title={"Cast"} />
-                    <ListContainer DataType={"people"}>
+                    <ListContainer DataType={listType}>
                         {peopleResult.map((result) => (
                             <Tile
                                 key={result.id}
-                                tileType={"people"} //movie / people
+                                id={result.id}
+                                tileType={listType} //movie / people
                                 tileView={"list"} // list / detail
                                 header={result.name}
                                 subheader={result.name}

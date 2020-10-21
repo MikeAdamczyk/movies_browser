@@ -29,7 +29,8 @@ export const Tile = ({
     genres,
     rateValue,
     votesNumber,
-    description
+    description,
+    id
     }) => {
     return  <TileElement 
                 tileView={tileView}
@@ -38,7 +39,10 @@ export const Tile = ({
                 //any ideas?
             >
         {tileView === "list" ? 
-            <StyledNavLink to="/single" tile={true}>        
+            <StyledNavLink 
+                to={tileType === "movie" ? `/movies/${id}`: `/people/${id}`} 
+                tile={true}
+            >        
                 <Image 
                     imagePath={image}
                     tileView={tileView}
@@ -68,14 +72,26 @@ export const Tile = ({
         <DetailBox
             tileView={tileView}
         >
-        <StyledNavLink to="/single" tile={true}> 
+        {tileView === "list" ? 
+            <StyledNavLink 
+                to={tileType === "movie" ? `/movies/${id}`: `/people/${id}`} 
+                tile={true}
+            > 
             <Header
                 tileType={tileType}
                 tileView={tileView}
             >
                 {header}
             </Header>
-        </StyledNavLink>
+            </StyledNavLink> : 
+            <Header
+                tileType={tileType}
+                tileView={tileView}
+            >
+                {header}
+            </Header>
+        }
+
             {(tileType === "movie" && subheader)? <Subheader tileView={tileView}>{subheader}</Subheader> : ""}
             {tileView === "detail" ?
                 <>

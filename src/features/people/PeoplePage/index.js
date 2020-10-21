@@ -63,6 +63,7 @@ export const PeoplePage = () => {
                     {peopleResult.map((result) => (
                         <Tile
                             key={result.id}
+                            id={result.id}
                             tileType={"people"} //movie / people
                             tileView={"list"} // list / detail
                             header={result.name}
