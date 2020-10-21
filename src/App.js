@@ -6,7 +6,7 @@ import { SingleMoviePage } from "./features/movies/SingleMoviePage";
 import { PeoplePage } from "./features/people/PeoplePage/index"
 
 export default () => (
-    <Router>
+    <Router basename="/movies_browser">
         <Header />
         <Switch>
             <Route path="/" exact component={MoviesPage} />
