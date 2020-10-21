@@ -29,7 +29,7 @@ export const MoviesPage = () => {
     const searchingLoadingStatus = useSelector(selectLoadingSearchStatus);
     const errorStatus = useSelector(selectErrorStatus);
     const loading = useSelector(selectLoading);
-
+console.log(moviesResult)
     if (loading) {
         return (
             <SpinnerBox>
