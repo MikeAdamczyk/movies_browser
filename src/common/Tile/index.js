@@ -27,7 +27,8 @@ export const Tile = ({
     genres,
     rateValue,
     votesNumber,
-    description
+    description,
+    id
 }) => {
     return <TileElement
         tileView={tileView}
@@ -36,7 +37,16 @@ export const Tile = ({
     //any ideas?
     >
         {tileView === "list" ?
-            <StyledNavLink to="/single" Tile={true}>
+            <StyledNavLink 
+                to={{
+                    pathname: '/movies=id',
+                    aboutProps:{
+                        id: id,
+                        example: "dupa"
+                    }
+                }} 
+                Tile={true}
+            >
                 <Image
                     imagePath={image}
                     tileView={tileView}

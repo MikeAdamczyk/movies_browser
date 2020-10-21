@@ -11,9 +11,9 @@ export default () => (
         <Switch>
             <Route path="/" exact component={MoviesPage} />
             <Route path="/movies" component={MoviesPage} />
-            <Route path="/movies=id" component={SingleMoviePage} />
+            <Route path="/movies=id" render={(props) => <SingleMoviePage {...props} type={"people"} />}/>
+            <Route path="/people=id" render={(props) => <SingleMoviePage {...props} type={"people"} />}/>
             <Route path="/people" component={PeoplePage} />
-            <Route path="/single" component={SingleMoviePage} />
         </Switch>
     </Router>
 );

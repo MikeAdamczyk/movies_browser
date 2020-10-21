@@ -9,13 +9,12 @@ import { Tile } from "../../../common/Tile";
 import { useMovieDetail } from "../../useMovieDetail";
 
 
-export const SingleMoviePage = () => {
+export const SingleMoviePage = (props) => {
 
-    const { moviesResult } = useMovieDetail();
-    console.log(moviesResult);
     const dispatch = useDispatch();
     const peopleResult = useSelector(selectPeople);
 
+    console.log(props.location.aboutProps)
     useEffect(() => {
         dispatch(fetchPeople());
     }, [dispatch])
@@ -28,9 +27,9 @@ export const SingleMoviePage = () => {
 
                 <Wrapper tileView={"detail"}>
                     <Tile
-                        tileType={"movie"} //movie / people
+                        tileType={props.type} //movie / people
                         tileView={"detail"} // list / detail
-                        header={"Scarlett Johansson"}
+                        header={"Mulan"}
                         subheader={"2020"}
                         image={"/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg"}//mODcczqQyKuphfFAoBZGhxgnNfs.jpg / aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg
                         place={"Wuhan, Hubei, China"}
