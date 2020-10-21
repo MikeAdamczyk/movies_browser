@@ -7,7 +7,7 @@ export const movieDetailSlice = createSlice({
         results: [],
     },
     reducers: {
-        fetchMovieDetail: (state) => {
+        fetchMovieDetail: (state, {payload}) => {
             state.isLoading = true;
         },
         fetchMovieDetailSuccess: (state, {payload}) => {
@@ -28,5 +28,6 @@ export const {
 
 export const selectMovieDetail = (state) => state.movieDetail.results;
 export const selectLoading = (state) => state.movieDetail.isLoading;
+export const selectProductionCountries = (state) => state.movieDetail.results.production_countries;
 
 export default movieDetailSlice.reducer;

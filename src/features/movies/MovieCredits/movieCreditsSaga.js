@@ -5,10 +5,9 @@ import {fetchMovieCredits,
         fetchMovieCreditsError
         } from "../MovieCredits/movieCreditsSlice";
 
-function* fetchMovieCreditsHandler() {
+function* fetchMovieCreditsHandler(action) {
     try {
-        yield delay(1000)
-        const movieCredits = yield call(getMovieCredits);
+        const movieCredits = yield call(getMovieCredits, action.payload.id);
         yield put(fetchMovieCreditsSuccess(movieCredits))
     } catch (error) {
         yield put(fetchMovieCreditsError(error))

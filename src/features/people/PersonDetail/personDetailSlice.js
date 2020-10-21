@@ -7,7 +7,7 @@ export const personDetailSlice = createSlice({
         results: [],
     },
     reducers: {
-        fetchPersonDetail: (state) => {
+        fetchPersonDetail: (state, {payload}) => {
             state.isLoading = true;
         },
         fetchPersonDetailSuccess: (state, {payload}) => {

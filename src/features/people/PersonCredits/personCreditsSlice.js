@@ -9,7 +9,7 @@ export const personCreditsSlice = createSlice({
         person_id: undefined,
     },
     reducers: {
-        fetchPersonCredits: (state) => {
+        fetchPersonCredits: (state, {payload}) => {
             state.isLoading = true;
         },
         fetchPersonCreditsSuccess: (state, {payload}) => {

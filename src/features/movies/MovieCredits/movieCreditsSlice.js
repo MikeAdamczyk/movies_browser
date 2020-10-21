@@ -9,7 +9,7 @@ export const movieCreditsSlice = createSlice({
         crew: [],
     },
     reducers: {
-        fetchMovieCredits: (state) => {
+        fetchMovieCredits: (state, {payload}) => {
             state.isLoading = true;
         },
         fetchMovieCreditsSuccess: (state, {payload}) => {
