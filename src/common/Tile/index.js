@@ -74,7 +74,7 @@ export const Tile = ({
                     {header}
                 </Header>
             </StyledNavLink>
-            {(tileType === "movie" && subheader) ? <Subheader tileView={tileView}>{subheader}</Subheader> : ""}
+            {subheader ? <Subheader tileView={tileView} tileType={tileType}>{subheader}</Subheader> : ""}
             {tileView === "detail" ?
                 <>
                     <Container

@@ -53,6 +53,7 @@ export const SingleMoviePage = () => {
                                 tileType={"people"} //movie / people
                                 tileView={"list"} // list / detail
                                 header={result.name}
+                                subheader={result.name}
                                 image={result.profile_path}
                             />
                         ))}
@@ -68,6 +69,7 @@ export const SingleMoviePage = () => {
                                 tileType={"people"} //movie / people
                                 tileView={"list"} // list / detail
                                 header={result.name}
+                                subheader={result.name}
                                 image={result.profile_path}
                             />
                         ))}

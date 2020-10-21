@@ -30,7 +30,8 @@ export const TileElement = styled.div`
 
     ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
         padding: 10px 15px 10px 16px;
-        grid-template-rows: 264px 1fr;
+        grid-gap: 0;
+        grid-template-rows: 264px 1fr auto;
     `}
     @media (max-width: ${({ theme }) => theme.breakpoints.big}){
         ${({ tileType, tileView }) => (tileType === "people" && tileView === "detail") && css`
@@ -182,7 +183,6 @@ export const Header = styled.h2`
     `}
     ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
         text-align: center;
-        margin-top: -15px;
     `}
     @media (max-width: ${({ theme }) => theme.breakpoints.big}){
         ${({ tileView }) => tileView === "detail" && css`
@@ -197,7 +197,7 @@ export const Header = styled.h2`
 
         ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
             font-size: 14px;
-            margin-top: -8px;
+            margin-top: 8px;
         `}
     };
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
@@ -219,6 +219,11 @@ export const Subheader = styled.h2`
         line-height: 1.5;
         margin: 8px 0 0;
     `}
+    ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
+        font-size: 18px;
+        text-align: center;
+    `}
+
     @media (max-width: ${({ theme }) => theme.breakpoints.big}){
         ${({ tileView }) => tileView === "detail" && css`
             font-size: 18px;
@@ -230,6 +235,9 @@ export const Subheader = styled.h2`
             font-size: 13px;
             line-height: 1.3;
             margin: 4px 0 0;
+        `}
+        ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
+            margin: 8px 0 0;
         `}
     };
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
