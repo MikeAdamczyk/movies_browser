@@ -92,7 +92,7 @@ export const Tile = ({
             </Header>
         }
 
-            {(tileType === "movie" && subheader)? <Subheader tileView={tileView}>{subheader}</Subheader> : ""}
+            {subheader? <Subheader tileView={tileView} tileType={tileType}>{subheader}</Subheader> : ""}
             {tileView === "detail" ?
                 <>
                     <Container
