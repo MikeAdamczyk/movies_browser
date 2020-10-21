@@ -4,11 +4,13 @@ export const peopleSlice = createSlice({
     name: "people",
     initialState: {
         isLoading: false,
+        isSearchLoading: false,
         currentPage: 1,
         totalPages: 1,
         totalResults: 0,
         results: [],
-        isSearchLoading: false,
+        isError: false,
+
     },
     reducers: {
         fetchPeople: (state, {payload}) => {
@@ -31,6 +33,7 @@ export const peopleSlice = createSlice({
         fetchPeopleError: (state) => {
             state.isLoading = false;
             state.isSearchLoading = false;
+            state.isError = true;
         },
         setPeopleNextPage: (state) => {
             if (state.currentPage < state.totalPages) {
@@ -71,5 +74,6 @@ export const selectLoadingStatus = (state) => state.people.isSearchLoading;
 export const selectPeopleCurrentPage = (state) => state.people.currentPage;
 export const selectPeopleTotalPages = (state) => state.people.totalPages;
 export const selectLoading = (state) => state.people.isLoading;
+export const selectErrorStatus = (state) => state.people.isError;
 
 export default peopleSlice.reducer;

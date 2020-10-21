@@ -1,19 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useQueryParameter } from "../../queryParameters";
 import { Footer } from "../../../common/Footer";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 import { Title } from "../../../common/Title";
+import { Tile } from "../../../common/Tile";
+import { PAGE_PARAMETER, QUERY_PARAMETER } from "../../../lib/consts";
+import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
+import spinner from "../../../images/icon-spinner.svg";
+import { NoResult } from "../../NoResult";
+import { Error } from "../../Error";
 import {
     fetchPeople,
     selectLoadingStatus,
     selectPeople,
+    selectTotalResults,
+    selectLoading,
+    selectErrorStatus
 } from "../PeoplePopular/peopleSlice";
-import { Tile } from "../../../common/Tile";
-import { useQueryParameter } from "../../queryParameters";
-import { PAGE_PARAMETER, QUERY_PARAMETER } from "../../../lib/consts";
-import { selectTotalResults, selectLoading } from "../PeoplePopular/peopleSlice";
-import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
-import spinner from "../../../images/icon-spinner.svg";
 
 export const PeoplePage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
@@ -22,7 +26,7 @@ export const PeoplePage = () => {
     const searchingLoadingStatus = useSelector(selectLoadingStatus);
     const page = useQueryParameter(PAGE_PARAMETER);
     const loading = useSelector(selectLoading);
-
+    const errorStatus = useSelector(selectErrorStatus);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -30,7 +34,6 @@ export const PeoplePage = () => {
             dispatch(fetchPeople(page))
         }
     }, [dispatch, query, page]);
-
 
     if (loading) {
         return (
@@ -47,7 +50,9 @@ export const PeoplePage = () => {
                 </SpinnerBox>
             </Wrapper>
         )
-    }
+    } else if (!searchingLoadingStatus && query && totalResults === 0) {
+        return <NoResult />
+    } else if (errorStatus) { return <Error /> }
 
     return (
         <Wrapper DataType={"people"}>

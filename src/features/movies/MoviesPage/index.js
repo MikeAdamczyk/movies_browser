@@ -6,21 +6,29 @@ import { useMovieDetail } from "../../useMovieDetail";
 import { Tile } from "../../../common/Tile";
 import { getProductionYear } from "../../../lib/utils";
 import { useSelector } from "react-redux";
-import { selectMovies, selectTotalResults, selectLoadingStatus, selectLoading } from "../MoviesPopular/moviesSlice";
 import { useQueryParameter } from "../../queryParameters";
 import { QUERY_PARAMETER } from "../../../lib/consts";
 import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
 import spinner from "../../../images/icon-spinner.svg";
+import { Error } from "../../Error";
+import { NoResult } from "../../NoResult";
+import {
+    selectMovies,
+    selectTotalResults,
+    selectLoading,
+    selectLoadingSearchStatus,
+    selectErrorStatus
+} from "../MoviesPopular/moviesSlice";
+
 
 export const MoviesPage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
-
     const getMovieGenres = useMovieDetail();
     const moviesResult = useSelector(selectMovies);
     const totalResults = useSelector(selectTotalResults);
-    const searchingLoadingStatus = useSelector(selectLoadingStatus);
+    const searchingLoadingStatus = useSelector(selectLoadingSearchStatus);
+    const errorStatus = useSelector(selectErrorStatus);
     const loading = useSelector(selectLoading);
-
 
     if (loading) {
         return (
@@ -37,7 +45,9 @@ export const MoviesPage = () => {
                 </SpinnerBox>
             </Wrapper>
         )
-    }
+    } else if (!searchingLoadingStatus && query && totalResults === 0) {
+       return  <NoResult />
+    } else if (errorStatus) { return <Error /> }
 
     return (
         <Wrapper>
