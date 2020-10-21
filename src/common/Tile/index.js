@@ -10,11 +10,13 @@ import {
     Container,
     AdditionalInfo,
     Genre,
+    Star, 
     Rate,
     Description,
     NoImagePlug,
     PlugLogo
 } from './styled';
+import star from '../../images/Vector.svg';
 
 export const Tile = ({
     tileType,
@@ -27,27 +29,17 @@ export const Tile = ({
     genres,
     rateValue,
     votesNumber,
-    description,
-    id
-}) => {
-    return <TileElement
-        tileView={tileView}
-        tileType={tileType}
-    // no idea how to pass tileView={tileView} to every child without writing it down in each, as I did now
-    //any ideas?
-    >
-        {tileView === "list" ?
-            <StyledNavLink 
-                to={{
-                    pathname: '/movies=id',
-                    aboutProps:{
-                        id: id,
-                        example: "dupa"
-                    }
-                }} 
-                Tile={true}
+    description
+    }) => {
+    return  <TileElement 
+                tileView={tileView}
+                tileType={tileType}
+                // no idea how to pass tileView={tileView} to every child without writing it down in each, as I did now
+                //any ideas?
             >
-                <Image
+        {tileView === "list" ? 
+            <StyledNavLink to="/single" tile={true}>        
+                <Image 
                     imagePath={image}
                     tileView={tileView}
                     tileType={tileType}
@@ -76,15 +68,15 @@ export const Tile = ({
         <DetailBox
             tileView={tileView}
         >
-            <StyledNavLink to="/single" Tile={true}>
-                <Header
-                    tileType={tileType}
-                    tileView={tileView}
-                >
-                    {header}
-                </Header>
-            </StyledNavLink>
-            {subheader ? <Subheader tileView={tileView} tileType={tileType}>{subheader}</Subheader> : ""}
+        <StyledNavLink to="/single" tile={true}> 
+            <Header
+                tileType={tileType}
+                tileView={tileView}
+            >
+                {header}
+            </Header>
+        </StyledNavLink>
+            {(tileType === "movie" && subheader)? <Subheader tileView={tileView}>{subheader}</Subheader> : ""}
             {tileView === "detail" ?
                 <>
                     <Container
@@ -152,7 +144,16 @@ export const Tile = ({
                     tileView={tileView}
                     rate
                 >
+                    <Star 
+                        src={star} 
+                        tileView={tileView}
+                    ></Star>
+                    <Rate 
+                        number 
+                        tileView={tileView}
+                    >
                     {rateValue}
+                    </Rate>  
                     <Rate
                         votes
                         tileView={tileView}

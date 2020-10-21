@@ -2,13 +2,13 @@ import React from "react";
 import {Arrow, ChangePageButton, ButtonTitle} from "./styled";
 import disabled from "../../images/disabled.svg";
 import active from "../../images/active.svg";
-import {setNextPage, setLastPage, selectCurrentPage, selectTotalPages} from "../../features/movies/moviesSlice"
+import {setNextPage, setLastPage, selectCurrentPage, selectTotalPages} from "../../features/movies/MoviesPopular/moviesSlice"
 import {
     setPeopleNextPage,
     setPeopleLastPage,
     selectPeopleCurrentPage,
     selectPeopleTotalPages
-} from "../../features/people/peopleSlice";
+} from "../../features/people/PeoplePopular/peopleSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 export const NextButton = ({firstTitle, secondTitle}) => {
