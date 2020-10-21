@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPeople, selectPeople } from "../../people/PeoplePopular/peopleSlice";
 import { Tile } from "../../../common/Tile";
 import { useMovieDetail } from "../../useMovieDetail";
-
+import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
+import spinner from "../../../images/icon-spinner.svg";
+import { selectLoading } from "../MovieDetail/movieDetailSlice";
 
 export const SingleMoviePage = () => {
 
@@ -15,10 +17,19 @@ export const SingleMoviePage = () => {
     console.log(moviesResult);
     const dispatch = useDispatch();
     const peopleResult = useSelector(selectPeople);
+    const loading = useSelector(selectLoading);
 
     useEffect(() => {
         dispatch(fetchPeople());
     }, [dispatch])
+
+    if (loading) {
+        return (
+            <SpinnerBox>
+                <Spinner src={spinner} />
+            </SpinnerBox>
+        )
+    }
 
     return (
         <>
@@ -38,8 +49,8 @@ export const SingleMoviePage = () => {
                         genres={["Action", "Drama", "Adventure"]}
                         rateValue={"7,6"}
                         votesNumber={"37"}
-                        description={`A young Chinese maiden disguises herself as a male warrior in order to save her father. 
-                                Disguises herself as a male warrior in order to save her father.  
+                        description={`A young Chinese maiden disguises herself as a male warrior in order to save her father.
+                                Disguises herself as a male warrior in order to save her father.
                                 A young Chinese maiden disguises herself as a male warrior in order to save her father.`}
                     ></Tile>
                 </Wrapper>

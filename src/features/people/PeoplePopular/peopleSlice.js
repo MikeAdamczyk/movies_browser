@@ -73,7 +73,7 @@ export const selectTotalResults = (state) => state.people.totalResults;
 export const selectLoadingStatus = (state) => state.people.isSearchLoading;
 export const selectPeopleCurrentPage = (state) => state.people.currentPage;
 export const selectPeopleTotalPages = (state) => state.people.totalPages;
+export const selectLoading = (state) => state.people.isLoading;
 export const selectErrorStatus = (state) => state.people.isError;
 
 export default peopleSlice.reducer;
-

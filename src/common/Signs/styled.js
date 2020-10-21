@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const SpinnerBox = styled.div`
+    max-width: 1368px;
+    margin: 0 auto;
+    padding: 96px;
+    text-align: center;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
+        padding: 12px 0;
+    }
+`;
+
 export const Spinner = styled.img`
     width: 91px;
     height: 91px;
@@ -15,5 +26,10 @@ export const Spinner = styled.img`
         to {
             transform:rotate(360deg);
         }
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
+        width: 35px;
+        height: 35px;
     }
 `;
