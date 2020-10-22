@@ -3,17 +3,5 @@ export const getProductionYear = (releaseDate) => {
     return productionYear;
 };
 
-export const getFormattedDate = (date) => {
-    const formattedDate = (new Date(date)).toLocaleDateString();
-    return formattedDate;
-};
 
-export const getProductionCountries = (countries) => {
-    const productionCountries = [];
 
-    countries.forEach(country => {
-        const productionCountry = country.name;
-        productionCountries.push(productionCountry);
-    });
-    return productionCountries;
-};

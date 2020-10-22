@@ -4,7 +4,14 @@ export const movieDetailSlice = createSlice({
     name: "movieDetail",
     initialState: {
         isLoading: false,
-        results: [],
+        results: {
+            production_countries: [
+                {},
+            ],
+            genres: [
+                {},
+            ]
+        },
     },
     reducers: {
         fetchMovieDetail: (state, {payload}) => {

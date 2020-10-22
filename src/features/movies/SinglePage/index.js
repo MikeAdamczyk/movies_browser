@@ -9,7 +9,7 @@ import { fetchMovieDetail, selectMovieDetail } from "../../movies/MovieDetail/mo
 import { fetchPersonDetail, selectPersonDetail } from "../../people/PersonDetail/personDetailSlice";
 import { Tile } from "../../../common/Tile";
 import { useMovieDetail } from "../../useMovieDetail";
-import { getFormattedDate, getProductionCountries, getProductionYear } from "../../../lib/utils";
+import { getProductionYear } from "../../../lib/utils";
 import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
 import spinner from "../../../images/icon-spinner.svg";
 import { selectLoading } from "../MovieDetail/movieDetailSlice";
@@ -30,6 +30,11 @@ export const SinglePage = ({match, detailType, listType}) => {
     const getMovieGenres = useMovieDetail();
     const id = match.params.id;
     
+    const sortedPersonCast = [...personCast];
+    sortedPersonCast.sort((a, b) => {
+        return b.popularity - a.popularity;
+    })
+
     useEffect(() => {
         dispatch(fetchPeople());
         if(detailType === "movie"){
@@ -41,6 +46,32 @@ export const SinglePage = ({match, detailType, listType}) => {
         }
         
     }, [id, dispatch])
+
+    const getProductionCountries = (countries) => {
+        const productionCountries = [];
+    
+        countries.forEach(country => {
+            const productionCountry = country.name;
+            productionCountries.push(productionCountry);
+        });
+        return productionCountries;
+    };
+    
+    const getDetailGenres = (genresArray) => {
+        const genresDetail = [];
+    
+        genresArray.forEach(genre => {
+            const genreName = genre.name;
+            genresDetail.push(genreName);
+        })
+    
+        return genresDetail;
+    };
+    
+    const getFormattedDate = (date) => {
+        const formattedDate = (new Date(date)).toLocaleDateString();
+        return formattedDate;
+    };
 
     if (loading) {
         return (
@@ -72,9 +103,9 @@ export const SinglePage = ({match, detailType, listType}) => {
                         header={movieDetail.title}
                         subheader={getProductionYear(movieDetail.release_date)}
                         image={movieDetail.poster_path}
-                        place={"tablica z API jest jako undefined "}
+                        place={getProductionCountries(movieDetail.production_countries)}
                         date={getFormattedDate(movieDetail.release_date)}
-                        genres={["nie", "działają", "tablice", "z", "API"]}
+                        genres={getDetailGenres(movieDetail.genres)}
                         rateValue={movieDetail.vote_average}
                         votesNumber={movieDetail.vote_count}
                         description={movieDetail.overview}
@@ -110,7 +141,7 @@ export const SinglePage = ({match, detailType, listType}) => {
                     </ListContainer>
                 : 
                     <ListContainer DataType={listType}>
-                        {personCast.map((result) => (
+                        {sortedPersonCast.map((result) => (
                                 <Tile
                                     key={result.cast_id}
                                     id={result.id}

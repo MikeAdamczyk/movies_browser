@@ -29,7 +29,7 @@ export const MoviesPage = () => {
     const searchingLoadingStatus = useSelector(selectLoadingSearchStatus);
     const errorStatus = useSelector(selectErrorStatus);
     const loading = useSelector(selectLoading);
-console.log(moviesResult)
+
     if (loading) {
         return (
             <SpinnerBox>
@@ -64,7 +64,6 @@ console.log(moviesResult)
                             header={result.title}
                             subheader={getProductionYear(result.release_date)}
                             image={result.poster_path}
-                            place={"China, United States of America"}
                             date={result.release_date}
                             genres={getMovieGenres(result.genre_ids)}
                             rateValue={result.vote_average}
