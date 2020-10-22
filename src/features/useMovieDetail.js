@@ -19,7 +19,7 @@ export const useMovieDetail = () => {
 
     useEffect(() => {
         dispatch(fetchGenre());
-    }, []);
+    }, [dispatch]);
 
     const getMovieGenres = (genre_ids) => {
         const genres = [];
