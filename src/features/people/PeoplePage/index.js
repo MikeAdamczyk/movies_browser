@@ -12,6 +12,7 @@ import { NoResult } from "../../NoResult";
 import { Error } from "../../Error";
 import {
     fetchPeople,
+    fetchFirstPeoplePage,
     selectLoadingStatus,
     selectPeople,
     selectTotalResults,
@@ -31,9 +32,15 @@ export const PeoplePage = () => {
 
     useEffect(() => {
         if (!query || query === "") {
-            dispatch(fetchPeople(page))
+            dispatch(fetchFirstPeoplePage({page:1}));
         }
-    }, [dispatch, query, page]);
+    }, [dispatch, query]);
+
+    useEffect(() => {
+        if ((!query || query==="") && page !== 1) {
+            dispatch(fetchPeople({page}));
+        }
+    }, [dispatch, page]);
 
     return (
         <Wrapper DataType={"people"}>
