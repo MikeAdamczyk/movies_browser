@@ -373,6 +373,7 @@ export const Star = styled.img`
         ${({tileView }) => tileView === "list" && css`
             width: 16px; 
         `}
+    }
     @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         width: 16px;    
         margin: 0 8px 0 0;
