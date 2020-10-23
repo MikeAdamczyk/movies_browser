@@ -6,7 +6,7 @@ import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 import { Title } from "../../../common/Title";
 import { Tile } from "../../../common/Tile";
 import { PAGE_PARAMETER, QUERY_PARAMETER } from "../../../lib/consts";
-import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
+import { Spinner, SpinnerBox } from "../../../common/Loading/styled";
 import spinner from "../../../images/icon-spinner.svg";
 import { NoResult } from "../../NoResult";
 import { Error } from "../../Error";
@@ -52,7 +52,7 @@ export const PeoplePage = () => {
         !loading && searchingLoadingStatus ?
             <>
                 <Title title={`Search results for "${query}"`}/>
-                <SpinnerBox>
+                <SpinnerBox search>
                     <Spinner src={spinner}/>
                 </SpinnerBox>
             </>

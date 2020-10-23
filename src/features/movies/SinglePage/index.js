@@ -14,7 +14,7 @@ import {
 import { Tile } from "../../../common/Tile";
 import { useMovieDetail } from "../../useMovieDetail";
 import { getProductionYear } from "../../../lib/utils";
-import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
+import { Spinner, SpinnerBox } from "../../../common/Loading/styled";
 import spinner from "../../../images/icon-spinner.svg";
 import { selectLoading } from "../MovieDetail/movieDetailSlice";
 import {
