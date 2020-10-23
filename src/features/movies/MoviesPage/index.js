@@ -40,7 +40,7 @@ export const MoviesPage = () => {
         return (
             <Wrapper>
                 <Title title={`Search results for "${query}"`} />
-                <SpinnerBox>
+                <SpinnerBox search>
                     <Spinner src={spinner} />
                 </SpinnerBox>
             </Wrapper>

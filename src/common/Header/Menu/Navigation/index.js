@@ -10,12 +10,8 @@ export const Nav = () => (
             </StyledItem>
 
             <StyledItem>
-                <StyledNavLink to="people">PEOPLE</StyledNavLink>
-            </StyledItem>
-
-            <StyledItem>
-                <StyledNavLink to="single">SINGLE</StyledNavLink>
+                <StyledNavLink to="/people">PEOPLE</StyledNavLink>
             </StyledItem>
         </StyledNavigation>
     </nav>
-)
+);
