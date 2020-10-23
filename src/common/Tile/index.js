@@ -113,7 +113,7 @@ export const Tile = ({
                             content
                             tileView={tileView}
                         >
-                            {tileType === "movie" ? `${place}` : `${date}`}
+                            {tileType === "movie" ? `${place.map((country) => ` ${country}`)}` : `${date}`}
                         </AdditionalInfo>
                     </Container>
                     <Container

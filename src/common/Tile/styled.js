@@ -60,7 +60,7 @@ export const TileElement = styled.div`
         ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
             padding: 8px;
             grid-template-columns: 1fr;
-            grid-template-rows: 178px auto;
+            grid-template-rows: 178px 1fr auto;
         `}
         
     };
@@ -268,6 +268,9 @@ export const Container = styled.div`
         align-items: flex-end;
 
     `}
+    ${({ tileView, rate }) => (tileView === "detail" && rate) && css`
+        align-items: baseline;
+    `}
     ${({ tileView, description }) => (tileView === "detail" && description) && css`
             grid-area: overview;
             margin: 24px 40px 40px;
@@ -326,7 +329,7 @@ export const AdditionalInfo = styled.span`
     };
 `;
 export const Genre = styled.div`
-    margin-right: 16px;
+    margin: 0 16px 0 0;
     background-color: ${({ theme }) => theme.color.grey};
     color: ${({ theme }) => theme.color.black};
     padding: 8px 16px;
@@ -338,7 +341,11 @@ export const Genre = styled.div`
         margin: 8px 8px 0 0;
         line-height: 1.4;
     `}
-
+    @media (max-width: ${({ theme }) => theme.breakpoints.big}){
+        ${({ tileView }) => tileView === "detail" && css`
+            margin: 8px 8px 0 0
+        `}
+    };
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
         ${({ tileView }) => tileView === "list" && css`
             font-size: 10px;
@@ -351,7 +358,6 @@ export const Genre = styled.div`
             font-size: 10px;
             line-height: 1.1;
             padding: 4px 8px;
-            margin: 8px 8px 0 0;
         `}
     };
 `;
@@ -363,8 +369,12 @@ export const Star = styled.img`
     ${({ tileView }) => tileView === "list" && css`
         margin: 0 12px 0 0;
     `}
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
+        ${({tileView }) => tileView === "list" && css`
+            width: 16px; 
+        `}
+    }
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         width: 16px;    
         margin: 0 8px 0 0;
     }
@@ -392,6 +402,7 @@ export const Rate = styled.div`
     `}
 
     ${({ tileView }) => tileView === "list" && css`
+        color: ${({ theme }) => theme.color.woodsmoke};
         font-size: 16px;
         font-weight: 600;
         line-height: 1.5;
@@ -414,6 +425,8 @@ export const Rate = styled.div`
                 content: "";
             }
             margin: 0 7px 0 0;
+            color: ${({ theme }) => theme.color.woodsmoke};
+            font-weight: 600;
         `}
 
         ${({ votes, tileView }) => (votes && tileView === "list") && css`
@@ -436,9 +449,6 @@ export const Rate = styled.div`
             align-items: center;
             font-weight: 400;
             color: ${({ theme }) => theme.color.darkerGrey};
-        `}
-        ${({ number, tileView }) => (number && tileView === "detail") && css`
-            font-weight: 500;
         `}
     };
 `;
