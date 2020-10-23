@@ -30,7 +30,8 @@ export const TileElement = styled.div`
 
     ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
         padding: 10px 15px 10px 16px;
-        grid-template-rows: 264px 1fr;
+        grid-gap: 0;
+        grid-template-rows: 264px 1fr auto;
     `}
     @media (max-width: ${({ theme }) => theme.breakpoints.big}){
         ${({ tileType, tileView }) => (tileType === "people" && tileView === "detail") && css`
@@ -59,7 +60,7 @@ export const TileElement = styled.div`
         ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
             padding: 8px;
             grid-template-columns: 1fr;
-            grid-template-rows: 178px auto;
+            grid-template-rows: 178px 1fr auto;
         `}
         
     };
@@ -182,7 +183,6 @@ export const Header = styled.h2`
     `}
     ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
         text-align: center;
-        margin-top: -15px;
     `}
     @media (max-width: ${({ theme }) => theme.breakpoints.big}){
         ${({ tileView }) => tileView === "detail" && css`
@@ -197,7 +197,7 @@ export const Header = styled.h2`
 
         ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
             font-size: 14px;
-            margin-top: -8px;
+            margin-top: 8px;
         `}
     };
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
@@ -219,6 +219,11 @@ export const Subheader = styled.h2`
         line-height: 1.5;
         margin: 8px 0 0;
     `}
+    ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
+        font-size: 18px;
+        text-align: center;
+    `}
+
     @media (max-width: ${({ theme }) => theme.breakpoints.big}){
         ${({ tileView }) => tileView === "detail" && css`
             font-size: 18px;
@@ -230,6 +235,9 @@ export const Subheader = styled.h2`
             font-size: 13px;
             line-height: 1.3;
             margin: 4px 0 0;
+        `}
+        ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
+            margin: 8px 0 0;
         `}
     };
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
@@ -259,6 +267,9 @@ export const Container = styled.div`
         flex-grow: 1;
         align-items: flex-end;
 
+    `}
+    ${({ tileView, rate }) => (tileView === "detail" && rate) && css`
+        align-items: baseline;
     `}
     ${({ tileView, description }) => (tileView === "detail" && description) && css`
             grid-area: overview;
@@ -318,7 +329,7 @@ export const AdditionalInfo = styled.span`
     };
 `;
 export const Genre = styled.div`
-    margin-right: 16px;
+    margin: 0 16px 0 0;
     background-color: ${({ theme }) => theme.color.grey};
     color: ${({ theme }) => theme.color.black};
     padding: 8px 16px;
@@ -330,7 +341,11 @@ export const Genre = styled.div`
         margin: 8px 8px 0 0;
         line-height: 1.4;
     `}
-
+    @media (max-width: ${({ theme }) => theme.breakpoints.big}){
+        ${({ tileView }) => tileView === "detail" && css`
+            margin: 8px 8px 0 0
+        `}
+    };
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
         ${({ tileView }) => tileView === "list" && css`
             font-size: 10px;
@@ -343,7 +358,6 @@ export const Genre = styled.div`
             font-size: 10px;
             line-height: 1.1;
             padding: 4px 8px;
-            margin: 8px 8px 0 0;
         `}
     };
 `;
@@ -355,8 +369,12 @@ export const Star = styled.img`
     ${({ tileView }) => tileView === "list" && css`
         margin: 0 12px 0 0;
     `}
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
+        ${({tileView }) => tileView === "list" && css`
+            width: 16px; 
+        `}
+    }
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         width: 16px;    
         margin: 0 8px 0 0;
     }
@@ -384,6 +402,7 @@ export const Rate = styled.div`
     `}
 
     ${({ tileView }) => tileView === "list" && css`
+        color: ${({ theme }) => theme.color.woodsmoke};
         font-size: 16px;
         font-weight: 600;
         line-height: 1.5;
@@ -406,6 +425,8 @@ export const Rate = styled.div`
                 content: "";
             }
             margin: 0 7px 0 0;
+            color: ${({ theme }) => theme.color.woodsmoke};
+            font-weight: 600;
         `}
 
         ${({ votes, tileView }) => (votes && tileView === "list") && css`
@@ -429,9 +450,6 @@ export const Rate = styled.div`
             font-weight: 400;
             color: ${({ theme }) => theme.color.darkerGrey};
         `}
-        ${({ number, tileView }) => (number && tileView === "detail") && css`
-            font-weight: 500;
-        `}
     };
 `;
 export const Description = styled.div`
@@ -446,4 +464,17 @@ export const Description = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
         font-size: 14px;
     };
+`;
+
+export const NoImagePlug = styled.div`
+    background-color: ${({ theme }) => theme.color.plugGray};
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+`;
+export const PlugLogo = styled.img`
+    width: 25%;
 `;

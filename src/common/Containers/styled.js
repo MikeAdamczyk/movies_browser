@@ -62,7 +62,6 @@ export const ListContainer = styled.main`
 
         ${(({ DataType }) => DataType === "people" && css`
             grid-template-columns: repeat(2, 136px);
-            grid-auto-rows: 245px;
             grid-gap: 16px;
         `)};
     }

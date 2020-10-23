@@ -20,7 +20,6 @@ import {
     selectErrorStatus
 } from "../MoviesPopular/moviesSlice";
 
-
 export const MoviesPage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
     const getMovieGenres = useMovieDetail();
@@ -30,50 +29,51 @@ export const MoviesPage = () => {
     const errorStatus = useSelector(selectErrorStatus);
     const loading = useSelector(selectLoading);
 
-    if (loading) {
-        return (
-            <SpinnerBox>
-                <Spinner src={spinner} />
-            </SpinnerBox>
-        )
-    } else if (searchingLoadingStatus) {
-        return (
-            <Wrapper>
-                <Title title={`Search results for "${query}"`} />
-                <SpinnerBox search>
-                    <Spinner src={spinner} />
-                </SpinnerBox>
-            </Wrapper>
-        )
-    } else if (!searchingLoadingStatus && query && totalResults === 0) {
-       return  <NoResult />
-    } else if (errorStatus) { return <Error /> }
-
     return (
         <Wrapper>
-            <>
-                <Title
-                    title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`} />
-                <ListContainer DataType={"movie"}>
-                    {moviesResult.map((result) => (
-                        <Tile
-                            key={result.id}
-                            tileType={"movie"} //movie / people
-                            tileView={"list"} // list / detail
-                            header={result.title}
-                            subheader={getProductionYear(result.release_date)}
-                            image={result.poster_path}
-                            place={"China, United States of America"}
-                            date={result.release_date}
-                            genres={getMovieGenres(result.genre_ids)}
-                            rateValue={result.vote_average}
-                            votesNumber={result.vote_count}
-                            description={result.overview}
-                        ></Tile>
-                    ))}
-                </ListContainer>
-                <Footer />
-            </>
+            {loading ?
+                <SpinnerBox>
+                    <Spinner src={spinner}/>
+                </SpinnerBox>
+                :
+                !loading && searchingLoadingStatus ?
+                    <>
+                        <Title title={`Search results for "${query}"`}/>
+                        <SpinnerBox>
+                            <Spinner src={spinner}/>
+                        </SpinnerBox>
+                    </>
+                    :
+                    !loading && !searchingLoadingStatus && totalResults === 0 ?
+                        <NoResult/>
+                        :
+                        !loading && !searchingLoadingStatus && errorStatus ?
+                            <Error/>
+                            :
+                            <>
+                                <Title
+                                    title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`}/>
+                                <ListContainer DataType={"movie"}>
+                                    {moviesResult.map((result) => (
+                                        <Tile
+                                            key={result.id}
+                                            tileType={"movie"} //movie / people
+                                            tileView={"list"} // list / detail
+                                            header={result.title}
+                                            subheader={getProductionYear(result.release_date)}
+                                            image={result.poster_path}
+                                            place={"China, United States of America"}
+                                            date={result.release_date}
+                                            genres={getMovieGenres(result.genre_ids)}
+                                            rateValue={result.vote_average}
+                                            votesNumber={result.vote_count}
+                                            description={result.overview}
+                                        />
+                                    ))}
+                                </ListContainer>
+                                <Footer/>
+                            </>
+            }
         </Wrapper>
     )
 };

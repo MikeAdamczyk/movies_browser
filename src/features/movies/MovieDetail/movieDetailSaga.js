@@ -5,10 +5,9 @@ import {fetchMovieDetail,
         fetchMovieDetailError
         } from "./movieDetailSlice";
 
-function* fetchMovieDetailHandler() {
+function* fetchMovieDetailHandler(action) {
     try {
-        yield delay(1000)
-        const movieDetail = yield call(getMovieDetail);
+        const movieDetail = yield call(getMovieDetail, action.payload.id);
         yield put(fetchMovieDetailSuccess(movieDetail))
     } catch (error) {
         yield put(fetchMovieDetailError(error))

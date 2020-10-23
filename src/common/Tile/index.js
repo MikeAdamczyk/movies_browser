@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyledNavLink } from "../../common/Header/Menu/Navigation/styledNavLink";
+import plugLogo from './logo.png'
 import {
     TileElement,
     Image,
@@ -11,7 +12,9 @@ import {
     Genre,
     Star, 
     Rate,
-    Description
+    Description,
+    NoImagePlug,
+    PlugLogo
 } from './styled';
 import star from '../../images/Vector.svg';
 
@@ -26,7 +29,8 @@ export const Tile = ({
     genres,
     rateValue,
     votesNumber,
-    description
+    description,
+    id
     }) => {
     return  <TileElement 
                 tileView={tileView}
@@ -35,31 +39,60 @@ export const Tile = ({
                 //any ideas?
             >
         {tileView === "list" ? 
-            <StyledNavLink to="/single" tile={true}>        
+            <StyledNavLink 
+                to={tileType === "movie" ? `/movies/${id}`: `/people/${id}`} 
+                tile={true}
+            >        
                 <Image 
                     imagePath={image}
                     tileView={tileView}
                     tileType={tileType}
-                ></Image>
+                > 
+                    {image === null ? 
+                        <NoImagePlug>
+                            <PlugLogo src={plugLogo}/>
+                        </NoImagePlug> :
+                        ""
+                    }
+                </Image>
             </StyledNavLink> :
             <Image
                 imagePath={image}
                 tileView={tileView}
                 tileType={tileType}
-            ></Image>
+            >
+                {image === null ? 
+                    <NoImagePlug>
+                        <PlugLogo src={plugLogo}/>
+                    </NoImagePlug> :
+                    ""
+                }
+            </Image>
         }
         <DetailBox
             tileView={tileView}
         >
-        <StyledNavLink to="/single" tile={true}> 
+        {tileView === "list" ? 
+            <StyledNavLink 
+                to={tileType === "movie" ? `/movies/${id}`: `/people/${id}`} 
+                tile={true}
+            > 
             <Header
                 tileType={tileType}
                 tileView={tileView}
             >
                 {header}
             </Header>
-        </StyledNavLink>
-            {(tileType === "movie" && subheader)? <Subheader tileView={tileView}>{subheader}</Subheader> : ""}
+            </StyledNavLink> : 
+            <Header
+                tileType={tileType}
+                tileView={tileView}
+            >
+                {header}
+            </Header>
+        }
+
+            {subheader? <Subheader tileView={tileView} tileType={tileType}>{subheader}</Subheader> : ""}
             {tileView === "detail" ?
                 <>
                     <Container
@@ -80,7 +113,7 @@ export const Tile = ({
                             content
                             tileView={tileView}
                         >
-                            {tileType === "movie" ? `${place}` : `${date}`}
+                            {tileType === "movie" ? `${place.map((country) => ` ${country}`)}` : `${date}`}
                         </AdditionalInfo>
                     </Container>
                     <Container

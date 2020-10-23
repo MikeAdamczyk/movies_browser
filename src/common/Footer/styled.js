@@ -22,9 +22,18 @@ export const ChangePageButton = styled.button`
     background-color: ${({ theme }) => theme.color.lightBlue};
     display: flex;
     align-items: center;
+    
+    &:hover{
+     filter: brightness(105%);
+     cursor: pointer;
+    }
 
     &:disabled{
       background-color: ${({ theme }) => theme.color.grey};
+        &:hover{
+          filter: brightness(100%);
+          cursor: default;
+         }
     }
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
       margin-right: 8px;

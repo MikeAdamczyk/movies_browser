@@ -4,6 +4,7 @@ export const theme = {
         woodsmoke: "#18181B",
         stormGray: "#74788B",
         blue: "#0044CC",
+        plugGray: "#C4C4C4",
         darkGrey: "#333333",
         darkerGrey: "#7E839A",
         yellow: "#FCD420",

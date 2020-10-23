@@ -13,17 +13,11 @@ import {
 } from "./styled";
 import star from "../../../images/Vector.svg";
 
-export const Backdrop = () => {
+export const Backdrop = ({backdrop, title, rate, votesNumber}) => (
 
-    let backdropImage = "";
-    let title = "";
-    let rate = "";
-    let votesNumber = "";
-
-    return !!backdropImage && (
         <Wrapper>
             <PosterBox>
-                <Poster src={backdropImage} alt="" />
+                <Poster src={`https://image.tmdb.org/t/p/original/${backdrop}`} alt="" />
                 <MovieInfo>
                     <MovieTitle>{title}</MovieTitle>
                     <RatingSection>
@@ -39,5 +33,4 @@ export const Backdrop = () => {
                 </MovieInfo>
             </PosterBox>
         </Wrapper>
-    );
-};
+);
