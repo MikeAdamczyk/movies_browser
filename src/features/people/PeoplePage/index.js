@@ -12,6 +12,7 @@ import { NoResult } from "../../NoResult";
 import { Error } from "../../Error";
 import {
     fetchPeople,
+    fetchFirstPeoplePage,
     selectLoadingStatus,
     selectPeople,
     selectTotalResults,
@@ -31,31 +32,37 @@ export const PeoplePage = () => {
 
     useEffect(() => {
         if (!query || query === "") {
-            dispatch(fetchPeople(page))
+            dispatch(fetchFirstPeoplePage({page:1}));
         }
-    }, [dispatch, query, page]);
+    }, [dispatch, query]);
 
-    if (loading) {
-        return (
-            <SpinnerBox>
-                <Spinner src={spinner} />
-            </SpinnerBox>
-        )
-    } else if (searchingLoadingStatus) {
-        return (
-            <Wrapper>
-                <Title title={`Search results for "${query}"`} />
-                <SpinnerBox>
-                    <Spinner src={spinner} />
-                </SpinnerBox>
-            </Wrapper>
-        )
-    } else if (!searchingLoadingStatus && query && totalResults === 0) {
-        return <NoResult />
-    } else if (errorStatus) { return <Error /> }
+    useEffect(() => {
+        if ((!query || query==="") && page !== 1) {
+            dispatch(fetchPeople({page}));
+        }
+    }, [dispatch, page]);
 
     return (
         <Wrapper DataType={"people"}>
+    {loading ?
+        <SpinnerBox>
+            <Spinner src={spinner}/>
+        </SpinnerBox>
+        :
+        !loading && searchingLoadingStatus ?
+            <>
+                <Title title={`Search results for "${query}"`}/>
+                <SpinnerBox>
+                    <Spinner src={spinner}/>
+                </SpinnerBox>
+            </>
+            :
+            !loading && !searchingLoadingStatus && totalResults === 0 ?
+                <NoResult/>
+                :
+                !loading && !searchingLoadingStatus && errorStatus ?
+                    <Error/>
+                    :
             <>
                 <Title
                     title={(!query || query.trim() === "") ? "Popular people" : `Search results for "${query}" (${totalResults})`} />
@@ -71,8 +78,9 @@ export const PeoplePage = () => {
                         />
                     ))}
                 </ListContainer>
+                <Footer />
             </>
-            <Footer />
+            }
         </Wrapper>
     )
 };

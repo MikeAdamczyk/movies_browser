@@ -16,6 +16,9 @@ export const peopleSlice = createSlice({
         fetchPeople: (state, {payload}) => {
             state.isLoading = true;
         },
+        fetchFirstPeoplePage: (state, {payload}) => {
+            state.isLoading = true;
+        },
         fetchPeopleByQuery: (state, {payload}) => {
             state.isSearchLoading = true;
         },
@@ -25,6 +28,7 @@ export const peopleSlice = createSlice({
         fetchPeopleSuccess: (state, {payload}) => {
             state.isLoading = false;
             state.isSearchLoading = false;
+            state.isError = false;
             state.currentPage = payload.page;
             state.totalPages = payload.total_pages;
             state.totalResults = payload.total_results;
@@ -65,7 +69,8 @@ export const {
     setPeopleFirstPage,
     setPeopleLastPage,
     setPeopleNextPage,
-    setPeoplePreviousPage
+    setPeoplePreviousPage,
+    fetchFirstPeoplePage
 } = peopleSlice.actions;
 
 export const selectPeople = (state) => state.people.results;
