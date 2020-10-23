@@ -1,10 +1,11 @@
-import { NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { NavLink } from "react-router-dom";
+
 
 const activeClassName = "active";
 
 export const StyledNavLink = styled(NavLink).attrs(() => ({
-    activeClassName,
+  activeClassName,
 }))`
 
     ${(({tile}) => !tile && css`

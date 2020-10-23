@@ -1,15 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useQueryParameter } from "../../queryParameters";
-import { Footer } from "../../../common/Footer";
-import { ListContainer, Wrapper } from "../../../common/Containers/styled";
-import { Title } from "../../../common/Title";
-import { Tile } from "../../../common/Tile";
-import { PAGE_PARAMETER, QUERY_PARAMETER } from "../../../lib/consts";
-import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
-import spinner from "../../../images/icon-spinner.svg";
-import { NoResult } from "../../NoResult";
-import { Error } from "../../Error";
+import { useQueryParameter } from "../../../hooks/queryParameters";
 import {
     fetchPeople,
     fetchFirstPeoplePage,
@@ -19,6 +10,15 @@ import {
     selectLoading,
     selectErrorStatus
 } from "../PeoplePopular/peopleSlice";
+import { Footer } from "../../../common/Footer";
+import { Title } from "../../../common/Title";
+import { Tile } from "../../../common/Tile";
+import { NoResult } from "../../../common/NoResult";
+import { Error } from "../../../common/Error";
+import spinner from "../../../images/icon-spinner.svg";
+import { PAGE_PARAMETER, QUERY_PARAMETER } from "../../../lib/consts";
+import { Spinner, SpinnerBox } from "../../../common/Loading/styled";
+import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 
 export const PeoplePage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
@@ -71,8 +71,8 @@ export const PeoplePage = () => {
                         <Tile
                             key={result.id}
                             id={result.id}
-                            tileType={"people"} //movie / people
-                            tileView={"list"} // list / detail
+                            tileType={"people"}
+                            tileView={"list"}
                             header={result.name}
                             image={result.profile_path}
                         />

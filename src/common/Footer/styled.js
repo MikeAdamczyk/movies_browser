@@ -29,8 +29,8 @@ export const ChangePageButton = styled.button`
     }
 
     &:disabled{
-      background-color: ${({ theme }) => theme.color.grey};
-        &:hover{
+       background-color: ${({ theme }) => theme.color.grey};
+       &:hover{
           filter: brightness(100%);
           cursor: default;
          }

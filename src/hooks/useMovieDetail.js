@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchMovies, fetchFirstMoviePage} from "./movies/MoviesPopular/moviesSlice";
-import {fetchGenre, selectGenre} from "./genres/genresSlice";
+import {fetchMovies, fetchFirstMoviePage} from "../features/movies/MoviesPopular/moviesSlice";
+import {fetchGenre, selectGenre} from "../features/genres/genresSlice";
 import {useQueryParameter} from "./queryParameters";
 import {PAGE_PARAMETER, QUERY_PARAMETER} from "../lib/consts";
 

@@ -1,4 +1,4 @@
-import {API_KEY, URL_ADDRESS} from "../../lib/consts";
+import {API_KEY, URL_ADDRESS} from "../../../lib/consts";
 
 export const getSearchedMovies = async (query, page=1) => {
     if (query && query.trim() !== "") {

@@ -1,6 +1,6 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import {getSearchedMoviesPage} from "./getSearchedMoviesDifferentPage";
-import {fetchMoviesSuccess, fetchMoviesError, fetchDifferentPageSearchedMovies} from "./MoviesPopular/moviesSlice";
+import {fetchMoviesSuccess, fetchMoviesError, fetchDifferentPageSearchedMovies} from "./moviesSlice";
 
 function* fetchChangePageSearchedMoviesHandler(action) {
     try {

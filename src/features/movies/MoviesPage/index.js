@@ -1,17 +1,7 @@
 import React from "react";
-import { Footer } from "../../../common/Footer";
-import { ListContainer, Wrapper } from "../../../common/Containers/styled";
-import { Title } from "../../../common/Title";
-import { useMovieDetail } from "../../useMovieDetail";
-import { Tile } from "../../../common/Tile";
-import { getProductionYear } from "../../../lib/utils";
 import { useSelector } from "react-redux";
-import { useQueryParameter } from "../../queryParameters";
-import { QUERY_PARAMETER } from "../../../lib/consts";
-import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
-import spinner from "../../../images/icon-spinner.svg";
-import { Error } from "../../Error";
-import { NoResult } from "../../NoResult";
+import { useQueryParameter } from "../../../hooks/queryParameters";
+import { useMovieDetail } from "../../../hooks/useMovieDetail";
 import {
     selectMovies,
     selectTotalResults,
@@ -19,6 +9,16 @@ import {
     selectLoadingSearchStatus,
     selectErrorStatus
 } from "../MoviesPopular/moviesSlice";
+import { Footer } from "../../../common/Footer";
+import { Title } from "../../../common/Title";
+import { Tile } from "../../../common/Tile";
+import { Error } from "../../../common/Error";
+import { NoResult } from "../../../common/NoResult";
+import { getProductionYear } from "../../../lib/utils";
+import { QUERY_PARAMETER } from "../../../lib/consts";
+import spinner from "../../../images/icon-spinner.svg";
+import { Spinner, SpinnerBox } from "../../../common/Loading/styled";
+import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 
 export const MoviesPage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);

@@ -11,7 +11,7 @@ import {
     RatingSection,
     RateBox,
 } from "./styled";
-import star from "../../../images/Vector.svg";
+import star from "../../images/Vector.svg";
 
 export const Backdrop = ({backdrop, title, rate, votesNumber}) => (
 

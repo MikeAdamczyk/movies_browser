@@ -2,8 +2,8 @@ import React, {useEffect} from "react";
 import {
     useQueryParameter,
     useReplaceQueryParameter,
-} from "../../../features/queryParameters";
-import searchIcon from "./search.png";
+} from "../../../hooks/queryParameters";
+import searchIcon from "../../../images/search.png";
 import {SearchBox, Input, SearchIcon} from "./styled";
 import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
 import {useDispatch} from "react-redux";

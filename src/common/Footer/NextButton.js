@@ -1,30 +1,23 @@
 import React from "react";
-import {Arrow, ChangePageButton, ButtonTitle} from "./styled";
+import {useDispatch, useSelector} from "react-redux";
+import {setNextPage, setLastPage, selectCurrentPage, selectTotalPages} from "../../features/movies/MoviesPopular/moviesSlice"
+import { setPeopleNextPage, setPeopleLastPage, selectPeopleCurrentPage, selectPeopleTotalPages } from "../../features/people/PeoplePopular/peopleSlice";
 import disabled from "../../images/disabled.svg";
 import active from "../../images/active.svg";
-import {setNextPage, setLastPage, selectCurrentPage, selectTotalPages} from "../../features/movies/MoviesPopular/moviesSlice"
-import {
-    setPeopleNextPage,
-    setPeopleLastPage,
-    selectPeopleCurrentPage,
-    selectPeopleTotalPages
-} from "../../features/people/PeoplePopular/peopleSlice";
-import {useDispatch, useSelector} from "react-redux";
+import {Arrow, ChangePageButton, ButtonTitle} from "./styled";
 
 export const NextButton = ({firstTitle, secondTitle}) => {
     const moviesCurrentPage = useSelector(selectCurrentPage);
     const peopleCurrentPage = useSelector(selectPeopleCurrentPage);
     const moviesTotalPages = useSelector(selectTotalPages);
     const peopleTotalPages = useSelector(selectPeopleTotalPages);
+    const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
     return (
         window.location.href.includes("people") ?
             <>
                 <ChangePageButton
-                    onClick={() => {
-                        dispatch(setPeopleNextPage())
-                    }}
+                    onClick={() => {dispatch(setPeopleNextPage())}}
                     disabled={peopleCurrentPage === peopleTotalPages}
                 >
                     <ButtonTitle
@@ -40,9 +33,7 @@ export const NextButton = ({firstTitle, secondTitle}) => {
                     }
                 </ChangePageButton>
                 <ChangePageButton
-                    onClick={() => {
-                        dispatch(setPeopleLastPage())
-                    }}
+                    onClick={() => {dispatch(setPeopleLastPage())}}
                     directionChange
                     disabled={peopleCurrentPage === peopleTotalPages}
                 >
@@ -68,9 +59,7 @@ export const NextButton = ({firstTitle, secondTitle}) => {
             :
             <>
                 <ChangePageButton
-                    onClick={() => {
-                        dispatch(setNextPage())
-                    }}
+                    onClick={() => {dispatch(setNextPage())}}
                     disabled={moviesCurrentPage === moviesTotalPages}
                 >
                     <ButtonTitle
@@ -86,9 +75,7 @@ export const NextButton = ({firstTitle, secondTitle}) => {
                     }
                 </ChangePageButton>
                 <ChangePageButton
-                    onClick={() => {
-                        dispatch(setLastPage())
-                    }}
+                    onClick={() => {dispatch(setLastPage())}}
                     directionChange
                     disabled={moviesCurrentPage === moviesTotalPages}>
                     <ButtonTitle

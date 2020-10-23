@@ -1,6 +1,6 @@
 import {call, put, debounce} from "redux-saga/effects";
 import {getSearchedMovies} from "./getSearchedMovies";
-import {fetchMoviesSuccess, fetchMoviesError, fetchMoviesByQuery} from "./MoviesPopular/moviesSlice";
+import {fetchMoviesSuccess, fetchMoviesError, fetchMoviesByQuery} from "./moviesSlice";
 
 function* fetchSearchedMoviesHandler(action) {
     try {
