@@ -1,19 +1,19 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import {
     useQueryParameter,
     useReplaceQueryParameter,
 } from "../../../features/queryParameters";
 import searchIcon from "./search.png";
-import {SearchBox, Input, SearchIcon} from "./styled";
-import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
-import {useDispatch} from "react-redux";
+import { SearchBox, Input, SearchIcon } from "./styled";
+import { PAGE_PARAMETER, QUERY_PARAMETER } from "../../../lib/consts";
+import { useDispatch } from "react-redux";
 import {
     fetchMoviesByQuery,
     fetchDifferentPageSearchedMovies
 } from "../../../features/movies/MoviesPopular/moviesSlice"
-import {fetchPeopleByQuery, fetchDifferentPageSearchedPeople} from "../../../features/people/PeoplePopular/peopleSlice";
+import { fetchPeopleByQuery, fetchDifferentPageSearchedPeople } from "../../../features/people/PeoplePopular/peopleSlice";
 
-const Search = () => {
+const Search = ({ toggle }) => {
     const query = useQueryParameter(QUERY_PARAMETER);
     const replaceQueryParameter = useReplaceQueryParameter();
     const page = useQueryParameter(PAGE_PARAMETER);
@@ -23,22 +23,22 @@ const Search = () => {
     useEffect(() => {
         if (query && query !== "" && page !== 1) {
             window.location.href.includes("people") ?
-                dispatch(fetchDifferentPageSearchedPeople({query, page}))
+                dispatch(fetchDifferentPageSearchedPeople({ query, page }))
                 :
-                dispatch(fetchDifferentPageSearchedMovies({query, page}))
+                dispatch(fetchDifferentPageSearchedMovies({ query, page }))
         }
     }, [page, dispatch]);
 
     useEffect(() => {
         if (query && query !== "") {
             window.location.href.includes("people") ?
-                dispatch(fetchPeopleByQuery({query, page: 1}))
+                dispatch(fetchPeopleByQuery({ query, page: 1 }))
                 :
-                dispatch(fetchMoviesByQuery({query, page: 1}))
+                dispatch(fetchMoviesByQuery({ query, page: 1 }))
         }
     }, [dispatch, query]);
 
-    const onInputChange = ({target}) => {
+    const onInputChange = ({ target }) => {
         const usedQuery = target.value.trim();
         replaceQueryParameter({
             key: QUERY_PARAMETER,
@@ -46,8 +46,9 @@ const Search = () => {
         });
     };
 
-    return (<SearchBox>
-            <SearchIcon src={searchIcon}/>
+    return (
+        <SearchBox toggle={toggle}>
+            <SearchIcon src={searchIcon} />
             <Input
                 placeholder={`Search for ${window.location.href.includes("people") ? "people" : "movies"}...`}
                 value={query || ""}

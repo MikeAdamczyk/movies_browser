@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledNavigation = styled.ul`
     display: flex;
@@ -7,9 +7,22 @@ export const StyledNavigation = styled.ul`
     list-style-type: none;
     text-decoration: none;
     padding-left: 72px;
+    transition: 0.3s ease;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
         padding-left: 13px;
+
+        ${({ toggle }) => toggle === true && css`
+            display: grid;
+            grid-template-columns: auto;
+            grid-gap: 36px;
+            justify-items: end;
+            position: fixed;
+            top: 114px;
+            right: 0px;
+            z-index: 2;
+            margin-right: 12px;
+        `}
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){

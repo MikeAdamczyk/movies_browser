@@ -10,8 +10,8 @@ export default () => (
         <Header />
         <Switch>
             <Route path="/" exact component={MoviesPage} />
-            <Route path="/movies/:id" render={(props) => <SinglePage {...props}  detailType={"movie"} listType={"people"} />}/>
-            <Route path="/people/:id" render={(props) => <SinglePage {...props}  detailType={"people"} listType={"movie"}/>}/>
+            <Route path="/movies/:id" render={(props) => <SinglePage {...props} detailType={"movie"} listType={"people"} />} />
+            <Route path="/people/:id" render={(props) => <SinglePage {...props} detailType={"people"} listType={"movie"} />} />
             <Route path="/movies" component={MoviesPage} />
             <Route path="/people" component={PeoplePage} />
         </Switch>

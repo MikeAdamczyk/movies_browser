@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HeaderBox = styled.header`
     background-color: ${({ theme }) => theme.color.black};
@@ -9,8 +9,10 @@ export const HeaderBox = styled.header`
     top: 0;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
-        position: absolute;
         height: 142px;
+        ${({ pos }) => pos === "moved" && css`
+            display: none;
+        `}
     }
  `;
 

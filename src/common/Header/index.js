@@ -4,23 +4,46 @@ import LogoSrc from "./Menu/Logo/logo.png"
 import { HeaderTitle, Icon, Wrapper, Logo } from "./Menu/Logo/styled";
 import { HeaderBox, Subheader, MenuBox } from "./styled";
 import { Nav } from "./Menu/Navigation/index";
+import { useState, useEffect } from "react";
+import { Hamburger } from "../Hamburger/index";
 
-export const Header = () => (
-    <HeaderBox>
-        <Subheader>
-            <MenuBox>
-                <Logo href="/">
-                    <Wrapper>
-                        <Icon src={LogoSrc} alt="" />
-                        <HeaderTitle>Movies&nbsp;Browser</HeaderTitle>
-                    </Wrapper>
-                </Logo>
+export const Header = () => {
 
-                <Nav />
-            </MenuBox>
+    const [pos, setPos] = useState("top");
 
-            <Search />
+    useEffect(() => {
+        document.addEventListener("scroll", e => {
+            let scrolled = document.scrollingElement.scrollTop;
+            if (scrolled >= 120) {
+                setPos("moved")
+            } else {
+                setPos("top")
+            }
+        })
+    }, [])
 
-        </Subheader>
-    </HeaderBox>
-);
+
+    return (
+        <>
+            <HeaderBox pos={pos}>
+                <Subheader>
+                    <MenuBox>
+                        <Logo href="/">
+                            <Wrapper>
+                                <Icon src={LogoSrc} alt="" />
+                                <HeaderTitle>Movies&nbsp;Browser</HeaderTitle>
+                            </Wrapper>
+                        </Logo>
+
+                        <Nav />
+                    </MenuBox>
+
+                    <Search pos={pos}/>
+
+                </Subheader>
+            </HeaderBox>
+            <Hamburger pos={pos} />
+        </>
+
+    )
+};
