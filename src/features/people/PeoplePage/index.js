@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useQueryParameter } from "../../../hooks/queryParameters";
 import {
     fetchPeople,
-    fetchFirstPeoplePage,
     selectLoadingStatus,
     selectPeople,
     selectTotalResults,
@@ -32,12 +31,12 @@ export const PeoplePage = () => {
 
     useEffect(() => {
         if (!query || query === "") {
-            dispatch(fetchFirstPeoplePage({page:1}));
+            dispatch(fetchPeople({page:1}));
         }
     }, [dispatch, query]);
 
     useEffect(() => {
-        if ((!query || query==="") && page !== 1) {
+        if ((!query || query==="") && page !== "1") {
             dispatch(fetchPeople({page}));
         }
     }, [dispatch, page]);
