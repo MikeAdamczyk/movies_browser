@@ -15,13 +15,7 @@ export const moviesSlice = createSlice({
     fetchMovies: (state, {payload}) => {
       state.isLoading = true;
     },
-    fetchFirstMoviePage: (state, {payload}) => {
-      state.isLoading = true;
-    },
     fetchMoviesByQuery: (state, {payload}) => {
-      state.isSearchLoading = true;
-    },
-    fetchDifferentPageSearchedMovies: (state, {payload}) => {
       state.isSearchLoading = true;
     },
     fetchMoviesSuccess: (state, {payload}) => {
@@ -64,12 +58,10 @@ export const {
   fetchMoviesSuccess,
   fetchMoviesError,
   fetchMoviesByQuery,
-  fetchDifferentPageSearchedMovies,
   setNextPage,
   setLastPage,
   setPreviousPage,
   setFirstPage,
-  fetchFirstMoviePage,
 } = moviesSlice.actions;
 
 export const selectMovies = (state) => state.movies.results;
