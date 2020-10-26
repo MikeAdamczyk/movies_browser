@@ -9,23 +9,22 @@ import { Hamburger } from "../Hamburger/index";
 
 export const Header = () => {
 
-    const [pos, setPos] = useState("top");
+    const [position, setPosition] = useState("top");
 
     useEffect(() => {
         document.addEventListener("scroll", e => {
-            let scrolled = document.scrollingElement.scrollTop;
-            if (scrolled >= 120) {
-                setPos("moved")
+            let pagePosition = document.scrollingElement.scrollTop;
+            if (pagePosition >= 120) {
+                setPosition("moved")
             } else {
-                setPos("top")
+                setPosition("top")
             }
         })
     }, [])
 
-
     return (
         <>
-            <HeaderBox pos={pos}>
+            <HeaderBox position={position}>
                 <Subheader>
                     <MenuBox>
                         <Logo href="/">
@@ -38,12 +37,11 @@ export const Header = () => {
                         <Nav />
                     </MenuBox>
 
-                    <Search pos={pos}/>
+                    <Search position={position} />
 
                 </Subheader>
             </HeaderBox>
-            <Hamburger pos={pos} />
+            <Hamburger position={position} />
         </>
-
     )
 };

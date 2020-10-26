@@ -12,14 +12,14 @@ export const StyledNavigation = styled.ul`
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
         padding-left: 13px;
 
-        ${({ toggle }) => toggle === true && css`
+        ${({ showMenu }) => showMenu === true && css`
             display: grid;
             grid-template-columns: auto;
             grid-gap: 36px;
             justify-items: end;
             position: fixed;
             top: 114px;
-            right: 0px;
+            right: 0;
             z-index: 2;
             margin-right: 12px;
         `}

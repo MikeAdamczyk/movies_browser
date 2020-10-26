@@ -23,7 +23,7 @@ export const SearchBox = styled.div`
 
         margin-bottom: 16px;
 
-        ${({ toggle }) => toggle === true && css`
+        ${({ showMenu }) => showMenu === true && css`
             position: fixed;
             top: 60px;
             right: 0px;

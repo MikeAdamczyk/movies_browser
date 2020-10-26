@@ -13,7 +13,7 @@ import {
 } from "../../../features/movies/MoviesPopular/moviesSlice"
 import { fetchPeopleByQuery, fetchDifferentPageSearchedPeople } from "../../../features/people/PeoplePopular/peopleSlice";
 
-const Search = ({ toggle }) => {
+const Search = ({ showMenu }) => {
     const query = useQueryParameter(QUERY_PARAMETER);
     const replaceQueryParameter = useReplaceQueryParameter();
     const page = useQueryParameter(PAGE_PARAMETER);
@@ -47,7 +47,7 @@ const Search = ({ toggle }) => {
     };
 
     return (
-        <SearchBox toggle={toggle}>
+        <SearchBox showMenu={showMenu}>
             <SearchIcon src={searchIcon} />
             <Input
                 placeholder={`Search for ${window.location.href.includes("people") ? "people" : "movies"}...`}

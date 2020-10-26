@@ -4,32 +4,32 @@ import { HamburgerMenu, Bar, MenuBar, MenuBackground } from "./styled";
 import Search from "../Header/Search/index";
 import { Nav } from "../Header/Menu/Navigation";
 
-export const Hamburger = ({ pos }) => {
+export const Hamburger = ({ position }) => {
 
-  const [click, setClick] = useState(false);
+  const [menuDisplayed, setMenuDisplayed] = useState(false);
 
   useEffect(() => {
-    if (pos === "top") {
-      setClick(false);
+    if (position === "top") {
+      setMenuDisplayed(false);
     }
-  }, [pos]);
+  }, [position]);
 
   const onClickMenu = () => {
-    setClick(!click);
+    setMenuDisplayed(!menuDisplayed);
   };
 
   return (
     <>
-      <MenuBar pos={pos}>
-        <HamburgerMenu pos={pos} toggle={click} onClick={onClickMenu}>
-          <Bar toggle={click} bar1 />
-          <Bar toggle={click} bar2 />
-          <Bar toggle={click} bar3 />
+      <MenuBar position={position}>
+        <HamburgerMenu position={position} showMenu={menuDisplayed} onClick={onClickMenu}>
+          <Bar showMenu={menuDisplayed} bar1 />
+          <Bar showMenu={menuDisplayed} bar2 />
+          <Bar showMenu={menuDisplayed} bar3 />
         </HamburgerMenu>
-        <Search toggle={click} pos={pos} />
-        <Nav toggle={click} />
+        <Search showMenu={menuDisplayed} position={position} />
+        <Nav showMenu={menuDisplayed} />
       </MenuBar>
-      <MenuBackground toggle={click} pos={pos} />
+      <MenuBackground showMenu={menuDisplayed} position={position} />
     </>
   )
 };

@@ -2,9 +2,9 @@ import React from "react";
 import { StyledNavigation, StyledItem } from "./styled";
 import { StyledNavLink } from "./styledNavLink";
 
-export const Nav = ({toggle}) => (
+export const Nav = ({ showMenu }) => (
     <nav>
-        <StyledNavigation toggle={toggle}>
+        <StyledNavigation showMenu={showMenu}>
             <StyledItem>
                 <StyledNavLink to="/movies">MOVIES</StyledNavLink>
             </StyledItem>

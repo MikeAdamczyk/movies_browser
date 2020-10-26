@@ -10,7 +10,7 @@ export const HeaderBox = styled.header`
 
     @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         height: 142px;
-        ${({ pos }) => pos === "moved" && css`
+        ${({ position }) => position === "moved" && css`
             display: none;
         `}
     }
