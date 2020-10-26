@@ -3,14 +3,14 @@ import {useDispatch} from "react-redux";
 import {
     useQueryParameter,
     useReplaceQueryParameter,
-} from "../../../features/queryParameters";
+} from "../../../hooks/queryParameters";
 import {
     fetchMoviesByQuery,
     fetchDifferentPageSearchedMovies
 } from "../../../features/movies/MoviesPopular/moviesSlice"
 import { fetchPeopleByQuery, fetchDifferentPageSearchedPeople } from "../../../features/people/PeoplePopular/peopleSlice";
 import {PAGE_PARAMETER, QUERY_PARAMETER} from "../../../lib/consts";
-import searchIcon from "./search.png";
+import searchIcon from "../../../images/search.png";
 import {SearchBox, Input, SearchIcon} from "./styled";
 
 const Search = ({ showMenu }) => {
