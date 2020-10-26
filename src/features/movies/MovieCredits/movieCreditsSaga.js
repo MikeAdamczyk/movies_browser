@@ -7,6 +7,7 @@ import {fetchMovieCredits,
 
 function* fetchMovieCreditsHandler(action) {
     try {
+      yield delay(3000);
         const movieCredits = yield call(getMovieCredits, action.payload.id);
         yield put(fetchMovieCreditsSuccess(movieCredits))
     } catch (error) {

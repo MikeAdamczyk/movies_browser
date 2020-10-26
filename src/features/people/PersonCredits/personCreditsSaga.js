@@ -4,6 +4,7 @@ import {fetchPersonCreditsSuccess, fetchPersonCreditsError, fetchPersonCredits} 
 
 function* fetchPersonCreditsHandler(action) {
     try {
+        yield delay(3000);
         const personCredits = yield call(getPersonCredits, action.payload.id);
         yield put(fetchPersonCreditsSuccess(personCredits))
     } catch (error) {
