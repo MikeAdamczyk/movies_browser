@@ -1,44 +1,43 @@
 import React, { useEffect } from "react";
-import { Backdrop } from "./backdrop";
-import { DetailsContainer } from "./styled";
-import { ListContainer, Wrapper } from "../../../common/Containers/styled";
-import { Title } from "../../../common/Title";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPeople, selectPeople } from "../../people/PeoplePopular/peopleSlice";
-import { fetchMovieDetail, selectIsError, selectMovieDetail } from "../../movies/MovieDetail/movieDetailSlice";
+import { useQueryParameter } from "../../hooks/queryParameters";
+import { useMovieDetail } from "../../hooks/useMovieDetail";
+import { fetchPeople } from "../../features/people/PeoplePopular/peopleSlice";
+import { fetchMovieDetail, selectIsError, selectMovieDetail } from "../../features/movies/MovieDetail/movieDetailSlice";
 import {
     fetchPersonDetail,
     selectPersonDetail, selectPersonIsError,
     selectPersonIsLoading
-} from "../../people/PersonDetail/personDetailSlice";
-import { Tile } from "../../../common/Tile";
-import { useMovieDetail } from "../../useMovieDetail";
-import { getProductionYear } from "../../../lib/utils";
-import { Spinner, SpinnerBox } from "../../../common/Loading/styled";
-import spinner from "../../../images/icon-spinner.svg";
-import { selectLoading } from "../MovieDetail/movieDetailSlice";
+} from "../../features/people/PersonDetail/personDetailSlice";
+import { selectLoading } from "../../features/movies/MovieDetail/movieDetailSlice";
 import {
     fetchMovieCredits, selectIsMovieCreditsError,
     selectIsMovieCreditsLoading,
     selectMovieCast,
     selectMovieCrew
-} from "../MovieCredits/movieCreditsSlice";
+} from "../../features/movies/MovieCredits/movieCreditsSlice";
 import {
     fetchPersonCredits, selectIsPersonCreditsError,
     selectIsPersonCreditsLoading,
     selectPersonCast,
     selectPersonCrew
-} from "../../people/PersonCredits/personCreditsSlice";
-import { Error } from "../../Error";
-import { useQueryParameter } from "../../queryParameters";
-import { QUERY_PARAMETER } from "../../../lib/consts";
-import { MoviesPage } from "../MoviesPage";
-import { PeoplePage } from "../../people/PeoplePage";
+} from "../../features/people/PersonCredits/personCreditsSlice";
+import { MoviesPage } from "../../features/movies/MoviesPage";
+import { PeoplePage } from "../../features/people/PeoplePage";
+import { Error } from "../Error";
+import { Backdrop } from "./backdrop";
+import { Title } from "../Title";
+import { Tile } from "../Tile";
+import spinner from "../../images/icon-spinner.svg";
+import { getProductionYear } from "../../lib/utils";
+import { QUERY_PARAMETER } from "../../lib/consts";
+import { DetailsContainer } from "./styled";
+import { ListContainer, Wrapper } from "../Containers/styled";
+import { Spinner, SpinnerBox } from "../Loading/styled";
 
 export const SinglePage = ({match, detailType, listType}) => {
 
     const dispatch = useDispatch();
-    const peopleResult = useSelector(selectPeople);
     const movieDetail = useSelector(selectMovieDetail);
     const personDetail = useSelector(selectPersonDetail);
     const personCast = useSelector(selectPersonCast);
@@ -60,7 +59,7 @@ export const SinglePage = ({match, detailType, listType}) => {
     const sortedPersonCast = [...personCast];
     sortedPersonCast.sort((a, b) => {
         return b.popularity - a.popularity;
-    })
+    });
 
     useEffect(() => {
         dispatch(fetchPeople());
@@ -71,8 +70,7 @@ export const SinglePage = ({match, detailType, listType}) => {
             dispatch(fetchPersonDetail({id}));
             dispatch(fetchPersonCredits({id}));
         }
-
-    }, [id, dispatch])
+    }, [id, dispatch]);
 
     const getProductionCountries = (countries) => {
         const productionCountries = [];
@@ -127,10 +125,7 @@ export const SinglePage = ({match, detailType, listType}) => {
                     votesNumber={movieDetail.vote_count}
                 />
             : ""}
-
-
             <DetailsContainer>
-
                 <Wrapper tileView={"detail"}>
                     {detailType === "movie" ?
                         <Tile
@@ -158,7 +153,6 @@ export const SinglePage = ({match, detailType, listType}) => {
                         ></Tile>
                     }
                 </Wrapper>
-
                 <Wrapper DataType={listType}>
                     <Title title={"Cast"} />
                     {detailType === "movie" ?
@@ -194,7 +188,6 @@ export const SinglePage = ({match, detailType, listType}) => {
                         </ListContainer>
                     }
                 </Wrapper>
-
                 <Wrapper DataType={listType}>
                     <Title title={"Crew"} />
                     {detailType === "movie" ?
@@ -230,7 +223,6 @@ export const SinglePage = ({match, detailType, listType}) => {
                         </ListContainer>
                     }
                 </Wrapper>
-
             </DetailsContainer>
         </>
     )

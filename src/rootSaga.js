@@ -6,10 +6,10 @@ import { personDetailSaga } from "./features/people/PersonDetail/personDetailSag
 import { personCreditsSaga } from "./features/people/PersonCredits/personCreditsSaga";
 import { movieDetailSaga } from "./features/movies/MovieDetail/movieDetailSaga";
 import { movieCreditsSaga } from "./features/movies/MovieCredits/movieCreditsSaga";
-import { searchedMoviesSaga } from "./features/movies/searchedMoviesSaga";
-import { searchedPeopleSaga } from "./features/people/searchedPeopleSaga";
-import { changePageMoviesSaga } from "./features/movies/changePageMoviesSaga";
-import { changePagePeopleSaga } from "./features/people/changePagePeopleSaga";
+import { searchedMoviesSaga } from "./features/movies/MoviesPopular/searchedMoviesSaga";
+import { searchedPeopleSaga } from "./features/people/PeoplePopular/searchedPeopleSaga";
+import { changePageMoviesSaga } from "./features/movies/MoviesPopular/changePageMoviesSaga";
+import { changePagePeopleSaga } from "./features/people/PeoplePopular/changePagePeopleSaga";
 import { firstMoviePageSaga } from "./features/movies/MoviesPopular/firstMoviesPageSaga";
 import { firstPeoplePageSaga } from "./features/people/PeoplePopular/firstPeoplePageSaga";
 

@@ -2,7 +2,7 @@ import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { Header } from "./common/Header";
 import { MoviesPage } from "./features/movies/MoviesPage/index";
-import { SinglePage } from "./features/movies/SinglePage/index";
+import { SinglePage } from "./common/SinglePage/index";
 import { PeoplePage } from "./features/people/PeoplePage/index";
 
 export default () => (

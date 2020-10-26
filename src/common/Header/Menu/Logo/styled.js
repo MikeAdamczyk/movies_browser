@@ -29,7 +29,7 @@ export const Icon = styled.img`
 
 export const HeaderTitle = styled.p`
     color: ${({ theme }) => theme.color.white};
-    font-weight: 500px;
+    font-weight: 500;
     font-size: 24px;
     line-height: 40px;
     letter-spacing: -1.5px;

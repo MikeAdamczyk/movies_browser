@@ -1,4 +1,4 @@
-import {API_KEY, URL_ADDRESS} from "../../lib/consts";
+import {API_KEY, URL_ADDRESS} from "../../../lib/consts";
 
 export const getSearchedPeoplePage = async (query, page) => {
     if (query || query.trim() !== "") {

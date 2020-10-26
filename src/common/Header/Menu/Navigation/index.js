@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledNavigation, StyledItem } from "./styled";
-import { StyledNavLink } from "./styledNavLink";
+import { StyledNavLink } from "../../../CommonStyles/styled";
 
 export const Nav = ({ showMenu }) => (
     <nav>
@@ -8,7 +8,6 @@ export const Nav = ({ showMenu }) => (
             <StyledItem>
                 <StyledNavLink to="/movies">MOVIES</StyledNavLink>
             </StyledItem>
-
             <StyledItem>
                 <StyledNavLink to="/people">PEOPLE</StyledNavLink>
             </StyledItem>

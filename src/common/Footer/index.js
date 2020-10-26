@@ -2,11 +2,11 @@ import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
 import {selectCurrentPage, selectTotalPages} from "../../features/movies/MoviesPopular/moviesSlice";
 import {selectPeopleCurrentPage, selectPeopleTotalPages} from "../../features/people/PeoplePopular/peopleSlice";
-import {Pagination, Text, Number} from "./styled";
+import {useChangePageParameter} from "../../hooks/queryParameters";
 import {BackButton} from "./BackButton";
 import {NextButton} from "./NextButton";
-import {useChangePageParameter} from "../../features/queryParameters";
 import {PAGE_PARAMETER} from "../../lib/consts";
+import {Pagination, Text, Number} from "./styled";
 
 export const Footer = () => {
     const PageParameterChange = useChangePageParameter();

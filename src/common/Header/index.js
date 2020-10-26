@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Search from "./Search/index";
-import LogoSrc from "./Menu/Logo/logo.png"
+import { Nav } from "./Menu/Navigation/index";
+import { Hamburger } from "../Hamburger/index";
+import LogoSrc from "../../images/logo.png"
 import { HeaderTitle, Icon, Wrapper, Logo } from "./Menu/Logo/styled";
 import { HeaderBox, Subheader, MenuBox } from "./styled";
-import { Nav } from "./Menu/Navigation/index";
-import { useState, useEffect } from "react";
-import { Hamburger } from "../Hamburger/index";
 
 export const Header = () => {
-
     const [position, setPosition] = useState("top");
 
     useEffect(() => {
@@ -20,7 +18,7 @@ export const Header = () => {
                 setPosition("top")
             }
         })
-    }, [])
+    }, []);
 
     return (
         <>
@@ -33,12 +31,9 @@ export const Header = () => {
                                 <HeaderTitle>Movies&nbsp;Browser</HeaderTitle>
                             </Wrapper>
                         </Logo>
-
                         <Nav />
                     </MenuBox>
-
                     <Search position={position} />
-
                 </Subheader>
             </HeaderBox>
             <Hamburger position={position} />

@@ -1,6 +1,6 @@
 import {call, put, debounce} from "redux-saga/effects";
 import {getSearchedPeople} from "./getSearchedPeople";
-import {fetchPeopleSuccess, fetchPeopleError, fetchPeopleByQuery} from "./PeoplePopular/peopleSlice";
+import {fetchPeopleSuccess, fetchPeopleError, fetchPeopleByQuery} from "./peopleSlice";
 
 function* fetchSearchedPeopleHandler(action) {
     try {
