@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const SearchBox = styled.div`
     border-radius: 33px;
@@ -10,6 +10,7 @@ export const SearchBox = styled.div`
     align-items: center;
     margin-left: 16px;
     margin-right: 16px;
+    transition: 0.3s ease;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
         width: 288px;
@@ -19,9 +20,19 @@ export const SearchBox = styled.div`
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
-        margin-bottom: 16px;
-    }
 
+        margin-bottom: 16px;
+
+        ${({ showMenu }) => showMenu === true && css`
+            position: fixed;
+            top: 60px;
+            right: 0px;
+            z-index: 2;
+            width: 186px;
+            height: 44px;
+            margin-right: 16px;
+        `}
+    }
 `;
 
 export const SearchIcon = styled.img`

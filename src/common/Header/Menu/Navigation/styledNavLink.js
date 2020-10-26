@@ -7,7 +7,7 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
     activeClassName,
 }))`
 
-    ${(({tile}) => !tile && css`
+    ${(({ tile }) => !tile && css`
         text-decoration: none;
         color: ${({ theme }) => theme.color.white};
         border: none;
@@ -34,9 +34,9 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
             margin: 0px;
         }
     `)}
-    ${(({tile}) => tile && css`
+
+    ${(({ tile }) => tile && css`
         text-decoration: none;
         color: ${({ theme }) => theme.color.black};
     `)}
-    
 `;

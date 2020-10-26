@@ -8,7 +8,7 @@ import { getProductionYear } from "../../../lib/utils";
 import { useSelector } from "react-redux";
 import { useQueryParameter } from "../../queryParameters";
 import { QUERY_PARAMETER } from "../../../lib/consts";
-import { Spinner, SpinnerBox } from "../../../common/Signs/styled";
+import { Spinner, SpinnerBox } from "../../../common/Loading/styled";
 import spinner from "../../../images/icon-spinner.svg";
 import { Error } from "../../Error";
 import { NoResult } from "../../NoResult";
@@ -39,7 +39,7 @@ export const MoviesPage = () => {
                 !loading && searchingLoadingStatus ?
                     <>
                         <Title title={`Search results for "${query}"`}/>
-                        <SpinnerBox>
+                        <SpinnerBox search>
                             <Spinner src={spinner}/>
                         </SpinnerBox>
                     </>
