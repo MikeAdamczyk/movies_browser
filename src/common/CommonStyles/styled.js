@@ -15,11 +15,12 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
         border-radius: 33px;
         padding: 13.5px 20px;
         margin: 12px;
-        transition: 0.5s;
 
         &:hover{
             background: ${({ theme }) => theme.color.white};
             color: ${({ theme }) => theme.color.black};
+            transition: color 2s, background 1s;
+            
         }
 
         &.${activeClassName} {
@@ -32,12 +33,14 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
         }
         @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
             padding: 10px 10px;
-            margin: 0px;
+            margin: 0;
         }
-    `)}
+    `)
+}:
 
     ${(({ tile }) => tile && css`
         text-decoration: none;
         color: ${({ theme }) => theme.color.black};
-    `)}
+    `)
+}
 `;

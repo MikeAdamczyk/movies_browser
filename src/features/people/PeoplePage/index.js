@@ -67,8 +67,9 @@ export const PeoplePage = () => {
                               title={(!query || query.trim() === "") ? "Popular people" : `Search results for "${query}" (${totalResults})`}/>
                           <ListContainer DataType={"people"}>
                             {peopleResult.map((result) => (
-                                <Tile key={result.id} id={result.id} tileType={"people"} //movie / people
-                                      tileView={"list"} // list / detail header={result.name}
+                                <Tile key={result.id} id={result.id} tileType={"people"}
+                                      tileView={"list"}
+                                      header={result.name}
                                       image={result.profile_path}/>
                             ))}
                           </ListContainer>

@@ -78,6 +78,12 @@ export const TileElement = styled.div`
 export const Image = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
+    
+    &:hover{
+    filter: opacity(0.75);
+    transform: scale(1.08);
+    transition: filter 0.5s, transform 1s;
+    }
 
     ${({ imagePath, tileType }) => css`
         background-image: url(https://image.tmdb.org/t/p/${tileType === "movie" ? "w342" : "h632"}/${imagePath});
@@ -88,6 +94,12 @@ export const Image = styled.div`
 
     ${({ tileView }) => tileView === "detail" && css`
             grid-area: image;
+            
+             &:hover{
+                  filter: none;
+                  transform: none;
+                  transition: none;
+    }
     `}
 
     ${({ tileType, tileView }) => (tileType === "people" && tileView === "detail") && css`
@@ -180,6 +192,11 @@ export const Header = styled.h2`
         font-size: 22px;
         line-height: 1.3;
         margin: 0 0 0 0;
+        
+        &:hover{
+            filter: opacity(0.5);
+            transition: filter 1s;
+        }
     `}
     ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
         text-align: center;
