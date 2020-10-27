@@ -57,6 +57,7 @@ export const MoviesPage = () => {
                                     {moviesResult.map((result) => (
                                         <Tile
                                             key={result.id}
+                                            id={result.id}
                                             tileType={"movie"} //movie / people
                                             tileView={"list"} // list / detail
                                             header={result.title}
