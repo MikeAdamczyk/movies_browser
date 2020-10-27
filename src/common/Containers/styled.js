@@ -66,3 +66,38 @@ export const ListContainer = styled.main`
         `)};
     }
 `;
+export const Slider = styled.div`
+    margin: 20px 0; 
+    padding: 10px 0;
+    overflow-y: hidden;
+    overflow-x: auto;
+    display: grid;
+    grid-gap: 24px;
+    ${({tilesNumber}) => css`
+        grid-template-columns: repeat(${tilesNumber}, 208px);
+    `};
+    ${({tilesNumber, listType}) => listType === "movie" && css`
+        grid-template-columns: repeat(${tilesNumber}, 324px);
+    `};
+    &::-webkit-scrollbar {
+        background-color: #F5F5FA;
+        border-radius: 10px;
+    };
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 2px #74788B;
+        border-radius: 10px;
+    };
+    &::-webkit-scrollbar-thumb {
+        background: #74788B;
+        border-radius: 10px;
+    };
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
+        ${({tilesNumber}) => css`
+            grid-template-columns: repeat(${tilesNumber}, 136px);
+        `};
+        ${({tilesNumber, listType}) => listType === "movie" && css`
+            grid-template-columns: repeat(${tilesNumber}, 288px);
+        `};
+    }
+`;
