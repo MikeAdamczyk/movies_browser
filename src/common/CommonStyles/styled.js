@@ -15,12 +15,11 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
         border-radius: 33px;
         padding: 13.5px 20px;
         margin: 12px;
+        transition: color 2s, background 1s;
 
         &:hover{
             background: ${({ theme }) => theme.color.white};
             color: ${({ theme }) => theme.color.black};
-            transition: color 2s, background 1s;
-            
         }
 
         &.${activeClassName} {
@@ -35,12 +34,10 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
             padding: 10px 10px;
             margin: 0;
         }
-    `)
-}:
+    `)}
 
     ${(({ tile }) => tile && css`
         text-decoration: none;
         color: ${({ theme }) => theme.color.black};
-    `)
-}
+    `)}
 `;

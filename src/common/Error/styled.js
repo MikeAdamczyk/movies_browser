@@ -30,9 +30,9 @@ export const StyledNavLink = styled(NavLink).attrs()`
   color: ${({theme}) => theme.color.white};
   font-size: 14px;
   line-height: 19px;
+  transition: 1s ease;
   
     &:hover {
-      transition: 1s;
       filter: brightness(120%);
     }
 `;
