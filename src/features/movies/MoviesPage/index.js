@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { MDBContainer } from "mdbreact";
 import { useQueryParameter } from "../../../hooks/queryParameters";
 import { useMovieDetail } from "../../../hooks/useMovieDetail";
 import {
@@ -28,9 +29,10 @@ export const MoviesPage = () => {
     const searchingLoadingStatus = useSelector(selectLoadingSearchStatus);
     const errorStatus = useSelector(selectErrorStatus);
     const loading = useSelector(selectLoading);
+    const scrollContainerStyle = {maxHeight: "calc(100vh - 395px)" };
 
     return (
-        <Wrapper>
+        <Wrapper >
             {loading ?
                 <SpinnerBox>
                     <Spinner src={spinner}/>
@@ -53,7 +55,8 @@ export const MoviesPage = () => {
                             <>
                                 <Title
                                     title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`}/>
-                                <ListContainer DataType={"movie"}>
+                                <MDBContainer>
+                                    <ListContainer style={scrollContainerStyle} DataType={"movie"}>
                                     {moviesResult.map((result) => (
                                         <Tile
                                             key={result.id}
@@ -72,6 +75,7 @@ export const MoviesPage = () => {
                                         />
                                     ))}
                                 </ListContainer>
+                                </MDBContainer>
                                 <Footer/>
                             </>
             }

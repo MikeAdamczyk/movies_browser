@@ -17,7 +17,7 @@ export const HeaderBox = styled.header`
  `;
 
 export const Subheader = styled.div`
-    max-width: 1368px;
+    max-width: 1400px;
     margin: auto;
     display: flex;
     min-height: 94px;

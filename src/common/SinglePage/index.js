@@ -34,6 +34,7 @@ import { QUERY_PARAMETER } from "../../lib/consts";
 import { DetailsContainer } from "./styled";
 import { ListContainer, Wrapper } from "../Containers/styled";
 import { Spinner, SpinnerBox } from "../Loading/styled";
+import { MDBContainer } from "mdbreact";
 
 export const SinglePage = ({match, detailType, listType}) => {
 
@@ -55,6 +56,7 @@ export const SinglePage = ({match, detailType, listType}) => {
     const getMovieGenres = useMovieDetail();
     const id = match.params.id;
     const query = useQueryParameter(QUERY_PARAMETER);
+    const scrollContainerStyle = {maxHeight: "calc(100vh - 395px)" };
 
     const sortedPersonCast = [...personCast];
     sortedPersonCast.sort((a, b) => {
@@ -155,8 +157,9 @@ export const SinglePage = ({match, detailType, listType}) => {
                 </Wrapper>
                 <Wrapper DataType={listType}>
                     <Title title={"Cast"} />
+                    <MDBContainer>
                     {detailType === "movie" ?
-                        <ListContainer DataType={listType}>
+                        <ListContainer style={scrollContainerStyle} DataType={listType}>
                             {movieCast.map((result) => (
                                 <Tile
                                     key={result.cast_id}
@@ -170,7 +173,7 @@ export const SinglePage = ({match, detailType, listType}) => {
                             ))}
                         </ListContainer>
                         :
-                        <ListContainer DataType={listType}>
+                        <ListContainer style={scrollContainerStyle}  DataType={listType}>
                             {sortedPersonCast.map((result) => (
                                 <Tile
                                     key={result.cast_id}
@@ -187,11 +190,13 @@ export const SinglePage = ({match, detailType, listType}) => {
                             ))}
                         </ListContainer>
                     }
+                    </MDBContainer>
                 </Wrapper>
                 <Wrapper DataType={listType}>
                     <Title title={"Crew"} />
+                    <MDBContainer>
                     {detailType === "movie" ?
-                        <ListContainer DataType={listType}>
+                        <ListContainer style={scrollContainerStyle} DataType={listType}>
                             {movieCrew.map((result) => (
                                 <Tile
                                     key={result.credit_id}
@@ -205,7 +210,7 @@ export const SinglePage = ({match, detailType, listType}) => {
                             ))}
                         </ListContainer>
                         :
-                        <ListContainer DataType={listType}>
+                        <ListContainer style={scrollContainerStyle} DataType={listType}>
                             {personCrew.map((result) => (
                                 <Tile
                                     key={result.credit_id}
@@ -222,6 +227,7 @@ export const SinglePage = ({match, detailType, listType}) => {
                             ))}
                         </ListContainer>
                     }
+                    </MDBContainer>
                 </Wrapper>
             </DetailsContainer>
         </>

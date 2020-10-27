@@ -9,7 +9,6 @@ export const TileElement = styled.div`
     border-radius: 5px;
     display: grid;
 
-
     ${({ tileView }) => tileView === "detail" && css`
             grid-template-areas: "image detail"
                                 "image overview";

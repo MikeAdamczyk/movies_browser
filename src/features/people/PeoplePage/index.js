@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { MDBContainer } from "mdbreact";
 import { useQueryParameter } from "../../../hooks/queryParameters";
 import {
   fetchPeople,
@@ -28,6 +29,7 @@ export const PeoplePage = () => {
   const loading = useSelector(selectLoading);
   const errorStatus = useSelector(selectErrorStatus);
   const dispatch = useDispatch();
+  const scrollContainerStyle = {maxHeight: "calc(100vh - 395px)" };
 
   useEffect(() => {
     if (!query || query === "") {
@@ -65,7 +67,8 @@ export const PeoplePage = () => {
                         <>
                           <Title
                               title={(!query || query.trim() === "") ? "Popular people" : `Search results for "${query}" (${totalResults})`}/>
-                          <ListContainer DataType={"people"}>
+                          <MDBContainer>
+                              <ListContainer style={scrollContainerStyle} DataType={"people"}>
                             {peopleResult.map((result) => (
                                 <Tile key={result.id} id={result.id} tileType={"people"}
                                       tileView={"list"}
@@ -73,6 +76,7 @@ export const PeoplePage = () => {
                                       image={result.profile_path}/>
                             ))}
                           </ListContainer>
+                          </MDBContainer>
                           <Footer/>
                         </>
         }
