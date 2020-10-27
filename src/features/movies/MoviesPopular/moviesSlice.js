@@ -7,7 +7,7 @@ export const moviesSlice = createSlice({
     isSearchLoading: false,
     currentPage: 1,
     totalPages: 1,
-    totalResults: 0,
+    totalResults: null,
     results: [],
     isError: false,
   },
