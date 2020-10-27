@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { MDBContainer } from "mdbreact";
+import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../../hooks/queryParameters";
 import { useMovieDetail } from "../../../hooks/useMovieDetail";
 import {
@@ -52,7 +53,7 @@ export const MoviesPage = () => {
                         !loading && !searchingLoadingStatus && errorStatus ?
                             <Error/>
                             :
-                            <>
+                            <FadeIn delay={50} transitionDuration={600}>
                                 <Title
                                     title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`}/>
                                 <MDBContainer>
@@ -77,7 +78,7 @@ export const MoviesPage = () => {
                                 </ListContainer>
                                 </MDBContainer>
                                 <Footer/>
-                            </>
+                            </FadeIn>
             }
         </Wrapper>
     )

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MDBContainer } from "mdbreact";
+import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../../hooks/queryParameters";
 import {
   fetchPeople,
@@ -64,7 +65,7 @@ export const PeoplePage = () => {
                     !loading && !searchingLoadingStatus && errorStatus ?
                         <Error/>
                         :
-                        <>
+                        <FadeIn delay={50} transitionDuration={600}>
                           <Title
                               title={(!query || query.trim() === "") ? "Popular people" : `Search results for "${query}" (${totalResults})`}/>
                           <MDBContainer>
@@ -78,7 +79,7 @@ export const PeoplePage = () => {
                           </ListContainer>
                           </MDBContainer>
                           <Footer/>
-                        </>
+                        </FadeIn>
         }
       </Wrapper>
   )

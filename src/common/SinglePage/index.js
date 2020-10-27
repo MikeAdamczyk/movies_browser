@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { MDBContainer } from "mdbreact";
+import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../hooks/queryParameters";
 import { useMovieDetail } from "../../hooks/useMovieDetail";
 import { fetchPeople } from "../../features/people/PeoplePopular/peopleSlice";
@@ -34,7 +36,6 @@ import { QUERY_PARAMETER } from "../../lib/consts";
 import { DetailsContainer } from "./styled";
 import { ListContainer, Wrapper } from "../Containers/styled";
 import { Spinner, SpinnerBox } from "../Loading/styled";
-import { MDBContainer } from "mdbreact";
 
 export const SinglePage = ({match, detailType, listType}) => {
 
@@ -118,7 +119,7 @@ export const SinglePage = ({match, detailType, listType}) => {
             )
     }
     return (
-        <>
+        <FadeIn delay={50} transitionDuration={600}>
             {detailType === "movie" ?
                 <Backdrop
                     backdrop={movieDetail.backdrop_path}
@@ -230,6 +231,6 @@ export const SinglePage = ({match, detailType, listType}) => {
                     </MDBContainer>
                 </Wrapper>
             </DetailsContainer>
-        </>
+        </FadeIn>
     )
 };
