@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledNavLink } from "../../common/CommonStyles/styled";
 import plugLogo from '../../images/tileLogo.png'
 import star from '../../images/Vector.svg';
@@ -15,7 +15,8 @@ import {
   Rate,
   Description,
   NoImagePlug,
-  PlugLogo
+  PlugLogo,
+  ReadMore
 } from './styled';
 
 export const Tile = ({
@@ -32,6 +33,11 @@ export const Tile = ({
                        description,
                        id
                      }) => {
+  const [readMore, setReadMore] = useState(false);
+  const toggleReadMore = () => {
+    setReadMore(readMore => !readMore)
+  };
+
   return <TileElement tileView={tileView} tileType={tileType}>
     {tileView === "list" ?
         <StyledNavLink to={tileType === "movie" ? `/movies/${id}` : `/people/${id}`} tile={true}>
@@ -114,10 +120,13 @@ export const Tile = ({
     {(tileView === "detail") ?
         <Container description tileView={tileView}>
           <Description>
-            {description}
+              {description.length < 500  ? description : 
+              (description.length >= 500 && !readMore) ? <>{description.substring(0, 501)}...<ReadMore onClick={toggleReadMore}>read more</ReadMore></> :
+              (description.length >= 500 && readMore) ? <>{description}<ReadMore onClick={toggleReadMore}>read less</ReadMore></> : ""}              
           </Description>
         </Container> :
         ""
     }
   </TileElement>
+  
 };
