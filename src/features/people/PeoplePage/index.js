@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../../hooks/queryParameters";
 import {
-    fetchPeople,
-    fetchFirstPeoplePage,
-    selectLoadingStatus,
-    selectPeople,
-    selectTotalResults,
-    selectLoading,
-    selectErrorStatus
+  fetchPeople,
+  selectLoadingStatus,
+  selectPeople,
+  selectTotalResults,
+  selectLoading,
+  selectErrorStatus
 } from "../PeoplePopular/peopleSlice";
 import { Footer } from "../../../common/Footer";
 import { Title } from "../../../common/Title";
@@ -21,66 +21,62 @@ import { Spinner, SpinnerBox } from "../../../common/Loading/styled";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 
 export const PeoplePage = () => {
-    const query = useQueryParameter(QUERY_PARAMETER);
-    const peopleResult = useSelector(selectPeople);
-    const totalResults = useSelector(selectTotalResults);
-    const searchingLoadingStatus = useSelector(selectLoadingStatus);
-    const page = useQueryParameter(PAGE_PARAMETER);
-    const loading = useSelector(selectLoading);
-    const errorStatus = useSelector(selectErrorStatus);
-    const dispatch = useDispatch();
+  const query = useQueryParameter(QUERY_PARAMETER);
+  const peopleResult = useSelector(selectPeople);
+  const totalResults = useSelector(selectTotalResults);
+  const searchingLoadingStatus = useSelector(selectLoadingStatus);
+  const page = useQueryParameter(PAGE_PARAMETER);
+  const loading = useSelector(selectLoading);
+  const errorStatus = useSelector(selectErrorStatus);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (!query || query === "") {
-            dispatch(fetchFirstPeoplePage({page:1}));
-        }
-    }, [dispatch, query]);
+  useEffect(() => {
+    if (!query || query === "") {
+      dispatch(fetchPeople({page: 1}));
+    }
+  }, [dispatch, query]);
 
-    useEffect(() => {
-        if ((!query || query==="") && page !== 1) {
-            dispatch(fetchPeople({page}));
-        }
-    }, [dispatch, page]);
+  useEffect(() => {
+    if (!query || query === "") {
+      dispatch(fetchPeople({page}));
+    }
+  }, [dispatch, page]);
 
-    return (
-        <Wrapper DataType={"people"}>
-    {loading ?
-        <SpinnerBox>
-            <Spinner src={spinner}/>
-        </SpinnerBox>
-        :
-        !loading && searchingLoadingStatus ?
-            <>
-                <Title title={`Search results for "${query}"`}/>
-                <SpinnerBox search>
-                    <Spinner src={spinner}/>
-                </SpinnerBox>
-            </>
+  return (
+      <Wrapper DataType={"people"}>
+        {loading ?
+            <SpinnerBox>
+              <Spinner src={spinner}/>
+            </SpinnerBox>
             :
-            !loading && !searchingLoadingStatus && totalResults === 0 ?
-                <NoResult/>
+            !loading && searchingLoadingStatus ?
+                <>
+                  <Title title={`Search results for "${query}"`}/>
+                  <SpinnerBox search>
+                    <Spinner src={spinner}/>
+                  </SpinnerBox>
+                </>
                 :
-                !loading && !searchingLoadingStatus && errorStatus ?
-                    <Error/>
+                !loading && !searchingLoadingStatus && totalResults === 0 ?
+                    <NoResult/>
                     :
-            <>
-                <Title
-                    title={(!query || query.trim() === "") ? "Popular people" : `Search results for "${query}" (${totalResults})`} />
-                <ListContainer DataType={"people"}>
-                    {peopleResult.map((result) => (
-                        <Tile
-                            key={result.id}
-                            id={result.id}
-                            tileType={"people"} //movie / people
-                            tileView={"list"} // list / detail
-                            header={result.name}
-                            image={result.profile_path}
-                        />
-                    ))}
-                </ListContainer>
-                <Footer />
-            </>
-            }
-        </Wrapper>
-    )
+                    !loading && !searchingLoadingStatus && errorStatus ?
+                        <Error/>
+                        :
+                        <FadeIn delay={50} transitionDuration={600}>
+                          <Title
+                              title={(!query || query.trim() === "") ? "Popular people" : `Search results for "${query}" (${totalResults})`}/>
+                              <ListContainer DataType={"people"}>
+                            {peopleResult.map((result) => (
+                                <Tile key={result.id} id={result.id} tileType={"people"}
+                                      tileView={"list"}
+                                      header={result.name}
+                                      image={result.profile_path}/>
+                            ))}
+                          </ListContainer>
+                          <Footer/>
+                        </FadeIn>
+        }
+      </Wrapper>
+  )
 };

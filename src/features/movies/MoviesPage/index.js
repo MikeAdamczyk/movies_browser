@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../../hooks/queryParameters";
 import { useMovieDetail } from "../../../hooks/useMovieDetail";
 import {
@@ -30,7 +31,7 @@ export const MoviesPage = () => {
     const loading = useSelector(selectLoading);
 
     return (
-        <Wrapper>
+        <Wrapper >
             {loading ?
                 <SpinnerBox>
                     <Spinner src={spinner}/>
@@ -50,10 +51,10 @@ export const MoviesPage = () => {
                         !loading && !searchingLoadingStatus && errorStatus ?
                             <Error/>
                             :
-                            <>
+                            <FadeIn delay={50} transitionDuration={600}>
                                 <Title
                                     title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`}/>
-                                <ListContainer DataType={"movie"}>
+                                    <ListContainer DataType={"movie"}>
                                     {moviesResult.map((result) => (
                                         <Tile
                                             key={result.id}
@@ -73,7 +74,7 @@ export const MoviesPage = () => {
                                     ))}
                                 </ListContainer>
                                 <Footer/>
-                            </>
+                            </FadeIn>
             }
         </Wrapper>
     )

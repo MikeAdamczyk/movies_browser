@@ -7,7 +7,7 @@ export const peopleSlice = createSlice({
         isSearchLoading: false,
         currentPage: 1,
         totalPages: 1,
-        totalResults: 0,
+        totalResults: null,
         results: [],
         isError: false,
 
@@ -16,13 +16,7 @@ export const peopleSlice = createSlice({
         fetchPeople: (state, {payload}) => {
             state.isLoading = true;
         },
-        fetchFirstPeoplePage: (state, {payload}) => {
-            state.isLoading = true;
-        },
         fetchPeopleByQuery: (state, {payload}) => {
-            state.isSearchLoading = true;
-        },
-        fetchDifferentPageSearchedPeople: (state, {payload}) => {
             state.isSearchLoading = true;
         },
         fetchPeopleSuccess: (state, {payload}) => {
@@ -65,12 +59,10 @@ export const {
     fetchPeopleSuccess,
     fetchPeopleError,
     fetchPeopleByQuery,
-    fetchDifferentPageSearchedPeople,
     setPeopleFirstPage,
     setPeopleLastPage,
     setPeopleNextPage,
     setPeoplePreviousPage,
-    fetchFirstPeoplePage
 } = peopleSlice.actions;
 
 export const selectPeople = (state) => state.people.results;

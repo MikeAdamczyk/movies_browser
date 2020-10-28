@@ -36,7 +36,7 @@ export const BackButton = ({firstTitle, secondTitle}) => {
             <ChangePageButton
                 onClick={() => dispatch(setPeoplePreviousPage())}
                 directionChange
-                isabled={peopleCurrentPage === 1}
+                disabled={peopleCurrentPage === 1}
             >
               {peopleCurrentPage === 1 ?
                   <Arrow src={disabled}/>

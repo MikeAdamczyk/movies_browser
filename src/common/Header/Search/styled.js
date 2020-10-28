@@ -4,13 +4,17 @@ export const SearchBox = styled.div`
     border-radius: 33px;
     width: 432px;
     height: 48px;
-    background: ${({ theme }) => theme.color.white};
-    border: 1px solid ${({ theme }) => theme.color.grey};
+    background: ${({theme}) => theme.color.white};
+    border: 1px solid ${({theme}) => theme.color.grey};
     display: flex;
     align-items: center;
     margin-left: 16px;
     margin-right: 16px;
-    transition: 0.3s ease;
+    transition: 0.5s ease;
+    
+    &:hover{
+    filter: opacity(0.92);
+    }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
         width: 288px;

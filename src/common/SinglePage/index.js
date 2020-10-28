@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../hooks/queryParameters";
 import { useMovieDetail } from "../../hooks/useMovieDetail";
 import { fetchPeople } from "../../features/people/PeoplePopular/peopleSlice";
@@ -120,7 +121,7 @@ export const SinglePage = ({match, detailType, listType}) => {
             )
     }
     return (
-        <>
+        <FadeIn delay={50} transitionDuration={600}>
             {detailType === "movie" ?
                 <Backdrop
                     backdrop={movieDetail.backdrop_path}
@@ -227,6 +228,6 @@ export const SinglePage = ({match, detailType, listType}) => {
                     }
                 </Wrapper>
             </DetailsContainer>
-        </>
+        </FadeIn>
     )
 };
