@@ -33,9 +33,9 @@ import { getProductionYear } from "../../lib/utils";
 import { QUERY_PARAMETER } from "../../lib/consts";
 import { DetailsContainer } from "./styled";
 import { ListContainer, Wrapper } from "../Containers/styled";
-import { Spinner, SpinnerBox } from "../Loading/styled";
+import { Spinner, SpinnerBox } from "../Spinner/styled";
 
-export const SinglePage = ({match, detailType, listType}) => {
+export const SinglePage = ({ match, detailType, listType }) => {
 
     const dispatch = useDispatch();
     const movieDetail = useSelector(selectMovieDetail);
@@ -63,12 +63,12 @@ export const SinglePage = ({match, detailType, listType}) => {
 
     useEffect(() => {
         dispatch(fetchPeople());
-        if(detailType === "movie"){
-            dispatch(fetchMovieDetail({id}));
-            dispatch(fetchMovieCredits({id}));
+        if (detailType === "movie") {
+            dispatch(fetchMovieDetail({ id }));
+            dispatch(fetchMovieCredits({ id }));
         } else {
-            dispatch(fetchPersonDetail({id}));
-            dispatch(fetchPersonCredits({id}));
+            dispatch(fetchPersonDetail({ id }));
+            dispatch(fetchPersonCredits({ id }));
         }
     }, [id, dispatch]);
 
@@ -100,20 +100,22 @@ export const SinglePage = ({match, detailType, listType}) => {
 
     if (loading || isPersonLoading || isPersonCreditsLoading || isMovieCreditsLoading) {
         return (
-            <SpinnerBox>
-                <Spinner src={spinner} />
-            </SpinnerBox>
+            <Wrapper>
+                <SpinnerBox>
+                    <Spinner src={spinner} />
+                </SpinnerBox>
+            </Wrapper>
         )
     }
-    else if (!loading && !isPersonLoading && !isPersonCreditsLoading && !isMovieCreditsLoading && (isMovieError || isPeopleError || isPersonCreditsError || isMovieCreditsError)){
-        return <Error/>
+    else if (!loading && !isPersonLoading && !isPersonCreditsLoading && !isMovieCreditsLoading && (isMovieError || isPeopleError || isPersonCreditsError || isMovieCreditsError)) {
+        return <Error />
     }
-    else if (!loading && !isPersonLoading && !isPersonCreditsLoading && !isMovieCreditsLoading && !isMovieError && !isPeopleError && !isPersonCreditsError && !isMovieCreditsError && query && query !== ""){
+    else if (!loading && !isPersonLoading && !isPersonCreditsLoading && !isMovieCreditsLoading && !isMovieError && !isPeopleError && !isPersonCreditsError && !isMovieCreditsError && query && query !== "") {
         return (
             window.location.href.includes("people") ?
-            <PeoplePage/>
-            : <MoviesPage/>
-            )
+                <PeoplePage />
+                : <MoviesPage />
+        )
     }
     return (
         <>
@@ -124,9 +126,9 @@ export const SinglePage = ({match, detailType, listType}) => {
                     rate={movieDetail.vote_average}
                     votesNumber={movieDetail.vote_count}
                 />
-            : ""}
+                : ""}
             <DetailsContainer>
-                <Wrapper tileView={"detail"}>
+                <Wrapper tileView={movieDetail.backdrop_path && detailType === "movie" ? "detail" : "simpleDetails"}>
                     {detailType === "movie" ?
                         <Tile
                             tileType={detailType} //movie / people
@@ -140,7 +142,7 @@ export const SinglePage = ({match, detailType, listType}) => {
                             rateValue={movieDetail.vote_average}
                             votesNumber={movieDetail.vote_count}
                             description={movieDetail.overview}
-                        ></Tile>
+                        />
                         :
                         <Tile
                             tileType={detailType} //movie / people
@@ -150,9 +152,10 @@ export const SinglePage = ({match, detailType, listType}) => {
                             place={personDetail.place_of_birth}
                             date={getFormattedDate(personDetail.birthday)}
                             description={personDetail.biography}
-                        ></Tile>
+                        />
                     }
                 </Wrapper>
+
                 <Wrapper DataType={listType}>
                     <Title title={"Cast"} />
                     {detailType === "movie" ?
@@ -188,6 +191,7 @@ export const SinglePage = ({match, detailType, listType}) => {
                         </ListContainer>
                     }
                 </Wrapper>
+
                 <Wrapper DataType={listType}>
                     <Title title={"Crew"} />
                     {detailType === "movie" ?

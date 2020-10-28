@@ -17,7 +17,7 @@ import { NoResult } from "../../../common/NoResult";
 import { getProductionYear } from "../../../lib/utils";
 import { QUERY_PARAMETER } from "../../../lib/consts";
 import spinner from "../../../images/icon-spinner.svg";
-import { Spinner, SpinnerBox } from "../../../common/Loading/styled";
+import { Spinner, SpinnerBox } from "../../../common/Spinner/styled";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 
 export const MoviesPage = () => {
@@ -33,30 +33,31 @@ export const MoviesPage = () => {
         <Wrapper>
             {loading ?
                 <SpinnerBox>
-                    <Spinner src={spinner}/>
+                    <Spinner src={spinner} />
                 </SpinnerBox>
                 :
                 !loading && searchingLoadingStatus ?
                     <>
-                        <Title title={`Search results for "${query}"`}/>
+                        <Title title={`Search results for "${query}"`} />
                         <SpinnerBox search>
-                            <Spinner src={spinner}/>
+                            <Spinner src={spinner} />
                         </SpinnerBox>
                     </>
                     :
                     !loading && !searchingLoadingStatus && totalResults === 0 ?
-                        <NoResult/>
+                        <NoResult />
                         :
                         !loading && !searchingLoadingStatus && errorStatus ?
-                            <Error/>
+                            <Error />
                             :
                             <>
                                 <Title
-                                    title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`}/>
+                                    title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`} />
                                 <ListContainer DataType={"movie"}>
                                     {moviesResult.map((result) => (
                                         <Tile
                                             key={result.id}
+                                            id={result.id}
                                             tileType={"movie"} //movie / people
                                             tileView={"list"} // list / detail
                                             header={result.title}
@@ -71,7 +72,7 @@ export const MoviesPage = () => {
                                         />
                                     ))}
                                 </ListContainer>
-                                <Footer/>
+                                <Footer />
                             </>
             }
         </Wrapper>

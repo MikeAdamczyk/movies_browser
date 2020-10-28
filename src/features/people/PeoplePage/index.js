@@ -17,7 +17,7 @@ import { NoResult } from "../../../common/NoResult";
 import { Error } from "../../../common/Error";
 import spinner from "../../../images/icon-spinner.svg";
 import { PAGE_PARAMETER, QUERY_PARAMETER } from "../../../lib/consts";
-import { Spinner, SpinnerBox } from "../../../common/Loading/styled";
+import { Spinner, SpinnerBox } from "../../../common/Spinner/styled";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
 
 export const PeoplePage = () => {
@@ -43,7 +43,7 @@ export const PeoplePage = () => {
     }, [dispatch, page]);
 
     return (
-        <Wrapper DataType={"people"}>
+        <Wrapper DataType={"peoplePage"}>
     {loading ?
         <SpinnerBox>
             <Spinner src={spinner}/>
