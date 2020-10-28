@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { MDBContainer } from "mdbreact";
 import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../../hooks/queryParameters";
 import { useMovieDetail } from "../../../hooks/useMovieDetail";
@@ -30,7 +29,6 @@ export const MoviesPage = () => {
     const searchingLoadingStatus = useSelector(selectLoadingSearchStatus);
     const errorStatus = useSelector(selectErrorStatus);
     const loading = useSelector(selectLoading);
-    const scrollContainerStyle = {maxHeight: "calc(100vh - 395px)" };
 
     return (
         <Wrapper >
@@ -56,8 +54,7 @@ export const MoviesPage = () => {
                             <FadeIn delay={50} transitionDuration={600}>
                                 <Title
                                     title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`}/>
-                                <MDBContainer>
-                                    <ListContainer style={scrollContainerStyle} DataType={"movie"}>
+                                    <ListContainer DataType={"movie"}>
                                     {moviesResult.map((result) => (
                                         <Tile
                                             key={result.id}
@@ -76,7 +73,6 @@ export const MoviesPage = () => {
                                         />
                                     ))}
                                 </ListContainer>
-                                </MDBContainer>
                                 <Footer/>
                             </FadeIn>
             }

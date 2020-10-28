@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { MDBContainer } from "mdbreact";
 import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../hooks/queryParameters";
 import { useMovieDetail } from "../../hooks/useMovieDetail";
@@ -57,7 +56,6 @@ export const SinglePage = ({match, detailType, listType}) => {
     const getMovieGenres = useMovieDetail();
     const id = match.params.id;
     const query = useQueryParameter(QUERY_PARAMETER);
-    const scrollContainerStyle = {maxHeight: "calc(100vh - 395px)" };
 
     const sortedPersonCast = [...personCast];
     sortedPersonCast.sort((a, b) => {
@@ -158,9 +156,8 @@ export const SinglePage = ({match, detailType, listType}) => {
                 </Wrapper>
                 <Wrapper DataType={listType}>
                     <Title title={"Cast"} />
-                    <MDBContainer>
                     {detailType === "movie" ?
-                        <ListContainer style={scrollContainerStyle} DataType={listType}>
+                        <ListContainer DataType={listType}>
                             {movieCast.map((result) => (
                                 <Tile
                                     key={result.cast_id}
@@ -174,7 +171,7 @@ export const SinglePage = ({match, detailType, listType}) => {
                             ))}
                         </ListContainer>
                         :
-                        <ListContainer style={scrollContainerStyle}  DataType={listType}>
+                        <ListContainer DataType={listType}>
                             {sortedPersonCast.map((result) => (
                                 <Tile
                                     key={result.cast_id}
@@ -191,13 +188,11 @@ export const SinglePage = ({match, detailType, listType}) => {
                             ))}
                         </ListContainer>
                     }
-                    </MDBContainer>
                 </Wrapper>
                 <Wrapper DataType={listType}>
                     <Title title={"Crew"} />
-                    <MDBContainer>
                     {detailType === "movie" ?
-                        <ListContainer style={scrollContainerStyle} DataType={listType}>
+                        <ListContainer DataType={listType}>
                             {movieCrew.map((result) => (
                                 <Tile
                                     key={result.credit_id}
@@ -211,7 +206,7 @@ export const SinglePage = ({match, detailType, listType}) => {
                             ))}
                         </ListContainer>
                         :
-                        <ListContainer style={scrollContainerStyle} DataType={listType}>
+                        <ListContainer DataType={listType}>
                             {personCrew.map((result) => (
                                 <Tile
                                     key={result.credit_id}
@@ -228,7 +223,6 @@ export const SinglePage = ({match, detailType, listType}) => {
                             ))}
                         </ListContainer>
                     }
-                    </MDBContainer>
                 </Wrapper>
             </DetailsContainer>
         </FadeIn>

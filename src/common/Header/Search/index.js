@@ -7,7 +7,7 @@ import { PAGE_PARAMETER, QUERY_PARAMETER } from "../../../lib/consts";
 import searchIcon from "../../../images/search.png";
 import { SearchBox, Input, SearchIcon } from "./styled";
 
-const Search = ({showMenu}) => {
+const Search = ({ showMenu }) => {
   const query = useQueryParameter(QUERY_PARAMETER);
   const replaceQueryParameter = useReplaceQueryParameter();
   const page = useQueryParameter(PAGE_PARAMETER);
