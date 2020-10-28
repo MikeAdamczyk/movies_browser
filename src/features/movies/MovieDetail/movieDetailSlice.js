@@ -7,7 +7,8 @@ export const movieDetailSlice = createSlice({
     isError: false,
     results: {
       production_countries: [{}],
-      genres: [{}]
+      genres: [{}],
+      overview: "",
     },
   },
   reducers: {

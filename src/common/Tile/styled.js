@@ -17,7 +17,7 @@ export const TileElement = styled.div`
     `}
     ${({ tileType, tileView }) => (tileType === "people" && tileView === "detail") && css`
             grid-template-columns: 399px auto;
-            grid-template-rows: auto 2fr;
+            grid-template-rows: auto 1fr;
     `}
     ${({ tileView }) => tileView === "list" && css`
         display: grid;
@@ -188,7 +188,7 @@ export const Header = styled.h2`
 
     ${({ tileView }) => tileView === "list" && css`
         font-weight: 500;
-        font-size: 22px;
+        font-size: 20px;
         line-height: 1.3;
         margin: 0;
         transition: filter 1s;
@@ -470,7 +470,7 @@ export const Rate = styled.div`
 `;
 export const Description = styled.div`
     color: ${({ theme }) => theme.color.black};
-
+    text-align: justify;
     margin: 0;
     font-size: 20px;
     line-height: 1.6;
@@ -493,4 +493,25 @@ export const NoImagePlug = styled.div`
 `;
 export const PlugLogo = styled.img`
     width: 25%;
+`;
+
+export const ReadMore = styled.button`
+    color: ${({ theme }) => theme.color.darkerGrey};
+    background-color: transparent;
+    border: none;
+    font-size: 0.75em;
+    padding: 0 6px;
+    transition: ease 0.3s;
+
+    &:active {
+        filter: brightness(1.5);
+    };
+    &:focus {
+        outline: none;
+        border: none;
+    };
+    &:hover {
+        filter: brightness(0.75);
+        cursor: pointer;
+    }
 `;

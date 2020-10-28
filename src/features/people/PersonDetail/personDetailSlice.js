@@ -5,7 +5,9 @@ export const personDetailSlice = createSlice({
     initialState: {
         isLoading: false,
         isError: false,
-        results: [],
+        results: {
+            biography: "",
+        },
     },
     reducers: {
         fetchPersonDetail: (state, {payload}) => {
