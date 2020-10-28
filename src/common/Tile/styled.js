@@ -485,6 +485,7 @@ export const ReadMore = styled.button`
     border: none;
     font-size: 0.75em;
     padding: 0 6px;
+    transition: ease 0.3s;
 
     &:active {
         filter: brightness(1.5);

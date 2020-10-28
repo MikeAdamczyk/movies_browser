@@ -121,8 +121,8 @@ export const Tile = ({
         <Container description tileView={tileView}>
           <Description>
               {description.length < 500  ? description : 
-              (description.length >= 500 && !readMore) ? <>{description.substring(0, 501)}...<ReadMore onClick={toggleReadMore}>read more</ReadMore></> :
-              (description.length >= 500 && readMore) ? <>{description}<ReadMore onClick={toggleReadMore}>read less</ReadMore></> : ""}              
+              (description.length >= 500 && !readMore) ? <>{description.substring(0, 501)}...<ReadMore onClick={toggleReadMore}>read more</ReadMore></> 
+              : <>{description}<ReadMore onClick={toggleReadMore}>read less</ReadMore></> }              
           </Description>
         </Container> :
         ""
