@@ -493,6 +493,10 @@ export const NoImagePlug = styled.div`
 `;
 export const PlugLogo = styled.img`
     width: 25%;
+
+    ${({ tileType }) => tileType === "people" && css`
+        width: 75%;
+    `}
 `;
 
 export const ReadMore = styled.button`

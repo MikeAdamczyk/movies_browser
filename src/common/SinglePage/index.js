@@ -162,9 +162,11 @@ export const SinglePage = ({ match, detailType, listType }) => {
                 </Wrapper>
 
                 <Wrapper DataType={listType}>
-                    <Title title={"Cast"} />
+                    
                     {detailType === "movie" ?
-                        <Slider tilesNumber={movieCast.length} listType={listType}>
+                        <>
+                        <Title title={"Cast"} />
+                        <Slider tilesNumber={movieCast.length} listType={listType}>                                            
                             {movieCast.map((result) => (
                                 <Tile
                                     key={result.cast_id}
@@ -177,7 +179,10 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                 />
                             ))}
                         </Slider>
+                        </>
                         :
+                        <>
+                        <Title title={`Movies - cast(${personCast.length})`} />
                         <Slider tilesNumber={personCast.length} listType={listType}>
                             {sortedPersonCast.map((result) => (
                                 <Tile
@@ -192,14 +197,16 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                     rateValue={result.vote_average}
                                     votesNumber={result.vote_count}
                                 />
-                            ))}
-                        </Slider>
+                            ))}                        
+                        </Slider>    
+                        </>                   
                     }
                 </Wrapper>
 
                 <Wrapper DataType={listType}>
-                    <Title title={"Crew"} />
                     {detailType === "movie" ?
+                        <>
+                        <Title title={"Crew"} />
                         <Slider tilesNumber={movieCrew.length} listType={listType}>
                             {movieCrew.map((result) => (
                                 <Tile
@@ -212,8 +219,11 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                     image={result.profile_path}
                                 />
                             ))}
-                        </Slider>
+                        </Slider>  
+                        </>                  
                         :
+                        <>
+                        {personCrew.length > 0 ? <Title title={`Movies - crew(${personCrew.length})`} /> : ""}
                         <Slider tilesNumber={personCrew.length} listType={listType}>
                             {sortedPersonCrew.map((result) => (
                                 <Tile
@@ -229,6 +239,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                 />
                             ))}
                         </Slider>
+                        </>
                     }
                 </Wrapper>
             </DetailsContainer>

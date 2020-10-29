@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyledNavLink } from "../../common/CommonStyles/styled";
-import plugLogo from '../../images/tileLogo.png'
+import plugMovie from '../../images/plugMovie.png'
+import plugPerson from '../../images/plugPerson.png'
 import star from '../../images/Vector.svg';
 import {
   TileElement,
@@ -44,7 +45,7 @@ export const Tile = ({
           <Image imagePath={image} tileView={tileView} tileType={tileType}>
             {image === null ?
                 <NoImagePlug>
-                  <PlugLogo src={plugLogo}/>
+                  <PlugLogo tileType={tileType} src={tileType === "movie" ? plugMovie : plugPerson}/>
                 </NoImagePlug> :
                 ""
             }
@@ -53,7 +54,7 @@ export const Tile = ({
         <Image imagePath={image} tileView={tileView} tileType={tileType}>
           {image === null ?
               <NoImagePlug>
-                <PlugLogo src={plugLogo}/>
+                <PlugLogo src={plugMovie}/>
               </NoImagePlug> :
               ""
           }
