@@ -2,12 +2,16 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     max-height: 770px;
-    margin: auto;
+    margin: 94px auto 0;
     display: flex;
     justify-content: center;
     background-color: #000000;
     position: relative;
     z-index: -1;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}){
+        margin: 142px auto 0;
+    }
 `;
 
 export const PosterBox = styled.div`
@@ -190,15 +194,16 @@ export const RatingInfo = styled.span`
         font-size: 10px;
     }
 `;
-
 export const DetailsContainer = styled.div`
     max-width: 1368px;
-    margin: 64px auto 336px;
-`;
+    margin: 0 auto 220px;
 
-//Only for development purpose, will be deleted on production
-export const ExampleTile = styled.article`
-    background: ${({ theme }) => theme.color.white};
-    padding: 40px;
-    box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
-`;
+        @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+            margin: 0 auto 154px;
+
+        }
+
+        @media (max-width: ${({ theme }) => theme.breakpoints.small}){
+            margin: 0 auto 88px;
+        }
+    `;

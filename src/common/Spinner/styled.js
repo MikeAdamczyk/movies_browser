@@ -3,19 +3,23 @@ import styled, { css } from "styled-components";
 export const SpinnerBox = styled.div`
     max-width: 1368px;
     margin: 0 auto;
-    padding: 180px auto;
+    padding: 120px 0;
     text-align: center;
 
     ${({ search }) => search && css`
-        padding: 120px 0;
+        padding: 96px 0;
     `}
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
-        padding: 24px 0;
+        padding: 56px 0;
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
         padding: 24px 0;
+
+        ${({ search }) => search && css`
+        padding: 12px 0;
+    `}
     }
 `;
 
