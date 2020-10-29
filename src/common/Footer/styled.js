@@ -22,6 +22,7 @@ export const ChangePageButton = styled.button`
     background-color: ${({ theme }) => theme.color.lightBlue};
     display: flex;
     align-items: center;
+    transition: all 1s ease;
     
     &:hover{
      filter: brightness(105%);

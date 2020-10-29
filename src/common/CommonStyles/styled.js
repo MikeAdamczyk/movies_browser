@@ -15,7 +15,7 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
         border-radius: 33px;
         padding: 13.5px 20px;
         margin: 12px;
-        transition: 0.5s;
+        transition: color 2s, background 1s;
 
         &:hover{
             background: ${({ theme }) => theme.color.white};
@@ -32,7 +32,7 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
         }
         @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
             padding: 10px 10px;
-            margin: 0px;
+            margin: 0;
         }
     `)}
 

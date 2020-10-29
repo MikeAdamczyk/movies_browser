@@ -1,4 +1,4 @@
-import {call, put, takeLatest, delay} from "redux-saga/effects";
+import {call, put, takeLatest} from "redux-saga/effects";
 import {getMovieCredits} from "../MovieCredits/getMovieCredits";
 import {fetchMovieCredits, 
         fetchMovieCreditsSuccess,
@@ -7,7 +7,6 @@ import {fetchMovieCredits,
 
 function* fetchMovieCreditsHandler(action) {
     try {
-      yield delay(3000);
         const movieCredits = yield call(getMovieCredits, action.payload.id);
         yield put(fetchMovieCreditsSuccess(movieCredits))
     } catch (error) {
