@@ -96,11 +96,10 @@ export const ListContainer = styled.main`
             grid-gap: 16px;
         `)};
     }
-<<<<<<< HEAD
-=======
 `;
+
 export const Slider = styled.div`
-    margin: 20px 0; 
+    margin: 20px 0;
     padding: 10px 0;
     overflow-y: hidden;
     overflow-x: auto;
@@ -133,5 +132,4 @@ export const Slider = styled.div`
             grid-template-columns: repeat(${tilesNumber}, 288px);
         `};
     }
->>>>>>> main
 `;
