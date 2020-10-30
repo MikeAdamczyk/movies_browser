@@ -90,7 +90,8 @@ export const Tile = ({
                 (tileType === "people" && place !== null) ? "Place of birth:" : ""}
               </AdditionalInfo>
               <AdditionalInfo content tileView={tileView}>
-                {tileType === "movie" ? `${date}` : `${place}`}
+                {tileType === "movie" ? `${date}` :
+                (tileType === "people" && place !== null) ? `${place}` : ""}
               </AdditionalInfo>
             </Container>
           </> :
