@@ -14,7 +14,7 @@ export const MenuBackground = styled.div`
         top: 0;
         right: 0;
         border-radius: 50%;
-        transform: translate(60%, -40%);
+        transform: translate(75%,-28%);
         transition: 0.3s ease;
         z-index: 1;
         opacity: 0.8;
@@ -34,7 +34,7 @@ export const HamburgerMenu = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
         width: 35px;
         height: 30px;
-        margin: 16px;
+        margin: 16px 5px;
         cursor: pointer;
         display: grid;
         grid-column-start: auto;
@@ -54,6 +54,7 @@ export const HamburgerMenu = styled.div`
 
         ${({ showMenu }) => showMenu === true && css`
             background: none;
+            margin: 16px;
         `}
     }
 `;

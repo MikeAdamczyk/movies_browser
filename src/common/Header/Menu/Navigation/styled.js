@@ -41,3 +41,40 @@ export const StyledItem = styled.li`
         line-height: 18px;
     }
 `;
+
+export const SearchButton = styled.button`
+    color: ${({ theme }) => theme.color.white};
+    border: none;
+    border-radius: 33px;
+    padding: 10px 14px;
+    margin: 14px;
+    transition: 0.5s ease;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    background: transparent;
+
+    &:hover{
+        background: ${({ theme }) => theme.color.white};
+        color: ${({ theme }) => theme.color.black};
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+
+        ${({ showMenu }) => showMenu === true && css`
+            position: fixed;
+            top: 50px;
+            right: 0;
+            z-index: 5;
+            margin-right: 16px;
+        `}
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
+        margin-right: 12px;
+        padding: 10px;
+    }
+`;
