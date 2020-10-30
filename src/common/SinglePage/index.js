@@ -33,8 +33,9 @@ import spinner from "../../images/icon-spinner.svg";
 import { getProductionYear } from "../../lib/utils";
 import { QUERY_PARAMETER } from "../../lib/consts";
 import { DetailsContainer } from "./styled";
-import { Wrapper, Slider } from "../Containers/styled";
+import { Wrapper, Slider, SliderContainer, SliderButton } from "../Containers/styled";
 import { Spinner, SpinnerBox } from "../Spinner/styled";
+import { useRef } from "react";
 
 export const SinglePage = ({ match, detailType, listType }) => {
 
@@ -102,6 +103,9 @@ export const SinglePage = ({ match, detailType, listType }) => {
         const formattedDate = (new Date(date)).toLocaleDateString();
         return formattedDate;
     };
+    
+    const castSlider = useRef(null);
+    const crewSlider = useRef(null);
 
     if (loading || isPersonLoading || isPersonCreditsLoading || isMovieCreditsLoading) {
         return (
@@ -166,40 +170,70 @@ export const SinglePage = ({ match, detailType, listType }) => {
                     {detailType === "movie" ?
                         <>
                         <Title title={"Cast"} />
-                        <Slider tilesNumber={movieCast.length} listType={listType}>                                            
-                            {movieCast.map((result) => (
-                                <Tile
-                                    key={result.cast_id}
-                                    id={result.id}
-                                    tileType={listType} //movie / people
-                                    tileView={"list"} // list / detail
-                                    header={result.name}
-                                    subheader={result.character}
-                                    image={result.profile_path}
-                                />
-                            ))}
-                        </Slider>
+                        <SliderContainer>
+                            <SliderButton 
+                                onClick={() => castSlider.current.scrollLeft -= (castSlider.current.offsetWidth + 24)} 
+                                left>
+                                    {`<`}
+                            </SliderButton>
+                            <SliderButton 
+                                onClick={() => castSlider.current.scrollLeft += (castSlider.current.offsetWidth + 24)} 
+                                right>
+                                    {`>`}
+                                </SliderButton>                        
+                            <Slider ref={castSlider} tilesNumber={movieCast.length} listType={listType}>                                            
+                                {movieCast.map((result) => (
+                                    <Tile
+                                        key={result.cast_id}
+                                        id={result.id}
+                                        tileType={listType} //movie / people
+                                        tileView={"list"} // list / detail
+                                        header={result.name}
+                                        subheader={result.character}
+                                        image={result.profile_path}
+                                    />
+                                ))}
+                            </Slider>
+                        </SliderContainer>                       
                         </>
                         :
                         <>
+                        {personCast.length > 0 ?
+                        <>
                         <Title title={`Movies - cast(${personCast.length})`} />
-                        <Slider tilesNumber={personCast.length} listType={listType}>
-                            {sortedPersonCast.map((result) => (
-                                <Tile
-                                    key={result.cast_id}
-                                    id={result.id}
-                                    tileType={listType} //movie / people
-                                    tileView={"list"} // list / detail
-                                    header={result.title}
-                                    subheader={`${result.character} (${getProductionYear(result.release_date)})`}
-                                    image={result.poster_path}
-                                    genres={getMovieGenres(result.genre_ids)}
-                                    rateValue={result.vote_average}
-                                    votesNumber={result.vote_count}
-                                />
-                            ))}                        
-                        </Slider>    
-                        </>                   
+                        <SliderContainer>
+                            <Slider ref={castSlider} tilesNumber={personCast.length} listType={listType}>
+                                {sortedPersonCast.map((result) => (
+                                    <Tile
+                                        key={result.cast_id}
+                                        id={result.id}
+                                        tileType={listType} //movie / people
+                                        tileView={"list"} // list / detail
+                                        header={result.title}
+                                        subheader={`${result.character} (${getProductionYear(result.release_date)})`}
+                                        image={result.poster_path}
+                                        genres={getMovieGenres(result.genre_ids)}
+                                        rateValue={result.vote_average}
+                                        votesNumber={result.vote_count}
+                                    />
+                                ))}                        
+                            </Slider> 
+                            <SliderButton 
+                                onClick={() => {
+                                    castSlider.current.scrollLeft -= (castSlider.current.offsetWidth + 24);
+                                }} 
+                                left>
+                                    {`<`}
+                            </SliderButton>
+                            <SliderButton 
+                                onClick={() => castSlider.current.scrollLeft += (castSlider.current.offsetWidth + 24)} 
+                                right>
+                                    {`>`}
+                            </SliderButton>                                                      
+                        </SliderContainer>
+                        </> : 
+                        ""}
+                        </>           
                     }
                 </Wrapper>
 
@@ -207,38 +241,64 @@ export const SinglePage = ({ match, detailType, listType }) => {
                     {detailType === "movie" ?
                         <>
                         <Title title={"Crew"} />
-                        <Slider tilesNumber={movieCrew.length} listType={listType}>
-                            {movieCrew.map((result) => (
-                                <Tile
-                                    key={result.credit_id}
-                                    id={result.id}
-                                    tileType={listType} //movie / people
-                                    tileView={"list"} // list / detail
-                                    header={result.name}
-                                    subheader={result.job}
-                                    image={result.profile_path}
-                                />
-                            ))}
-                        </Slider>  
+                        <SliderContainer>
+                            <SliderButton 
+                                onClick={() => crewSlider.current.scrollLeft -= (crewSlider.current.offsetWidth + 24)} 
+                                left>
+                                    {`<`}
+                            </SliderButton>
+                            <SliderButton 
+                                onClick={() => crewSlider.current.scrollLeft += (crewSlider.current.offsetWidth + 24)} 
+                                right>
+                                    {`>`}
+                            </SliderButton> 
+                            <Slider ref={crewSlider} tilesNumber={movieCrew.length} listType={listType}>
+                                {movieCrew.map((result) => (
+                                    <Tile
+                                        key={result.credit_id}
+                                        id={result.id}
+                                        tileType={listType} //movie / people
+                                        tileView={"list"} // list / detail
+                                        header={result.name}
+                                        subheader={result.job}
+                                        image={result.profile_path}
+                                    />
+                                ))}
+                            </Slider>  
+                        </SliderContainer>
                         </>                  
                         :
                         <>
-                        {personCrew.length > 0 ? <Title title={`Movies - crew(${personCrew.length})`} /> : ""}
-                        <Slider tilesNumber={personCrew.length} listType={listType}>
-                            {sortedPersonCrew.map((result) => (
-                                <Tile
-                                    key={result.credit_id}
-                                    id={result.id}
-                                    tileType={listType} //movie / people
-                                    tileView={"list"} // list / detail
-                                    header={result.title}
-                                    subheader={`${result.job} (${getProductionYear(result.release_date)})`}
-                                    image={result.poster_path}
-                                    rateValue={result.vote_average}
-                                    votesNumber={result.vote_count}
-                                />
-                            ))}
-                        </Slider>
+                        {personCrew.length > 0 ? 
+                        <>
+                        <Title title={`Movies - crew(${personCrew.length})`} /> 
+                        <SliderContainer>
+                            <Slider ref={crewSlider} tilesNumber={personCrew.length} listType={listType}>
+                                {sortedPersonCrew.map((result) => (
+                                    <Tile
+                                        key={result.credit_id}
+                                        id={result.id}
+                                        tileType={listType} //movie / people
+                                        tileView={"list"} // list / detail
+                                        header={result.title}
+                                        subheader={`${result.job} (${getProductionYear(result.release_date)})`}
+                                        image={result.poster_path}
+                                        rateValue={result.vote_average}
+                                        votesNumber={result.vote_count}
+                                    />
+                                ))}
+                            </Slider>
+                            <SliderButton 
+                            onClick={() => crewSlider.current.scrollLeft -= (crewSlider.current.offsetWidth + 24)} 
+                            left>
+                                {`<`}
+                            </SliderButton>
+                            <SliderButton 
+                                onClick={() => crewSlider.current.scrollLeft += (crewSlider.current.offsetWidth + 24)} 
+                                right>
+                                    {`>`}
+                            </SliderButton>
+                        </SliderContainer></> : ""}
                         </>
                     }
                 </Wrapper>

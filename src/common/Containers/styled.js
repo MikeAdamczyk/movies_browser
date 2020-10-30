@@ -98,12 +98,20 @@ export const ListContainer = styled.main`
     }
 `;
 
+export const SliderContainer = styled.div`
+    position: relative;
+    display: flex;
+    max-width: 1368px;
+`;
+
 export const Slider = styled.div`
-    margin: 20px 0;
+    position: relative;
+    margin: 0 0 20px 0;
     padding: 10px 0;
     overflow-y: hidden;
     overflow-x: auto;
     display: grid;
+    scroll-behavior: smooth;
     grid-gap: 24px;
     ${({tilesNumber}) => css`
         grid-template-columns: repeat(${tilesNumber}, 208px);
@@ -131,5 +139,53 @@ export const Slider = styled.div`
         ${({tilesNumber, listType}) => listType === "movie" && css`
             grid-template-columns: repeat(${tilesNumber}, 288px);
         `};
+        &::-webkit-scrollbar {
+            display: none;
+        };
+    }
+`;
+export const SliderButton = styled.button`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-100%);
+    flex-basis: 20px;
+    border-radius: 50px;
+    border: none;
+    color: ${({theme}) => theme.color.lightGrey};
+    background-color: ${({theme}) => theme.color.darkerGrey};
+    text-align: center;
+    margin: auto 6px;
+    padding: 5px 10px;
+    transition: 0.5s ease;
+
+    ${({left}) => left && css`
+        left: -50px;
+    `} 
+    ${({right}) => right && css`
+        right: -50px;
+    `}
+    &:hover {
+        cursor: pointer;
+        filter: brightness(1.3);
+    }
+    &:focus {
+        outline: none;
+    }
+    &:disabled {
+        filter: brightness(1.3);
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}){
+        top: unset;
+        bottom: -5px;
+        
+        ${({left}) => left && css`
+            left: 45%;
+            transform: translateX(-100%);
+        `} 
+        ${({right}) => right && css`
+            right: 45%;
+            transform: translateX(100%);
+        `}
     }
 `;
