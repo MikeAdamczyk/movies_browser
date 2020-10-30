@@ -218,7 +218,7 @@ export const Header = styled.h2`
     };
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
         ${({ tileView }) => tileView === "detail" && css`
-            font-size: 16px;
+            font-size: 14px;
             margin: 0 0 0 0;
         `}
     };
@@ -495,7 +495,7 @@ export const PlugLogo = styled.img`
     width: 25%;
 
     ${({ tileType }) => tileType === "people" && css`
-        width: 75%;
+        width: 50%;
     `}
 `;
 
