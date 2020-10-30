@@ -8,7 +8,7 @@ export const TileElement = styled.div`
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     border-radius: 5px;
     display: grid;
-
+    
     ${({ tileView }) => tileView === "detail" && css`
             grid-template-areas: "image detail"
                                 "image overview";
@@ -80,7 +80,7 @@ export const Image = styled.div`
 
 
     ${({ imagePath, tileType }) => css`
-        background-image: url(https://image.tmdb.org/t/p/${tileType === "movie" ? "w342" : "h632"}/${imagePath});
+        background-image: url("https://image.tmdb.org/t/p/${tileType === "movie" ? "w342" : "h632"}/${imagePath}");
     `}
     margin: 40px 0px;
     border-radius: 5px;
