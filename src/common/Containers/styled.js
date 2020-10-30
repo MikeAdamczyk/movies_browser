@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoints.large}){
         max-width: 1020px;
 
-        ${(({ DataType }) => DataType === "people" && css`
+        ${(({ DataType }) => DataType === "peoplePage" && css`
             max-width: 904px;
         `)};
     }
@@ -42,7 +42,7 @@ export const Wrapper = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
         max-width: 600px;
 
-        ${(({ DataType }) => DataType === "people" && css`
+        ${(({ DataType }) => DataType === "peoplePage" && css`
             max-width: 440px;
         `)};
     }
@@ -99,8 +99,8 @@ export const ListContainer = styled.main`
 `;
 
 export const Slider = styled.div`
-    margin: 20px 0;
-    padding: 10px 0;
+    margin: 0;
+    padding: 0;
     overflow-y: hidden;
     overflow-x: auto;
     display: grid;
