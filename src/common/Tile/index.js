@@ -81,12 +81,13 @@ export const Tile = ({
                         tileType === "people" ? "Date of birth:" : ""}
               </AdditionalInfo>
               <AdditionalInfo content tileView={tileView}>
-                {tileType === "movie" ? `${place.map((country) => ` ${country}`)}` : `${date}`}
+                {(tileType === "movie" && place.length > 0)? `${place.map((country) => ` ${country}`)}` : `${date}`}
               </AdditionalInfo>
             </Container>
             <Container additionalInfo next tileView={tileView}>
               <AdditionalInfo label tileView={tileView} tileType={tileType}>
-                {tileType === "movie" ? "Release date:" : "Place of birth:"}
+                {tileType === "movie" ? "Release date:" : 
+                (tileType === "people" && place !== null) ? "Place of birth:" : ""}
               </AdditionalInfo>
               <AdditionalInfo content tileView={tileView}>
                 {tileType === "movie" ? `${date}` : `${place}`}
