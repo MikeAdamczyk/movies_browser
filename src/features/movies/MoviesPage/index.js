@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../../hooks/queryParameters";
@@ -20,6 +20,7 @@ import { QUERY_PARAMETER } from "../../../lib/consts";
 import spinner from "../../../images/icon-spinner.svg";
 import { Spinner, SpinnerBox } from "../../../common/Spinner/styled";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
+import { SearchButton } from "../../../common/Header/Menu/Navigation/styled";
 
 export const MoviesPage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
@@ -29,6 +30,23 @@ export const MoviesPage = () => {
     const searchingLoadingStatus = useSelector(selectLoadingSearchStatus);
     const errorStatus = useSelector(selectErrorStatus);
     const loading = useSelector(selectLoading);
+
+    const [position, setPosition] = useState("hideButton");
+
+    useEffect(() => {
+        document.addEventListener("scroll", e => {
+            let pagePosition = document.scrollingElement.scrollTop;
+            if (pagePosition >= 1000) {
+                setPosition("showButton")
+            } else {
+                setPosition("hideButton")
+            }
+        })
+    }, []);
+
+    const scrollTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <Wrapper >
@@ -54,7 +72,7 @@ export const MoviesPage = () => {
                             <FadeIn delay={50} transitionDuration={600}>
                                 <Title
                                     title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`} />
-                                    <ListContainer DataType={"movie"}>
+                                <ListContainer DataType={"movie"}>
                                     {moviesResult.map((result) => (
                                         <Tile
                                             key={result.id}
@@ -72,7 +90,14 @@ export const MoviesPage = () => {
                                         />
                                     ))}
                                 </ListContainer>
-                                <Footer/>
+                                <SearchButton
+                                    position={position}
+                                    title="Scroll to the top"
+                                    onClick={scrollTop}
+                                >
+                                    ^
+                                </SearchButton>
+                                <Footer />
                             </FadeIn>
             }
         </Wrapper>

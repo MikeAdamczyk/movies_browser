@@ -54,6 +54,30 @@ export const SearchButton = styled.button`
     line-height: 21px;
     background: transparent;
 
+    ${({ position }) => position === "showButton" && css`
+        border: 3px solid ${({ theme }) => theme.color.black};
+        font-size: 21px;
+        line-height: 0px;
+        width: 35px;
+        height: 30px;
+        border-radius: 5px;
+        padding: 0px;
+        padding-top: 2px;
+        margin: 16px 5px;
+        cursor: pointer;
+        color: ${({ theme }) => theme.color.white};
+        background-color: ${({ theme }) => theme.color.black};
+        opacity: 0.8;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+
+        &:hover{
+            border: 3px solid ${({ theme }) => theme.color.black};
+        }
+    `}
+
     &:hover{
         background: ${({ theme }) => theme.color.white};
         color: ${({ theme }) => theme.color.black};
@@ -63,6 +87,11 @@ export const SearchButton = styled.button`
         font-weight: 600;
         font-size: 12px;
         line-height: 18px;
+
+        ${({ position }) => position === "showButton" && css`
+            font-size: 21px;
+            line-height: 0px;
+        `}
 
         ${({ showMenu }) => showMenu === true && css`
             position: fixed;
@@ -76,5 +105,10 @@ export const SearchButton = styled.button`
     @media (max-width: ${({ theme }) => theme.breakpoints.extraSmall}){
         margin-right: 12px;
         padding: 10px;
+
+        ${({ position }) => position === "showButton" && css`
+            margin-right: 5px;
+            padding: 2px 0 0 0;
+        `}
     }
 `;

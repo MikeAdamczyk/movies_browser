@@ -60,8 +60,6 @@ export const HamburgerMenu = styled.div`
 `;
 
 export const Bar = styled.div`
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.small}){
         height: 5px;
         width: 70%;
         background-color: ${({ theme }) => theme.color.white};
@@ -79,5 +77,4 @@ export const Bar = styled.div`
         ${({ bar3, showMenu }) => showMenu === true && bar3 && css`
             transform: translateY(-10px) rotateZ(45deg);
         `}
-    }
 `;
