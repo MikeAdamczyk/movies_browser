@@ -104,8 +104,18 @@ export const SinglePage = ({ match, detailType, listType }) => {
         return formattedDate;
     };
     
-    const castSlider = useRef(null);
-    const crewSlider = useRef(null);
+    const castSlider = useRef(0);
+    const crewSlider = useRef(0);
+    const container = useRef(0);
+    
+    const isOverflow = (slider, container) => {
+        
+        if(slider.current.scrollWidth > container.current.scrollWidth){
+            return false;
+        }
+        return true;
+    }
+
 
     if (loading || isPersonLoading || isPersonCreditsLoading || isMovieCreditsLoading) {
         return (
@@ -201,7 +211,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
                         {personCast.length > 0 ?
                         <>
                         <Title title={`Movies - cast(${personCast.length})`} />
-                        <SliderContainer>
+                        <SliderContainer ref={container}>
                             <Slider ref={castSlider} tilesNumber={personCast.length} listType={listType}>
                                 {sortedPersonCast.map((result) => (
                                     <Tile
@@ -222,6 +232,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                 onClick={() => {
                                     castSlider.current.scrollLeft -= (castSlider.current.offsetWidth + 24);
                                 }} 
+                                disabled={isOverflow(castSlider, container)}
                                 left>
                                     {`<`}
                             </SliderButton>
@@ -272,7 +283,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
                         {personCrew.length > 0 ? 
                         <>
                         <Title title={`Movies - crew(${personCrew.length})`} /> 
-                        <SliderContainer>
+                        <SliderContainer ref={container}>
                             <Slider ref={crewSlider} tilesNumber={personCrew.length} listType={listType}>
                                 {sortedPersonCrew.map((result) => (
                                     <Tile
@@ -289,7 +300,13 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                 ))}
                             </Slider>
                             <SliderButton 
-                            onClick={() => crewSlider.current.scrollLeft -= (crewSlider.current.offsetWidth + 24)} 
+                            onClick={() => {
+                                crewSlider.current.scrollLeft -= (crewSlider.current.offsetWidth + 24)
+                                console.log(`Container width: ${container.current.scrollWidth}`)
+                                console.log(`CrewSlider width: ${crewSlider.current.scrollWidth}`)
+                                console.log(`CastSlider width: ${castSlider.current.scrollWidth}`)
+                            }} 
+                            disabled={false}
                             left>
                                 {`<`}
                             </SliderButton>

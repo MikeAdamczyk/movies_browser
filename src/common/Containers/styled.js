@@ -172,7 +172,7 @@ export const SliderButton = styled.button`
         outline: none;
     }
     &:disabled {
-        filter: brightness(1.3);
+        display: none;
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
