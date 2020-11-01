@@ -13,8 +13,8 @@ export const SearchBox = styled.div`
     transition: 0.3s ease;
 
     &:hover{
-        box-shadow: 0px 1px 10px rgba(81, 203, 238, 1);
-        border: 1px solid rgba(81, 203, 238, 1);
+        box-shadow: 0px 1px 10px ${({ theme }) => theme.color.mediumBlue};
+        border: 1px solid ${({ theme }) => theme.color.mediumBlue};
     };
 
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
