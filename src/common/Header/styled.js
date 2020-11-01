@@ -8,7 +8,7 @@ export const HeaderBox = styled.header`
     position: fixed;
     top: 0;
     transition: 0.5s ease;
-    z-index: 5;
+    z-index: 1;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         height: 142px;
