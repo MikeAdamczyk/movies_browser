@@ -17,7 +17,7 @@
 - **hooks, custom hooks, styled-components, JSX**
 
 ## API
-[The Movie Data Base](https://www.themoviedb.org/documentation/api)
+[The Movie Database](https://www.themoviedb.org/documentation/api)
 <br>
 <br>
 # Authors:
