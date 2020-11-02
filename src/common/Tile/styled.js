@@ -77,11 +77,11 @@ export const TileElement = styled.div`
 export const Image = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
-    transition: filter 0.5s, transform 1s;
+    transition: filter 0.5s, transform 0.5s;
     
     &:hover{
     filter: opacity(0.75);
-    transform: scale(1.08);
+    transform: scale(1.01);
     }
 
     ${({ imagePath, tileType }) => css`

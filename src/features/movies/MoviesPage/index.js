@@ -69,7 +69,7 @@ export const MoviesPage = () => {
                         !loading && !searchingLoadingStatus && errorStatus ?
                             <Error />
                             :
-                            <FadeIn delay={50} transitionDuration={600}>
+                            <FadeIn delay={50} transitionDuration={300}>
                                 <Title
                                     title={(!query || query.trim() === "") ? "Popular movies" : `Search results for "${query}" (${totalResults})`} />
                                 <ListContainer DataType={"movie"}>

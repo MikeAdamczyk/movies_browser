@@ -3,6 +3,10 @@ import { NavLink } from "react-router-dom";
 
 export const Image = styled.img`
   margin: 180px auto 0;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+            margin-top: 100px;
+        }
 `;
 
 export const Wrapper = styled.div`
