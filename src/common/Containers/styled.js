@@ -174,6 +174,9 @@ export const SliderButton = styled.button`
     &:disabled {
         display: none;
     }
+    &:active {
+        filter: brightness(0.9);
+    }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
         top: unset;

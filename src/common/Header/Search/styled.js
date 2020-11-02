@@ -62,7 +62,7 @@ export const Input = styled.input`
     outline: none;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
-        font-size: 13px;
+        font-size: 16px;
         line-height: 17px;
     }
 `;
