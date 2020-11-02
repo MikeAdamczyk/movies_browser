@@ -25,7 +25,7 @@ export const Header = () => {
             <HeaderBox position={position}>
                 <Subheader>
                     <MenuBox>
-                        <Logo href="/">
+                        <Logo href="/movies_browser">
                             <Wrapper>
                                 <Icon src={LogoSrc} alt="" />
                                 <HeaderTitle>Movies&nbsp;Browser</HeaderTitle>
