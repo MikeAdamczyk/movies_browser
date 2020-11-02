@@ -124,7 +124,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
     }
     return (
         <FadeIn delay={50} transitionDuration={600}>
-            {detailType === "movie" ?
+            {movieDetail.backdrop_path && detailType === "movie" ?
                 <Backdrop
                     backdrop={movieDetail.backdrop_path}
                     title={movieDetail.title}
@@ -162,83 +162,83 @@ export const SinglePage = ({ match, detailType, listType }) => {
                 </Wrapper>
 
                 <Wrapper DataType={listType}>
-                    
+
                     {detailType === "movie" ?
                         <>
-                        <Title title={"Cast"} />
-                        <Slider tilesNumber={movieCast.length} listType={listType}>                                            
-                            {movieCast.map((result) => (
-                                <Tile
-                                    key={result.cast_id}
-                                    id={result.id}
-                                    tileType={listType} //movie / people
-                                    tileView={"list"} // list / detail
-                                    header={result.name}
-                                    subheader={result.character}
-                                    image={result.profile_path}
-                                />
-                            ))}
-                        </Slider>
+                            <Title title={"Cast"} />
+                            <Slider tilesNumber={movieCast.length} listType={listType}>
+                                {movieCast.map((result) => (
+                                    <Tile
+                                        key={result.cast_id}
+                                        id={result.id}
+                                        tileType={listType} //movie / people
+                                        tileView={"list"} // list / detail
+                                        header={result.name}
+                                        subheader={result.character}
+                                        image={result.profile_path}
+                                    />
+                                ))}
+                            </Slider>
                         </>
                         :
                         <>
-                        <Title title={`Movies - cast(${personCast.length})`} />
-                        <Slider tilesNumber={personCast.length} listType={listType}>
-                            {sortedPersonCast.map((result) => (
-                                <Tile
-                                    key={result.cast_id}
-                                    id={result.id}
-                                    tileType={listType} //movie / people
-                                    tileView={"list"} // list / detail
-                                    header={result.title}
-                                    subheader={`${result.character} (${getProductionYear(result.release_date)})`}
-                                    image={result.poster_path}
-                                    genres={getMovieGenres(result.genre_ids)}
-                                    rateValue={result.vote_average}
-                                    votesNumber={result.vote_count}
-                                />
-                            ))}                        
-                        </Slider>    
-                        </>                   
+                            <Title title={`Movies - cast(${personCast.length})`} />
+                            <Slider tilesNumber={personCast.length} listType={listType}>
+                                {sortedPersonCast.map((result) => (
+                                    <Tile
+                                        key={result.cast_id}
+                                        id={result.id}
+                                        tileType={listType} //movie / people
+                                        tileView={"list"} // list / detail
+                                        header={result.title}
+                                        subheader={`${result.character} (${getProductionYear(result.release_date)})`}
+                                        image={result.poster_path}
+                                        genres={getMovieGenres(result.genre_ids)}
+                                        rateValue={result.vote_average}
+                                        votesNumber={result.vote_count}
+                                    />
+                                ))}
+                            </Slider>
+                        </>
                     }
                 </Wrapper>
 
                 <Wrapper DataType={listType}>
                     {detailType === "movie" ?
                         <>
-                        <Title title={"Crew"} />
-                        <Slider tilesNumber={movieCrew.length} listType={listType}>
-                            {movieCrew.map((result) => (
-                                <Tile
-                                    key={result.credit_id}
-                                    id={result.id}
-                                    tileType={listType} //movie / people
-                                    tileView={"list"} // list / detail
-                                    header={result.name}
-                                    subheader={result.job}
-                                    image={result.profile_path}
-                                />
-                            ))}
-                        </Slider>  
-                        </>                  
+                            <Title title={"Crew"} />
+                            <Slider tilesNumber={movieCrew.length} listType={listType}>
+                                {movieCrew.map((result) => (
+                                    <Tile
+                                        key={result.credit_id}
+                                        id={result.id}
+                                        tileType={listType} //movie / people
+                                        tileView={"list"} // list / detail
+                                        header={result.name}
+                                        subheader={result.job}
+                                        image={result.profile_path}
+                                    />
+                                ))}
+                            </Slider>
+                        </>
                         :
                         <>
-                        {personCrew.length > 0 ? <Title title={`Movies - crew(${personCrew.length})`} /> : ""}
-                        <Slider tilesNumber={personCrew.length} listType={listType}>
-                            {sortedPersonCrew.map((result) => (
-                                <Tile
-                                    key={result.credit_id}
-                                    id={result.id}
-                                    tileType={listType} //movie / people
-                                    tileView={"list"} // list / detail
-                                    header={result.title}
-                                    subheader={`${result.job} (${getProductionYear(result.release_date)})`}
-                                    image={result.poster_path}
-                                    rateValue={result.vote_average}
-                                    votesNumber={result.vote_count}
-                                />
-                            ))}
-                        </Slider>
+                            {personCrew.length > 0 ? <Title title={`Movies - crew(${personCrew.length})`} /> : ""}
+                            <Slider tilesNumber={personCrew.length} listType={listType}>
+                                {sortedPersonCrew.map((result) => (
+                                    <Tile
+                                        key={result.credit_id}
+                                        id={result.id}
+                                        tileType={listType} //movie / people
+                                        tileView={"list"} // list / detail
+                                        header={result.title}
+                                        subheader={`${result.job} (${getProductionYear(result.release_date)})`}
+                                        image={result.poster_path}
+                                        rateValue={result.vote_average}
+                                        votesNumber={result.vote_count}
+                                    />
+                                ))}
+                            </Slider>
                         </>
                     }
                 </Wrapper>

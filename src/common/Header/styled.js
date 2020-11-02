@@ -7,11 +7,13 @@ export const HeaderBox = styled.header`
     min-height: 94px;
     position: fixed;
     top: 0;
+    transition: 0.5s ease;
+    z-index: 1;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
         height: 142px;
         ${({ position }) => position === "moved" && css`
-            display: none;
+            opacity: 0;
         `}
     }
  `;
