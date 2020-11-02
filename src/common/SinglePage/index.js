@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../hooks/queryParameters";
@@ -35,7 +35,6 @@ import { QUERY_PARAMETER } from "../../lib/consts";
 import { DetailsContainer } from "./styled";
 import { Wrapper, Slider, SliderContainer, SliderButton } from "../Containers/styled";
 import { Spinner, SpinnerBox } from "../Spinner/styled";
-import { useRef } from "react";
 
 export const SinglePage = ({ match, detailType, listType }) => {
 
@@ -104,18 +103,31 @@ export const SinglePage = ({ match, detailType, listType }) => {
         return formattedDate;
     };
     
-    const castSlider = useRef(0);
-    const crewSlider = useRef(0);
-    const container = useRef(0);
-    
-    const isOverflow = (slider, container) => {
-        
-        if(slider.current.scrollWidth > container.current.scrollWidth){
-            return false;
-        }
-        return true;
-    }
+    const castSlider = useRef();
+    const crewSlider = useRef();
+    const container = useRef();
+    const [crewDisable, setCrewDisable] = useState(false)
+    const [castDisable, setCastDisable] = useState(false)
+    const [windowSize, setWindowSize] = useState(window.innerWidth)
 
+    useEffect(() => {
+        window.addEventListener("resize", updateWidth)
+        setTimeout(() => {
+            if(crewSlider.current.scrollWidth <= container.current.scrollWidth){
+                setCrewDisable(true);
+            } else {setCrewDisable(false)}
+
+            if(castSlider.current.scrollWidth <= container.current.scrollWidth){
+                setCastDisable(true);
+            } else{setCastDisable(false)}
+        }, 100);
+
+        return () => window.removeEventListener("resize", updateWidth);
+    }, [container, crewSlider, castSlider, windowSize])
+    
+    const updateWidth = () => {
+        setWindowSize(window.innerWidth)
+    }
 
     if (loading || isPersonLoading || isPersonCreditsLoading || isMovieCreditsLoading) {
         return (
@@ -175,7 +187,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
                     }
                 </Wrapper>
 
-                <Wrapper DataType={listType}>
+                <Wrapper DataType={listType} ref={container}>
                     
                     {detailType === "movie" ?
                         <>
@@ -183,11 +195,13 @@ export const SinglePage = ({ match, detailType, listType }) => {
                         <SliderContainer>
                             <SliderButton 
                                 onClick={() => castSlider.current.scrollLeft -= (castSlider.current.offsetWidth + 24)} 
+                                disabled={castDisable}
                                 left>
                                     {`<`}
                             </SliderButton>
                             <SliderButton 
                                 onClick={() => castSlider.current.scrollLeft += (castSlider.current.offsetWidth + 24)} 
+                                disabled={castDisable}
                                 right>
                                     {`>`}
                                 </SliderButton>                        
@@ -232,12 +246,13 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                 onClick={() => {
                                     castSlider.current.scrollLeft -= (castSlider.current.offsetWidth + 24);
                                 }} 
-                                disabled={isOverflow(castSlider, container)}
+                                disabled={castDisable}
                                 left>
                                     {`<`}
                             </SliderButton>
                             <SliderButton 
                                 onClick={() => castSlider.current.scrollLeft += (castSlider.current.offsetWidth + 24)} 
+                                disabled={castDisable}
                                 right>
                                     {`>`}
                             </SliderButton>                                                      
@@ -248,18 +263,20 @@ export const SinglePage = ({ match, detailType, listType }) => {
                     }
                 </Wrapper>
 
-                <Wrapper DataType={listType}>
+                <Wrapper DataType={listType} ref={container}>
                     {detailType === "movie" ?
                         <>
                         <Title title={"Crew"} />
                         <SliderContainer>
                             <SliderButton 
                                 onClick={() => crewSlider.current.scrollLeft -= (crewSlider.current.offsetWidth + 24)} 
+                                disabled={crewDisable} 
                                 left>
                                     {`<`}
                             </SliderButton>
                             <SliderButton 
                                 onClick={() => crewSlider.current.scrollLeft += (crewSlider.current.offsetWidth + 24)} 
+                                disabled={crewDisable} 
                                 right>
                                     {`>`}
                             </SliderButton> 
@@ -283,7 +300,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
                         {personCrew.length > 0 ? 
                         <>
                         <Title title={`Movies - crew(${personCrew.length})`} /> 
-                        <SliderContainer ref={container}>
+                        <SliderContainer>
                             <Slider ref={crewSlider} tilesNumber={personCrew.length} listType={listType}>
                                 {sortedPersonCrew.map((result) => (
                                     <Tile
@@ -302,16 +319,14 @@ export const SinglePage = ({ match, detailType, listType }) => {
                             <SliderButton 
                             onClick={() => {
                                 crewSlider.current.scrollLeft -= (crewSlider.current.offsetWidth + 24)
-                                console.log(`Container width: ${container.current.scrollWidth}`)
-                                console.log(`CrewSlider width: ${crewSlider.current.scrollWidth}`)
-                                console.log(`CastSlider width: ${castSlider.current.scrollWidth}`)
-                            }} 
-                            disabled={false}
+                            }}
+                            disabled={crewDisable} 
                             left>
                                 {`<`}
                             </SliderButton>
                             <SliderButton 
                                 onClick={() => crewSlider.current.scrollLeft += (crewSlider.current.offsetWidth + 24)} 
+                                disabled={crewDisable} 
                                 right>
                                     {`>`}
                             </SliderButton>
