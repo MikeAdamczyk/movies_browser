@@ -93,7 +93,11 @@ export const Image = styled.div`
 
     ${({ tileView }) => tileView === "detail" && css`
             grid-area: image;
-
+            
+            &:hover{
+               filter: none;
+               transform: none;
+                }   
     `}
 
     ${({ tileType, tileView }) => (tileType === "people" && tileView === "detail") && css`
