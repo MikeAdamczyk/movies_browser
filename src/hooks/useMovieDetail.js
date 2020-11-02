@@ -13,7 +13,7 @@ export const useMovieDetail = () => {
 
   useEffect(() => {
     if (!query || query === "") {
-      dispatch(fetchMovies({page: 1}));
+      dispatch(fetchMovies({page: "1"}));
     }
   }, [dispatch, query]);
 

@@ -77,7 +77,12 @@ export const TileElement = styled.div`
 export const Image = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
-
+    transition: filter 0.5s, transform 0.5s;
+    
+    &:hover{
+    filter: opacity(0.75);
+    transform: scale(1.01);
+    }
 
     ${({ imagePath, tileType }) => css`
         background-image: url("https://image.tmdb.org/t/p/${tileType === "movie" ? "w342" : "h632"}/${imagePath}");

@@ -12,5 +12,5 @@ function* fetchSearchedPeopleHandler(action) {
 }
 
 export function* searchedPeopleSaga() {
-    yield debounce(2000, fetchPeopleByQuery.type, fetchSearchedPeopleHandler);
+    yield debounce(1500, fetchPeopleByQuery.type, fetchSearchedPeopleHandler);
 }
