@@ -6,6 +6,7 @@ export const HeaderBox = styled.header`
     width: 100%;
     min-height: 94px;
     position: fixed;
+    z-index: 2;
     top: 0;
     transition: 0.5s ease;
     z-index: 1;

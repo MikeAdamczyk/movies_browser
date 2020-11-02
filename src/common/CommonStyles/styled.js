@@ -15,7 +15,7 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
         border-radius: 33px;
         padding: 13.5px 20px;
         margin: 12px;
-        transition: 0.5s ease;
+        transition: color 1s, background .5s;
 
         &:hover{
             background: ${({ theme }) => theme.color.white};
@@ -39,5 +39,10 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
     ${(({ tile }) => tile && css`
         text-decoration: none;
         color: ${({ theme }) => theme.color.black};
+        transition: .5s;
+    
+        &:hover {
+            opacity: 0.75;
+        }
     `)}
 `;

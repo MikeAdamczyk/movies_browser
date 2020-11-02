@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FadeIn from "react-fade-in";
 import { useQueryParameter } from "../../hooks/queryParameters";
@@ -33,7 +33,7 @@ import spinner from "../../images/icon-spinner.svg";
 import { getProductionYear } from "../../lib/utils";
 import { QUERY_PARAMETER } from "../../lib/consts";
 import { DetailsContainer } from "./styled";
-import { Wrapper, Slider } from "../Containers/styled";
+import { Wrapper, Slider, SliderContainer, SliderButton } from "../Containers/styled";
 import { Spinner, SpinnerBox } from "../Spinner/styled";
 
 export const SinglePage = ({ match, detailType, listType }) => {
@@ -102,6 +102,32 @@ export const SinglePage = ({ match, detailType, listType }) => {
         const formattedDate = (new Date(date)).toLocaleDateString();
         return formattedDate;
     };
+    
+    const castSlider = useRef();
+    const crewSlider = useRef();
+    const container = useRef();
+    const [crewDisable, setCrewDisable] = useState(false)
+    const [castDisable, setCastDisable] = useState(false)
+    const [windowSize, setWindowSize] = useState(window.innerWidth)
+
+    useEffect(() => {
+        window.addEventListener("resize", updateWidth)
+        setTimeout(() => {
+            if(crewSlider.current.scrollWidth <= container.current.scrollWidth){
+                setCrewDisable(true);
+            } else {setCrewDisable(false)}
+
+            if(castSlider.current.scrollWidth <= container.current.scrollWidth){
+                setCastDisable(true);
+            } else{setCastDisable(false)}
+        }, 100);
+
+        return () => window.removeEventListener("resize", updateWidth);
+    }, [container, crewSlider, castSlider, windowSize])
+    
+    const updateWidth = () => {
+        setWindowSize(window.innerWidth)
+    }
 
     if (loading || isPersonLoading || isPersonCreditsLoading || isMovieCreditsLoading) {
         return (
@@ -161,12 +187,26 @@ export const SinglePage = ({ match, detailType, listType }) => {
                     }
                 </Wrapper>
 
-                <Wrapper DataType={listType}>
 
+                <Wrapper DataType={listType} ref={container}>
+                    
                     {detailType === "movie" ?
                         <>
-                            <Title title={"Cast"} />
-                            <Slider tilesNumber={movieCast.length} listType={listType}>
+                        <Title title={"Cast"} />
+                        <SliderContainer>
+                            <SliderButton 
+                                onClick={() => castSlider.current.scrollLeft -= (castSlider.current.offsetWidth + 24)} 
+                                disabled={castDisable}
+                                left>
+                                    {`<`}
+                            </SliderButton>
+                            <SliderButton 
+                                onClick={() => castSlider.current.scrollLeft += (castSlider.current.offsetWidth + 24)} 
+                                disabled={castDisable}
+                                right>
+                                    {`>`}
+                                </SliderButton>                        
+                            <Slider ref={castSlider} tilesNumber={movieCast.length} listType={listType}>                                            
                                 {movieCast.map((result) => (
                                     <Tile
                                         key={result.cast_id}
@@ -179,11 +219,16 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                     />
                                 ))}
                             </Slider>
+
+                        </SliderContainer>                       
                         </>
                         :
                         <>
-                            <Title title={`Movies - cast(${personCast.length})`} />
-                            <Slider tilesNumber={personCast.length} listType={listType}>
+                        {personCast.length > 0 ?
+                        <>
+                        <Title title={`Movies - cast(${personCast.length})`} />
+                        <SliderContainer ref={container}>
+                            <Slider ref={castSlider} tilesNumber={personCast.length} listType={listType}>
                                 {sortedPersonCast.map((result) => (
                                     <Tile
                                         key={result.cast_id}
@@ -197,17 +242,49 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                         rateValue={result.vote_average}
                                         votesNumber={result.vote_count}
                                     />
-                                ))}
-                            </Slider>
-                        </>
+
+                                ))}                        
+                            </Slider> 
+                            <SliderButton 
+                                onClick={() => {
+                                    castSlider.current.scrollLeft -= (castSlider.current.offsetWidth + 24);
+                                }} 
+                                disabled={castDisable}
+                                left>
+                                    {`<`}
+                            </SliderButton>
+                            <SliderButton 
+                                onClick={() => castSlider.current.scrollLeft += (castSlider.current.offsetWidth + 24)} 
+                                disabled={castDisable}
+                                right>
+                                    {`>`}
+                            </SliderButton>                                                      
+                        </SliderContainer>
+                        </> : 
+                        ""}
+                        </>           
                     }
                 </Wrapper>
 
-                <Wrapper DataType={listType}>
+                <Wrapper DataType={listType} ref={container}>
                     {detailType === "movie" ?
                         <>
-                            <Title title={"Crew"} />
-                            <Slider tilesNumber={movieCrew.length} listType={listType}>
+
+                        <Title title={"Crew"} />
+                        <SliderContainer>
+                            <SliderButton 
+                                onClick={() => crewSlider.current.scrollLeft -= (crewSlider.current.offsetWidth + 24)} 
+                                disabled={crewDisable} 
+                                left>
+                                    {`<`}
+                            </SliderButton>
+                            <SliderButton 
+                                onClick={() => crewSlider.current.scrollLeft += (crewSlider.current.offsetWidth + 24)} 
+                                disabled={crewDisable} 
+                                right>
+                                    {`>`}
+                            </SliderButton> 
+                            <Slider ref={crewSlider} tilesNumber={movieCrew.length} listType={listType}>
                                 {movieCrew.map((result) => (
                                     <Tile
                                         key={result.credit_id}
@@ -219,12 +296,16 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                         image={result.profile_path}
                                     />
                                 ))}
-                            </Slider>
-                        </>
+                            </Slider>  
+                        </SliderContainer>
+                        </>                  
                         :
                         <>
-                            {personCrew.length > 0 ? <Title title={`Movies - crew(${personCrew.length})`} /> : ""}
-                            <Slider tilesNumber={personCrew.length} listType={listType}>
+                        {personCrew.length > 0 ? 
+                        <>
+                        <Title title={`Movies - crew(${personCrew.length})`} /> 
+                        <SliderContainer>
+                            <Slider ref={crewSlider} tilesNumber={personCrew.length} listType={listType}>
                                 {sortedPersonCrew.map((result) => (
                                     <Tile
                                         key={result.credit_id}
@@ -239,6 +320,21 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                     />
                                 ))}
                             </Slider>
+                            <SliderButton 
+                            onClick={() => {
+                                crewSlider.current.scrollLeft -= (crewSlider.current.offsetWidth + 24)
+                            }}
+                            disabled={crewDisable} 
+                            left>
+                                {`<`}
+                            </SliderButton>
+                            <SliderButton 
+                                onClick={() => crewSlider.current.scrollLeft += (crewSlider.current.offsetWidth + 24)} 
+                                disabled={crewDisable} 
+                                right>
+                                    {`>`}
+                            </SliderButton>
+                        </SliderContainer></> : ""}
                         </>
                     }
                 </Wrapper>

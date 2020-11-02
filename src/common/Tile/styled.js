@@ -8,7 +8,7 @@ export const TileElement = styled.div`
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     border-radius: 5px;
     display: grid;
-
+    
     ${({ tileView }) => tileView === "detail" && css`
             grid-template-areas: "image detail"
                                 "image overview";
@@ -85,7 +85,7 @@ export const Image = styled.div`
     }
 
     ${({ imagePath, tileType }) => css`
-        background-image: url(https://image.tmdb.org/t/p/${tileType === "movie" ? "w342" : "h632"}/${imagePath});
+        background-image: url("https://image.tmdb.org/t/p/${tileType === "movie" ? "w342" : "h632"}/${imagePath}");
     `}
     margin: 40px 0px;
     border-radius: 5px;
@@ -93,12 +93,7 @@ export const Image = styled.div`
 
     ${({ tileView }) => tileView === "detail" && css`
             grid-area: image;
-            transition: none;
-            
-             &:hover{
-                  filter: none;
-                  transform: none;
-    }
+
     `}
 
     ${({ tileType, tileView }) => (tileType === "people" && tileView === "detail") && css`
@@ -191,11 +186,7 @@ export const Header = styled.h2`
         font-size: 20px;
         line-height: 1.3;
         margin: 0;
-        transition: filter 1s;
-        
-        &:hover{
-            filter: opacity(0.5);
-        }
+
     `}
     ${({ tileType, tileView }) => (tileType === "people" && tileView === "list") && css`
         text-align: center;
@@ -218,7 +209,7 @@ export const Header = styled.h2`
     };
     @media (max-width: ${({ theme }) => theme.breakpoints.small}){
         ${({ tileView }) => tileView === "detail" && css`
-            font-size: 16px;
+            font-size: 14px;
             margin: 0 0 0 0;
         `}
     };
@@ -495,7 +486,7 @@ export const PlugLogo = styled.img`
     width: 25%;
 
     ${({ tileType }) => tileType === "people" && css`
-        width: 75%;
+        width: 50%;
     `}
 `;
 
