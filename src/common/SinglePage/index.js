@@ -150,7 +150,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
     }
     return (
         <FadeIn delay={50} transitionDuration={600}>
-            {detailType === "movie" ?
+            {movieDetail.backdrop_path && detailType === "movie" ?
                 <Backdrop
                     backdrop={movieDetail.backdrop_path}
                     title={movieDetail.title}
@@ -187,6 +187,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
                     }
                 </Wrapper>
 
+
                 <Wrapper DataType={listType} ref={container}>
                     
                     {detailType === "movie" ?
@@ -218,6 +219,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                     />
                                 ))}
                             </Slider>
+
                         </SliderContainer>                       
                         </>
                         :
@@ -240,6 +242,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
                                         rateValue={result.vote_average}
                                         votesNumber={result.vote_count}
                                     />
+
                                 ))}                        
                             </Slider> 
                             <SliderButton 
@@ -266,6 +269,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
                 <Wrapper DataType={listType} ref={container}>
                     {detailType === "movie" ?
                         <>
+
                         <Title title={"Crew"} />
                         <SliderContainer>
                             <SliderButton 

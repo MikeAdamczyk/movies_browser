@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoints.large}){
         max-width: 1020px;
 
-        ${(({ DataType }) => DataType === "people" && css`
+        ${(({ DataType }) => DataType === "peoplePage" && css`
             max-width: 904px;
         `)};
     }
@@ -42,7 +42,7 @@ export const Wrapper = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}){
         max-width: 600px;
 
-        ${(({ DataType }) => DataType === "people" && css`
+        ${(({ DataType }) => DataType === "peoplePage" && css`
             max-width: 440px;
         `)};
     }

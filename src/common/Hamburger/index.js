@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { HamburgerMenu, Bar, MenuBar, MenuBackground } from "./styled";
-import Search from "../Header/Search/index";
 import { Nav } from "../Header/Menu/Navigation";
+import { SearchButton } from "../Header/Menu/Navigation/styled";
 
 export const Hamburger = ({ position }) => {
 
@@ -18,6 +18,10 @@ export const Hamburger = ({ position }) => {
     setMenuDisplayed(!menuDisplayed);
   };
 
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
       <MenuBar position={position}>
@@ -26,7 +30,7 @@ export const Hamburger = ({ position }) => {
           <Bar showMenu={menuDisplayed} bar2 />
           <Bar showMenu={menuDisplayed} bar3 />
         </HamburgerMenu>
-        <Search showMenu={menuDisplayed} position={position} />
+        <SearchButton showMenu={menuDisplayed} onClick={scrollTop}>SEARCH</SearchButton>
         <Nav showMenu={menuDisplayed} />
       </MenuBar>
       <MenuBackground showMenu={menuDisplayed} position={position} />
