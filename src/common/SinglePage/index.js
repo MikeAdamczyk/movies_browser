@@ -123,7 +123,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
         )
     }
     return (
-        <FadeIn delay={50} transitionDuration={600}>
+        <FadeIn delay={50} transitionDuration={300}>
             {detailType === "movie" ?
                 <Backdrop
                     backdrop={movieDetail.backdrop_path}

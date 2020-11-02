@@ -12,5 +12,5 @@ function* fetchSearchedMoviesHandler (action) {
 }
 
 export function* searchedMoviesSaga () {
-  yield debounce(2000, fetchMoviesByQuery.type, fetchSearchedMoviesHandler);
+  yield debounce(1500, fetchMoviesByQuery.type, fetchSearchedMoviesHandler);
 }

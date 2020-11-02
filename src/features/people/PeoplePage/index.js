@@ -32,7 +32,7 @@ export const PeoplePage = () => {
 
   useEffect(() => {
     if (!query || query === "") {
-      dispatch(fetchPeople({page: 1}));
+      dispatch(fetchPeople({page: "1"}));
     }
   }, [dispatch, query]);
 
@@ -71,7 +71,7 @@ export const PeoplePage = () => {
                     !loading && !searchingLoadingStatus && errorStatus ?
                         <Error/>
                         :
-                        <FadeIn delay={50} transitionDuration={600}>
+                        <FadeIn delay={50} transitionDuration={300}>
                           <Title
                               title={(!query || query.trim() === "") ? "Popular people" : `Search results for "${query}" (${totalResults})`}/>
                               <ListContainer DataType={"people"}>
