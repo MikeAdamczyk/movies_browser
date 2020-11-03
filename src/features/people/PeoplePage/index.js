@@ -55,7 +55,7 @@ export const PeoplePage = () => {
     }, [dispatch, query]);
 
     useEffect(() => {
-        if ((!query || query === "") && !loading) {
+        if (!query || query === "") {
             dispatch(fetchPeople({ page }));
         }
     }, [dispatch, page]);
