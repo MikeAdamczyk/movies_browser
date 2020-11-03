@@ -120,7 +120,7 @@ export const SinglePage = ({ match, detailType, listType }) => {
             if(castSlider.current.scrollWidth <= container.current.scrollWidth){
                 setCastDisable(true);
             } else{setCastDisable(false)}
-        }, 100);
+        }, 1000);
 
         return () => window.removeEventListener("resize", updateWidth);
     }, [container, crewSlider, castSlider, windowSize])
