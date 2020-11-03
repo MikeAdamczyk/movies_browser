@@ -75,14 +75,6 @@ export const PeoplePage = () => {
                         </SpinnerBox>
                     </>
                     :
-                    !loading && searchingLoadingStatus ?
-                        <>
-                            <Title title={`Search results for "${query}"`} />
-                            <SpinnerBox search>
-                                <Spinner src={spinner} />
-                            </SpinnerBox>
-                        </>
-                        :
                         !loading && !searchingLoadingStatus && totalResults === 0 ?
                             <NoResult />
                             :

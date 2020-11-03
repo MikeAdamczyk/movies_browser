@@ -26,9 +26,9 @@ const Search = ({ showMenu }) => {
   useEffect(() => {
     if (query && query !== "") {
       window.location.href.includes("/people") ?
-          dispatch(fetchPeopleByQuery({query, page: 1}))
+          dispatch(fetchPeopleByQuery({query, page: "1"}))
           :
-          dispatch(fetchMoviesByQuery({query, page: 1}))
+          dispatch(fetchMoviesByQuery({query, page: "1"}))
     }
   }, [dispatch, query]);
 
