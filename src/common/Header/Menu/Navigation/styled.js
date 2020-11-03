@@ -42,17 +42,26 @@ export const StyledItem = styled.li`
     }
 `;
 
-export const SearchButton = styled.button`
-    color: ${({ theme }) => theme.color.white};
-    border: none;
-    border-radius: 33px;
-    padding: 10px 14px;
-    margin: 14px;
+export const GoTopButton = styled.button`
+
     transition: 0.5s ease;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
     background: transparent;
+
+    &:hover{
+        background: ${({ theme }) => theme.color.white};
+        color: ${({ theme }) => theme.color.black};
+    }
+
+    ${({ position }) => position === "hideButton" && css`
+        border: none;
+        color: transparent;
+        outline: none;
+        visibility: hidden;
+        position: fixed;
+        width: 0;
+        bottom: 0;
+        right: 0;
+    `}
 
     ${({ position }) => position === "showButton" && css`
         border: 3px solid ${({ theme }) => theme.color.black};
@@ -78,10 +87,6 @@ export const SearchButton = styled.button`
         }
     `}
 
-    &:hover{
-        background: ${({ theme }) => theme.color.white};
-        color: ${({ theme }) => theme.color.black};
-    }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
         font-weight: 600;
@@ -94,6 +99,11 @@ export const SearchButton = styled.button`
         `}
 
         ${({ showMenu }) => showMenu === true && css`
+            color: ${({ theme }) => theme.color.white};
+            border: none;
+            border-radius: 33px;
+            padding: 10px 14px;
+            margin: 14px;
             position: fixed;
             top: 50px;
             right: 0;
