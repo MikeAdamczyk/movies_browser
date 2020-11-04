@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/movies_browser/static/js/main.546bafc9.chunk.js",
-    "main.js.map": "/movies_browser/static/js/main.546bafc9.chunk.js.map",
+    "main.js": "/movies_browser/static/js/main.6b4324a0.chunk.js",
+    "main.js.map": "/movies_browser/static/js/main.6b4324a0.chunk.js.map",
     "runtime-main.js": "/movies_browser/static/js/runtime-main.07168239.js",
     "runtime-main.js.map": "/movies_browser/static/js/runtime-main.07168239.js.map",
     "static/js/2.b695d920.chunk.js": "/movies_browser/static/js/2.b695d920.chunk.js",
     "static/js/2.b695d920.chunk.js.map": "/movies_browser/static/js/2.b695d920.chunk.js.map",
     "index.html": "/movies_browser/index.html",
-    "precache-manifest.7505cd6e6fa895a726917a8d7b4afa33.js": "/movies_browser/precache-manifest.7505cd6e6fa895a726917a8d7b4afa33.js",
+    "precache-manifest.5810e5d63bb1ee4c940c2a452bfde267.js": "/movies_browser/precache-manifest.5810e5d63bb1ee4c940c2a452bfde267.js",
     "service-worker.js": "/movies_browser/service-worker.js",
     "static/js/2.b695d920.chunk.js.LICENSE.txt": "/movies_browser/static/js/2.b695d920.chunk.js.LICENSE.txt",
     "static/media/Vector.svg": "/movies_browser/static/media/Vector.01e4fcea.svg",
@@ -18,6 +18,6 @@
   "entrypoints": [
     "static/js/runtime-main.07168239.js",
     "static/js/2.b695d920.chunk.js",
-    "static/js/main.546bafc9.chunk.js"
+    "static/js/main.6b4324a0.chunk.js"
   ]
 }
