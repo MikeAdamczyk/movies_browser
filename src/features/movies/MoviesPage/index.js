@@ -20,7 +20,7 @@ import { QUERY_PARAMETER } from "../../../lib/consts";
 import spinner from "../../../images/icon-spinner.svg";
 import { Spinner, SpinnerBox } from "../../../common/Spinner/styled";
 import { ListContainer, Wrapper } from "../../../common/Containers/styled";
-import { SearchButton } from "../../../common/Header/Menu/Navigation/styled";
+import { GoTopButton } from "../../../common/Header/Menu/Navigation/styled";
 
 export const MoviesPage = () => {
     const query = useQueryParameter(QUERY_PARAMETER);
@@ -36,7 +36,7 @@ export const MoviesPage = () => {
     useEffect(() => {
         document.addEventListener("scroll", e => {
             let pagePosition = document.scrollingElement.scrollTop;
-            if (pagePosition >= 1000) {
+            if (pagePosition >= 850) {
                 setPosition("showButton")
             } else {
                 setPosition("hideButton")
@@ -90,13 +90,13 @@ export const MoviesPage = () => {
                                         />
                                     ))}
                                 </ListContainer>
-                                <SearchButton
+                                <GoTopButton
                                     position={position}
                                     title="Scroll to the top"
                                     onClick={scrollTop}
                                 >
                                     ^
-                                </SearchButton>
+                                </GoTopButton>
                                 <Footer />
                             </FadeIn>
             }

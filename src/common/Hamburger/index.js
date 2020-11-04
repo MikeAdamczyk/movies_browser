@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { HamburgerMenu, Bar, MenuBar, MenuBackground } from "./styled";
 import { Nav } from "../Header/Menu/Navigation";
-import { SearchButton } from "../Header/Menu/Navigation/styled";
+import { GoTopButton } from "../Header/Menu/Navigation/styled";
 
 export const Hamburger = ({ position }) => {
 
@@ -30,7 +30,7 @@ export const Hamburger = ({ position }) => {
           <Bar showMenu={menuDisplayed} bar2 />
           <Bar showMenu={menuDisplayed} bar3 />
         </HamburgerMenu>
-        <SearchButton showMenu={menuDisplayed} onClick={scrollTop}>SEARCH</SearchButton>
+        <GoTopButton showMenu={menuDisplayed} onClick={scrollTop}>SEARCH</GoTopButton>
         <Nav showMenu={menuDisplayed} />
       </MenuBar>
       <MenuBackground showMenu={menuDisplayed} position={position} />
